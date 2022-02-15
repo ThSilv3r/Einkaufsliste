@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary
 {
-    public class ShoppingList
+    public class Recipe
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public List<Product> Products { get; set; }
+        public string Description { get; set; }
         public List<Food> Foods { get; set; }
     }
 }

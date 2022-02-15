@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ShoppingLists\" />
+  </ItemGroup>
+
 </Project>

@@ -11,6 +11,7 @@ namespace Einkaufsliste
 {
     public class FoodManager
     {
+        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
         public void createFood()
         {
             string name;
@@ -83,7 +84,7 @@ namespace Einkaufsliste
         public List<Food> getFoodList()
         {
             List<Food> foods = new List<Food>();
-            using (StreamReader streamReader = new StreamReader(@"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json"))
+            using (StreamReader streamReader = new StreamReader(path))
             {
                 string foodsString = streamReader.ReadToEnd();
                 if (foodsString != "")
@@ -97,7 +98,7 @@ namespace Einkaufsliste
 
         public void saveFoodList(List<Food> foods)
         {
-            using (StreamWriter streamWriter = new StreamWriter(@"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json"))
+            using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 string jsonFoods = JsonSerializer.Serialize(foods);
                 streamWriter.Write(jsonFoods);

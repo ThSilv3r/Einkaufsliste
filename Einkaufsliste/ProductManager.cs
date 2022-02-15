@@ -11,6 +11,7 @@ namespace Einkaufsliste
 {
     public class ProductManager
     {
+        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
         public void createProduct()
         {
             string name;
@@ -66,7 +67,7 @@ namespace Einkaufsliste
         public List<Product> getProductList()
         {
             List<Product> products = new List<Product>();
-            using (StreamReader streamReader = new StreamReader(@"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json"))
+            using (StreamReader streamReader = new StreamReader(path))
             {
                 string productsString = streamReader.ReadToEnd();
                 if (productsString != "")
@@ -80,7 +81,7 @@ namespace Einkaufsliste
 
         public void saveProductList(List<Product> products)
         {
-            using (StreamWriter streamWriter = new StreamWriter(@"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json"))
+            using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 string jsonProducts = JsonSerializer.Serialize(products);
                 streamWriter.Write(jsonProducts);
