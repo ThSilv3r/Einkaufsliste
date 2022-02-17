@@ -14,88 +14,143 @@ namespace Einkaufsliste.Test
         public void CreateListTest()
         {
             //arrange
-            ShoppingListManager shoppingListManager = new ShoppingListManager();
+            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
 
             //act
-            shoppingListManager.createShoppingList();
+            listManager.createShoppingList();
 
             //assert
             bool exists = File.Exists(path + name + ".json");
             Assert.IsTrue(exists);
-            shoppingListManager.deleteShoppingList(name);
+            listManager.deleteShoppingList(name);
         }
         [TestMethod]
         public void SaveListTest()
         {
             //arrange
-            ShoppingListManager shoppingListManager = new ShoppingListManager();
+            ShoppingListManager listManager = new ShoppingListManager();
             ShoppingList shoppingList = new ShoppingList { 
                 Name = "TestListe" 
             };
 
             //act
-            shoppingListManager.saveShoppingList(shoppingList);
+            listManager.saveShoppingList(shoppingList);
 
             //assert
             bool exists = File.Exists(path + shoppingList.Name + ".json");
             Assert.IsTrue(exists);
-            shoppingListManager.deleteShoppingList(shoppingList.Name);
+            listManager.deleteShoppingList(shoppingList.Name);
         }
         [TestMethod]
         public void AddProduct()
         {
             //arrange
+            ShoppingListManager listManager = new ShoppingListManager();
+            ShoppingList shoppingList = new ShoppingList();
+            ProductManager productManager = new ProductManager();
+            string name = "TestListe";
+            Product expectedProduct = new Product
+            {
+                Name = "Test",
+                Price = 0
+            };
+            StringReader nameReader = new StringReader("Test");
+            Console.SetIn(nameReader);
+            productManager.createProduct();
+
+            nameReader = new StringReader(name);
+            Console.SetIn(nameReader);
+
+            listManager.createShoppingList();
+            shoppingList = listManager.GetShoppingList(name);
 
             //act
+            nameReader = new StringReader("Test");
+            Console.SetIn(nameReader);
+
+            listManager.addProduct(name);
 
             //assert
+            ShoppingList list = listManager.GetShoppingList(name);
+            Product product = list.Products.Find(x => x.Name == expectedProduct.Name);
+            Assert.AreEqual(expectedProduct.Name, product.Name);
+            productManager.deleteProduct("Test");
+            listManager.deleteShoppingList(name);
         }
         [TestMethod]
         public void AddFood()
         {
             //arrange
+            ShoppingListManager listManager = new ShoppingListManager();
+            ShoppingList shoppingList = new ShoppingList();
+            FoodManager foodManager = new FoodManager();
+            string name = "TestListe";
+            Food expectedFood = new Food
+            {
+                Name = "Test",
+                Price = 0,
+                Weight = 0
+            };
+            StringReader nameReader = new StringReader("Test");
+            Console.SetIn(nameReader);
+            foodManager.createFood();
+
+            nameReader = new StringReader(name);
+            Console.SetIn(nameReader);
+
+            listManager.createShoppingList();
+            shoppingList = listManager.GetShoppingList(name);
 
             //act
+            nameReader = new StringReader("Test");
+            Console.SetIn(nameReader);
+
+            listManager.addFood(name);
 
             //assert
+            ShoppingList list = listManager.GetShoppingList(name);
+            Food food = list.Foods.Find(x => x.Name == expectedFood.Name);
+            Assert.AreEqual(expectedFood.Name, food.Name);
+            foodManager.deleteFood("Test");
+            listManager.deleteShoppingList(name);
         }
         [TestMethod]
         public void GetShoppingList()
         {
             //arrange
-            ShoppingListManager shoppingListManager = new ShoppingListManager();
+            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
 
-            shoppingListManager.createShoppingList();
+            listManager.createShoppingList();
 
             //act
-            ShoppingList shoppingList = shoppingListManager.GetShoppingList(name);
+            ShoppingList shoppingList = listManager.GetShoppingList(name);
 
             //assert
             Assert.IsNotNull(shoppingList);
-            shoppingListManager.deleteShoppingList(name);
+            listManager.deleteShoppingList(name);
         }
         [TestMethod]
         public void DeleteShoppingList()
         {
             //arrange
-            ShoppingListManager shoppingListManager = new ShoppingListManager();
+            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
 
-            shoppingListManager.createShoppingList();
+            listManager.createShoppingList();
 
             //act
-            shoppingListManager.deleteShoppingList(name);
+            listManager.deleteShoppingList(name);
 
             //assert
             bool exists = File.Exists(path + name + ".json");

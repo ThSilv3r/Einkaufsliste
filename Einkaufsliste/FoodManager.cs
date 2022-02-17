@@ -11,7 +11,7 @@ namespace Einkaufsliste
 {
     public class FoodManager
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
+        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
         public void createFood()
         {
             string name;
@@ -21,7 +21,7 @@ namespace Einkaufsliste
             Food food = new Food();
             List<Food> foods = getFoodList();
 
-            Console.WriteLine("Gib den Produktnamen ein:");
+            Console.WriteLine("Gib den Namen des Essens ein:");
             name = Console.ReadLine();
             if (name.Length == 0)
             {
