@@ -104,7 +104,7 @@ namespace Einkaufsliste.Test
             cmd.WaitForExit();
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual("Kein echter Befehl\r\n", output);
         }
 
         private ProcessStartInfo createStartInfo(string command)

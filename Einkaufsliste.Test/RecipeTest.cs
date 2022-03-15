@@ -29,6 +29,23 @@ namespace Einkaufsliste.Test
             recipeManager.deleteRecipe(name);
         }
         [TestMethod]
+        public void CreateRecipeNoName()
+        {
+            //arrange
+            RecipeManager recipeManager = new RecipeManager();
+            string name = "";
+            StringReader nameReader = new StringReader(name);
+            Console.SetIn(nameReader);
+
+            //act
+            recipeManager.createRecipe();
+
+            //assert
+            bool exists = File.Exists(path + name + ".json");
+            Assert.IsFalse(exists);
+            recipeManager.deleteRecipe(name);
+        }
+        [TestMethod]
         public void SaveRecipe()
         {
             //arrange

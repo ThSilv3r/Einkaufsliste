@@ -22,11 +22,11 @@ namespace Einkaufsliste
             
             Console.WriteLine("Gib den Produktnamen ein:");
             name = Console.ReadLine();
-            //if(name.Length == 0)
-            //{
-            //    Console.WriteLine("Bitte einen Namen eingeben:");
-            //    name = Console.ReadLine();
-            //}
+            if (name == null)
+            {
+                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
+                return;
+            }
 
             product.Name = name;
 

@@ -21,6 +21,12 @@ namespace Einkaufsliste
 
             Console.WriteLine("Gib den Name der Einkaufsliste ein");
             name = Console.ReadLine();
+            if (name == null)
+            {
+                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
+                return;
+            }
+
             shoppingList.Name = name;
             shoppingList.Products = products;
             shoppingList.Foods = foods;

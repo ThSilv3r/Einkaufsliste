@@ -20,8 +20,6 @@ namespace Einkaufsliste.Test
                 Price = 0,
                 Weight = 0
             };
-            List<Food> expectedFoods = foodManager.getFoodList();
-            expectedFoods.Add(apple);
 
             StringReader nameReader = new StringReader("Apple");
             Console.SetIn(nameReader);
@@ -34,6 +32,32 @@ namespace Einkaufsliste.Test
             Food food = foods.Find(x => x.Name == apple.Name);
             Assert.AreEqual(apple.ToString(), food.ToString());
             foodManager.deleteFood(apple.Name);
+        }
+        [TestMethod]
+        public void CreateFoodNoName()
+        {
+            //arrange
+            FoodManager foodManager = new FoodManager();
+            Food apple = new Food
+            {
+                Name = "Apple",
+                Price = 0,
+                Weight = 0
+            };
+            List<Food> expectedFoods = foodManager.getFoodList();
+            expectedFoods.Add(apple);
+
+            StringReader nameReader = new StringReader("");
+            Console.SetIn(nameReader);
+
+            //act
+            foodManager.createFood();
+
+            //assert
+            List<Food> foods = foodManager.getFoodList();
+            Food food = foods.Find(x => x.Name == null);
+            Assert.IsNull(food);
+            foodManager.deleteFood(null);
         }
 
         [TestMethod]

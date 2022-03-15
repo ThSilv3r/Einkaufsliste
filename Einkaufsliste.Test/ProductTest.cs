@@ -39,6 +39,31 @@ namespace Einkaufsliste.Test
         }
 
         [TestMethod]
+        public void CreateProductNoName()
+        {
+            //arrange
+            ProductManager productManager = new ProductManager();
+            Product handy = new Product
+            {
+                Name = "Handy",
+                Price = 0
+            };
+            List<Product> expectedFoods = productManager.getProductList();
+            expectedFoods.Add(handy);
+
+            StringReader nameReader = new StringReader("");
+            Console.SetIn(nameReader);
+
+            //act
+            productManager.createProduct();
+
+            //assert
+            List<Product> products = productManager.getProductList();
+            Product product = products.Find(x => x.Name == null);
+            Assert.IsNull(product);
+            productManager.deleteProduct(null);
+        }
+        [TestMethod]
         public void DeleteProduct()
         {
             //arrange

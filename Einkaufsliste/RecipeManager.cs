@@ -24,6 +24,12 @@ namespace Einkaufsliste
 
             Console.WriteLine("Gib den Name des Rezepts ein");
             name = Console.ReadLine();
+            if (name == null)
+            {
+                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
+                return;
+            }
+
             Console.WriteLine("Suche die benötigten Lebensmittel aus");
             foreach(var fd in foodList)
             {
@@ -68,10 +74,12 @@ namespace Einkaufsliste
 
             return recipe;
         }
+
         public void deleteRecipe(string name)
         {
             File.Delete(path + name + ".json");
         }
+
         public void addFood(string recipeName)
         {
             Recipe recipe = GetRecipe(recipeName);
@@ -90,6 +98,7 @@ namespace Einkaufsliste
             recipe.Foods.Add(foodItem);
             saveRecipe(recipe);
         }
+
         public void addToShoppingList()
         {
             Console.WriteLine("Gib den Namen des Rezept ein:");

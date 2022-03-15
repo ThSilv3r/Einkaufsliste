@@ -11,7 +11,7 @@ namespace Einkaufsliste.Test
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
         [TestMethod]
-        public void CreateListTest()
+        public void CreateList()
         {
             //arrange
             ShoppingListManager listManager = new ShoppingListManager();
@@ -29,7 +29,25 @@ namespace Einkaufsliste.Test
             listManager.deleteShoppingList(name);
         }
         [TestMethod]
-        public void SaveListTest()
+        public void CreateListNoName()
+        {
+            //arrange
+            ShoppingListManager listManager = new ShoppingListManager();
+            string name = "";
+
+            StringReader nameReader = new StringReader(name);
+            Console.SetIn(nameReader);
+
+            //act
+            listManager.createShoppingList();
+
+            //assert
+            bool exists = File.Exists(path + name + ".json");
+            Assert.IsFalse(exists);
+            listManager.deleteShoppingList(name);
+        }
+        [TestMethod]
+        public void SaveList()
         {
             //arrange
             ShoppingListManager listManager = new ShoppingListManager();
@@ -134,7 +152,7 @@ namespace Einkaufsliste.Test
             ShoppingList shoppingList = listManager.GetShoppingList(name);
 
             //assert
-            Assert.IsNotNull(shoppingList);
+            Assert.AreEqual(name, shoppingList.Name);
             listManager.deleteShoppingList(name);
         }
         [TestMethod]
