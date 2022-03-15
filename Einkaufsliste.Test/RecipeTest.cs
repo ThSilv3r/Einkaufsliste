@@ -83,7 +83,7 @@ namespace Einkaufsliste.Test
             foodManager.deleteFood(name);
         }
         [TestMethod]
-        public void AddShoppingList()
+        public void AddToShoppingList()
         {
             //arange
             ShoppingListManager listManager = new ShoppingListManager();
