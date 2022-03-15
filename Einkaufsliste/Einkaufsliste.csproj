@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,11 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Recipes - Copy\**" />
+    <EmbeddedResource Remove="Recipes - Copy\**" />
+    <None Remove="Recipes - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Recipes\" />
     <Folder Include="ShoppingLists\" />
   </ItemGroup>
 

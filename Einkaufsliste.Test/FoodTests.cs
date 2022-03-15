@@ -37,7 +37,7 @@ namespace Einkaufsliste.Test
         }
 
         [TestMethod]
-        public void GetProduct()
+        public void GetFood()
         {
             //arrange
             FoodManager foodManager = new FoodManager();
@@ -64,7 +64,7 @@ namespace Einkaufsliste.Test
         }
 
         [TestMethod]
-        public void DeleteProduct()
+        public void DeleteFood()
         {
             //arrange
             FoodManager foodManager = new FoodManager();
