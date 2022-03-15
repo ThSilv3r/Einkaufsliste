@@ -10,12 +10,20 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class RecipeTest
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
+        private string path;
+        private RecipeManager recipeManager;
+        private FoodManager foodManager;
+        [TestInitialize]
+        public void Startup()
+        {
+            path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
+            recipeManager = new RecipeManager();
+            foodManager = new FoodManager();
+        }
         [TestMethod]
         public void CreateRecipe()
         {
             //arrange
-            RecipeManager recipeManager = new RecipeManager();
             string name = "Test";
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
@@ -32,7 +40,6 @@ namespace Einkaufsliste.Test
         public void CreateRecipeNoName()
         {
             //arrange
-            RecipeManager recipeManager = new RecipeManager();
             string name = "";
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
@@ -49,7 +56,6 @@ namespace Einkaufsliste.Test
         public void SaveRecipe()
         {
             //arrange
-            RecipeManager recipeManager = new RecipeManager();
             string name = "Test";
             Recipe recipe = new Recipe
             {
@@ -68,8 +74,6 @@ namespace Einkaufsliste.Test
         public void AddFood()
         {
             //arange
-            RecipeManager recipeManager = new RecipeManager();
-            FoodManager foodManager = new FoodManager();
             string name = "Test";
             List<Food> foods = new List<Food>();
             Recipe recipe = new Recipe
@@ -104,8 +108,6 @@ namespace Einkaufsliste.Test
         {
             //arange
             ShoppingListManager listManager = new ShoppingListManager();
-            RecipeManager recipeManager = new RecipeManager();
-            FoodManager foodManager = new FoodManager();
             string name = "Test";
             List<Food> foods = new List<Food>();
             Recipe recipe = new Recipe

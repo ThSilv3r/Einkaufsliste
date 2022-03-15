@@ -9,18 +9,25 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class FoodTest
     {
-        [TestMethod]
-        public void CreateFood()
+        private FoodManager foodManager;
+        private Food apple;
+        private List<Food> expectedFoods;
+        [TestInitialize]
+        public void Startup()
         {
-            //arrange
-            FoodManager foodManager = new FoodManager();
-            Food apple = new Food
+            foodManager = new FoodManager();
+            apple = new Food
             {
                 Name = "Apple",
                 Price = 0,
                 Weight = 0
             };
-
+            expectedFoods = foodManager.getFoodList();
+        }
+        [TestMethod]
+        public void CreateFood()
+        {
+            //arrange
             StringReader nameReader = new StringReader("Apple");
             Console.SetIn(nameReader);
 
@@ -37,14 +44,6 @@ namespace Einkaufsliste.Test
         public void CreateFoodNoName()
         {
             //arrange
-            FoodManager foodManager = new FoodManager();
-            Food apple = new Food
-            {
-                Name = "Apple",
-                Price = 0,
-                Weight = 0
-            };
-            List<Food> expectedFoods = foodManager.getFoodList();
             expectedFoods.Add(apple);
 
             StringReader nameReader = new StringReader("");
@@ -64,14 +63,6 @@ namespace Einkaufsliste.Test
         public void GetFood()
         {
             //arrange
-            FoodManager foodManager = new FoodManager();
-            Food apple = new Food
-            {
-                Name = "Apple",
-                Price = 0,
-                Weight = 0
-            };
-            List<Food> expectedFoods = foodManager.getFoodList();
             expectedFoods.Add(apple);
 
             StringReader nameReader = new StringReader("Apple");
@@ -91,14 +82,6 @@ namespace Einkaufsliste.Test
         public void DeleteFood()
         {
             //arrange
-            FoodManager foodManager = new FoodManager();
-            Food apple = new Food
-            {
-                Name = "Apple",
-                Price = 0,
-                Weight = 0
-            };
-            List<Food> expectedFoods = foodManager.getFoodList();
             List<Food> foods = expectedFoods;
             foods.Add(apple);
             foodManager.saveFoodList(foods);

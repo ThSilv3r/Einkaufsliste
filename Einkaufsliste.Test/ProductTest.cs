@@ -9,17 +9,24 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ProductTest
     {
-        [TestMethod]
-        public void CreateProduct()
+        private ProductManager productManager;
+        private Product handy;
+        private List<Product> expectedProducts;
+        [TestInitialize]
+        public void Startup()
         {
-            //arrange
-            ProductManager productManager = new ProductManager();
-            Product handy = new Product
+            productManager = new ProductManager();
+            handy = new Product
             {
                 Name = "Handy",
                 Price = 0
             };
-            List<Product> expectedProducts = productManager.getProductList();
+            expectedProducts = productManager.getProductList();
+        }
+        [TestMethod]
+        public void CreateProduct()
+        {
+            //arrange
             expectedProducts.Add(handy);
 
             StringReader nameReader = new StringReader("Handy");
@@ -42,14 +49,7 @@ namespace Einkaufsliste.Test
         public void CreateProductNoName()
         {
             //arrange
-            ProductManager productManager = new ProductManager();
-            Product handy = new Product
-            {
-                Name = "Handy",
-                Price = 0
-            };
-            List<Product> expectedFoods = productManager.getProductList();
-            expectedFoods.Add(handy);
+            expectedProducts.Add(handy);
 
             StringReader nameReader = new StringReader("");
             Console.SetIn(nameReader);
@@ -67,13 +67,6 @@ namespace Einkaufsliste.Test
         public void DeleteProduct()
         {
             //arrange
-            ProductManager productManager = new ProductManager();
-            Product handy = new Product
-            {
-                Name = "Handy",
-                Price = 100
-            };
-            List<Product> expectedProducts = productManager.getProductList();
             List<Product> products = expectedProducts;
             products.Add(handy);
             productManager.saveProductList(products);

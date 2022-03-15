@@ -9,12 +9,18 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ShoppingListTest
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
+        private string path;
+        private ShoppingListManager listManager;
+        [TestInitialize]
+        public void Startup()
+        {
+            path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
+            listManager = new ShoppingListManager();
+        }
         [TestMethod]
         public void CreateList()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
@@ -32,7 +38,6 @@ namespace Einkaufsliste.Test
         public void CreateListNoName()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             string name = "";
 
             StringReader nameReader = new StringReader(name);
@@ -50,7 +55,6 @@ namespace Einkaufsliste.Test
         public void SaveList()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             ShoppingList shoppingList = new ShoppingList { 
                 Name = "TestListe" 
             };
@@ -67,7 +71,6 @@ namespace Einkaufsliste.Test
         public void AddProduct()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             ShoppingList shoppingList = new ShoppingList();
             ProductManager productManager = new ProductManager();
             string name = "TestListe";
@@ -103,7 +106,6 @@ namespace Einkaufsliste.Test
         public void AddFood()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             ShoppingList shoppingList = new ShoppingList();
             FoodManager foodManager = new FoodManager();
             string name = "TestListe";
@@ -140,7 +142,6 @@ namespace Einkaufsliste.Test
         public void GetShoppingList()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
@@ -159,7 +160,6 @@ namespace Einkaufsliste.Test
         public void DeleteShoppingList()
         {
             //arrange
-            ShoppingListManager listManager = new ShoppingListManager();
             string name = "TestListe";
 
             StringReader nameReader = new StringReader(name);
