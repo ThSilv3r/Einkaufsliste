@@ -22,35 +22,36 @@ namespace Einkaufsliste
             
             Console.WriteLine("Gib den Produktnamen ein:");
             name = Console.ReadLine();
-            if(name.Length == 0)
-            {
-                Console.WriteLine("Bitte einen Namen eingeben:");
-                name = Console.ReadLine();
-            }
+            //if(name.Length == 0)
+            //{
+            //    Console.WriteLine("Bitte einen Namen eingeben:");
+            //    name = Console.ReadLine();
+            //}
 
             product.Name = name;
 
             Console.WriteLine("Gib den Preis ein:");
             priceString = Console.ReadLine();
-            try
-            {
+            //try
+            //{
                 price = Convert.ToDouble(priceString);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Bitte nur Zahlen eingeben:");
-                priceString = Console.ReadLine();
-                if(priceString == null)
-                {
-                    price = 0;
-                }
-                price = Convert.ToDouble(priceString);
-            }
+            //}
+            //catch(Exception e)
+            //{
+            //    Console.WriteLine("Bitte nur Zahlen eingeben:");
+            //    priceString = Console.ReadLine();
+            //    if(priceString == null)
+            //    {
+            //        price = 0;
+            //    }
+            //    price = Convert.ToDouble(priceString);
+            //}
 
             product.Price = price;
 
-            products.Add(product);
+            Console.WriteLine(product);
 
+            products.Add(product);
             saveProductList(products);
         }
 

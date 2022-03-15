@@ -16,12 +16,32 @@ namespace Einkaufsliste
         {
             Recipe recipe = new Recipe();
             List<Food> foods = new List<Food>();
-            string name = "List";
+            FoodManager foodManager = new FoodManager();
+            List<Food> foodList = foodManager.getFoodList();
+            string name = "Recipe";
+            string food = "";
 
-            Console.WriteLine("Gib den Name der Einkaufsliste ein");
+
+            Console.WriteLine("Gib den Name des Rezepts ein");
             name = Console.ReadLine();
+            Console.WriteLine("Suche die benötigten Lebensmittel aus");
+            foreach(var fd in foodList)
+            {
+                Console.WriteLine(fd.Name);
+            }
+            while(food != "")
+            {
+                food = Console.ReadLine();
+                if(food != "")
+                {
+                    var addedFood = foodList.FirstOrDefault(f => f.Name == food);
+                    foods.Add(addedFood);
+                    Console.WriteLine("Gebe nichts ein, um dies Auswahl zu Beenden.");
+                }
+            }
             recipe.Name = name;
             recipe.Foods = foods;
+            Console.WriteLine(recipe);
 
             saveRecipe(recipe);
         }

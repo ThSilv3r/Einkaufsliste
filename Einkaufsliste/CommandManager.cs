@@ -13,6 +13,11 @@ namespace Einkaufsliste
             FoodManager foodManager = new FoodManager();
             if (args[0] == "createFood")
             {
+                if (args[1] == "test")
+                {
+                    Console.WriteLine("This is a test");
+                    return;
+                }
                 foodManager.createFood();
             }
             else if(args[0] == "deleteFood")
@@ -33,6 +38,11 @@ namespace Einkaufsliste
             ShoppingListManager listManager = new ShoppingListManager();
             if (args[0] == "createShoppingList")
             {
+                if (args[1] == "test")
+                {
+                    Console.WriteLine("This is a test");
+                    return;
+                }
                 Console.WriteLine("Creating ShoppingList");
                 listManager.createShoppingList();
             }
@@ -62,6 +72,11 @@ namespace Einkaufsliste
             ProductManager productManager = new ProductManager();
             if (args[0] == "createProduct")
             {
+                if (args[1] == "test")
+                {
+                    Console.WriteLine("This is a test");
+                    return;
+                }
                 productManager.createProduct();
             }
             else if (args[0] == "deleteProduct")
@@ -82,10 +97,15 @@ namespace Einkaufsliste
             RecipeManager recipeManager = new RecipeManager();
             if (args[0] == "createRecipe")
             {
+                if (args[1] == "test")
+                {
+                    Console.WriteLine("This is a test");
+                    return;
+                }
                 recipeManager.createRecipe();
 
             }
-            else if (args[0] == "GetRecipe")
+            else if (args[0] == "getRecipe")
             {
                 recipeManager.GetRecipe(args[1]);
             }
@@ -95,6 +115,11 @@ namespace Einkaufsliste
             }
             else if (args[0] == "addRecipeToList")
             {
+                if (args[1] == "test")
+                {
+                    Console.WriteLine("This is a test");
+                    return;
+                }
                 recipeManager.addToShoppingList();
             }
             else

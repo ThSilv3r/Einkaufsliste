@@ -24,7 +24,7 @@ namespace Einkaufsliste
             shoppingList.Name = name;
             shoppingList.Products = products;
             shoppingList.Foods = foods;
-
+            Console.WriteLine(shoppingList);
             saveShoppingList(shoppingList);
         }
         public ShoppingList GetShoppingList(string name)
@@ -66,6 +66,7 @@ namespace Einkaufsliste
         {
             File.Delete(path + name + ".json");
         }
+
         public void addFood(string listName)
         {
             ShoppingList list = GetShoppingList(listName);

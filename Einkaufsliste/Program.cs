@@ -31,9 +31,9 @@ namespace Einkaufsliste
                 }
                 else
                 {
-                    Console.WriteLine(args[0]);
-                    Console.WriteLine("Kein echter Befehl");
-                    Console.WriteLine(args.Length);
+                    //Console.WriteLine(args[0]);
+                    //Console.WriteLine("Kein echter Befehl");
+                    //Console.WriteLine(args.Length);
                 }
             }
         }

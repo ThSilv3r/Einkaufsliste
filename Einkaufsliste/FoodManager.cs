@@ -23,49 +23,51 @@ namespace Einkaufsliste
 
             Console.WriteLine("Gib den Namen des Essens ein:");
             name = Console.ReadLine();
-            if (name.Length == 0)
-            {
-                Console.WriteLine("Bitte einen Namen eingeben:");
-                name = Console.ReadLine();
-            }
+            //if (name.Length == 0)
+            //{
+            //    Console.WriteLine("Bitte einen Namen eingeben:");
+            //    name = Console.ReadLine();
+            //}
 
             Console.WriteLine("Gib den Preis ein:");
             priceString = Console.ReadLine();
-            try
-            {
+           // try
+           // {
                 price = Convert.ToDouble(priceString);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Bitte nur Zahlen eingeben:");
-                priceString = Console.ReadLine();
-                if (priceString == null)
-                {
-                    price = 0;
-                }
-                price = Convert.ToDouble(priceString);
-            }
+           // }
+            //catch (Exception e)
+            //{
+                //Console.WriteLine("Bitte nur Zahlen eingeben:");
+                //priceString = Console.ReadLine();
+                //if (priceString == null)
+                //{
+                //    price = 0;
+                //}
+                //price = Convert.ToDouble(priceString);
+            //}
 
             Console.WriteLine("Gib das Gewicht des Essens ein:");
             string weightString = Console.ReadLine();
-            try
-            {
+            //try
+            //{
                 weight = Convert.ToInt32(weightString);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Bitte nur Zahlen eingeben:");
-                weightString = Console.ReadLine();
-                if (weightString == null)
-                {
-                    weight = 0;
-                }
-                weight = Convert.ToInt32(weightString);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    //Console.WriteLine("Bitte nur Zahlen eingeben:");
+            //    //weightString = Console.ReadLine();
+            //    //if (weightString == null)
+            //    //{
+            //    //    weight = 0;
+            //    //}
+            //    //weight = Convert.ToInt32(weightString);
+            //}
 
             food.Name = name;
             food.Price = price;
             food.Weight = weight;
+
+            Console.WriteLine(food);
 
             foods.Add(food);
 
