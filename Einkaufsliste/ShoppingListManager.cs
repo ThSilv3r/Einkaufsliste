@@ -12,26 +12,20 @@ namespace Einkaufsliste
     public class ShoppingListManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
+        private ReadValues readValues = new ReadValues();
         public void createShoppingList()
         {
-            ShoppingList shoppingList = new ShoppingList();
+            FluentShoppingList shoppingList = new FluentShoppingList();
             List<Food> foods = new List<Food>();
             List<Product> products = new List<Product>();
             string name = "List";
 
             Console.WriteLine("Gib den Name der Einkaufsliste ein");
-            name = Console.ReadLine();
-            if (name == null)
-            {
-                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
-                return;
-            }
+            name = readValues.ReadString();
 
-            shoppingList.Name = name;
-            shoppingList.Products = products;
-            shoppingList.Foods = foods;
+            shoppingList.NameOfTheList(name).FoodsOfTheList(foods).ProductsOfTheList(products);
             Console.WriteLine(shoppingList);
-            saveShoppingList(shoppingList);
+            saveShoppingList(shoppingList.shoppingList);
         }
         public void readShoppingList(string name)
         {
@@ -101,7 +95,7 @@ namespace Einkaufsliste
                 Console.WriteLine(count + ".:" + food.Name);
             }
             Console.WriteLine("Please enter the food name:");
-            string foodName = Console.ReadLine();
+            string foodName = readValues.ReadString();
             foodItem = foodList.FirstOrDefault(x => x.Name == foodName);
 
             list.Foods.Add(foodItem);
@@ -120,7 +114,7 @@ namespace Einkaufsliste
                 Console.WriteLine(count + ".:" + product.Name);
             }
             Console.WriteLine("Please enter the food name:");
-            string foodName = Console.ReadLine();
+            string foodName = readValues.ReadString();
             productItem = productList.FirstOrDefault(x => x.Name == foodName);
 
             list.Products.Add(productItem);

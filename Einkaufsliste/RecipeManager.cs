@@ -12,6 +12,7 @@ namespace Einkaufsliste
     public class RecipeManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
+        private ReadValues readValues = new ReadValues();
         public void createRecipe()
         {
             FluentRecipe recipe = new FluentRecipe();
@@ -23,12 +24,7 @@ namespace Einkaufsliste
 
 
             Console.WriteLine("Gib den Name des Rezepts ein");
-            name = Console.ReadLine();
-            if (name == null)
-            {
-                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
-                return;
-            }
+            name = readValues.ReadString();
 
             Console.WriteLine("Suche die benötigten Lebensmittel aus");
             foreach(var fd in foodList)
@@ -37,7 +33,7 @@ namespace Einkaufsliste
             }
             while(food != "")
             {
-                food = Console.ReadLine();
+                food = readValues.ReadString();
                 if(food != "")
                 {
                     var addedFood = foodList.FirstOrDefault(f => f.Name == food);
@@ -46,7 +42,7 @@ namespace Einkaufsliste
                 }
             }
             Console.WriteLine("Enter the description:");
-            string desc = Console.ReadLine();
+            string desc = readValues.ReadString();
             recipe.NameOfTheRecipe(name).FoodOfTheRecipe(foods).DescOfTheRecipe(desc);
             Console.WriteLine(recipe);
 
@@ -103,7 +99,7 @@ namespace Einkaufsliste
                 Console.WriteLine(count + ".:" + food.Name);
             }
             Console.WriteLine("Please enter the food name:");
-            string foodName = Console.ReadLine();
+            string foodName = readValues.ReadString();
             foodItem = foodList.FirstOrDefault(x => x.Name == foodName);
 
             recipe.Foods.Add(foodItem);
@@ -113,12 +109,12 @@ namespace Einkaufsliste
         public void addToShoppingList()
         {
             Console.WriteLine("Gib den Namen des Rezept ein:");
-            string recipeName = Console.ReadLine();
+            string recipeName = readValues.ReadString();
             Recipe recipe = getRecipe(recipeName);
 
             ShoppingListManager shoppingListManager = new ShoppingListManager();
             Console.WriteLine("Gib den Namen der Einkaufsliste ein:");
-            string shoppingListName = Console.ReadLine();
+            string shoppingListName = readValues.ReadString();
             ShoppingList shoppingList = shoppingListManager.getShoppingList(shoppingListName);
 
             foreach(var food in recipe.Foods)

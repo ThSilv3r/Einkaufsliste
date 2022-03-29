@@ -12,6 +12,7 @@ namespace Einkaufsliste
     public class ProductManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
+        private ReadValues readValues = new ReadValues();
         public void createProduct()
         {
             string name;
@@ -21,29 +22,10 @@ namespace Einkaufsliste
             List<Product> products = getProductList();
             
             Console.WriteLine("Gib den Produktnamen ein:");
-            name = Console.ReadLine();
-            if (name == null)
-            {
-                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
-                return;
-            }
+            name = readValues.ReadString();
 
             Console.WriteLine("Gib den Preis ein:");
-            priceString = Console.ReadLine();
-            //try
-            //{
-                price = Convert.ToDouble(priceString);
-            //}
-            //catch(Exception e)
-            //{
-            //    Console.WriteLine("Bitte nur Zahlen eingeben:");
-            //    priceString = Console.ReadLine();
-            //    if(priceString == null)
-            //    {
-            //        price = 0;
-            //    }
-            //    price = Convert.ToDouble(priceString);
-            //}
+            price = readValues.ReadDouble();
 
             product.NameOfTheProduct(name).PriceOfTheProduct(price);
 

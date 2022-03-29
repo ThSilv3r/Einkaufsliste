@@ -12,6 +12,7 @@ namespace Einkaufsliste
     public class FoodManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
+        private ReadValues readValues = new ReadValues();
         public void createFood()
         {
             string name;
@@ -21,47 +22,13 @@ namespace Einkaufsliste
             FluentFood food = new FluentFood();
             List<Food> foods = getFoodList();
 
-            Console.WriteLine("Gib den Namen des Essens ein:");
-            name = Console.ReadLine();
-            if (name == null)
-            {
-                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
-                return;
-            }
+            name = readValues.ReadString();
 
             Console.WriteLine("Gib den Preis ein:");
-            priceString = Console.ReadLine();
-           // try
-           // {
-                price = Convert.ToDouble(priceString);
-           // }
-            //catch (Exception e)
-            //{
-                //Console.WriteLine("Bitte nur Zahlen eingeben:");
-                //priceString = Console.ReadLine();
-                //if (priceString == null)
-                //{
-                //    price = 0;
-                //}
-                //price = Convert.ToDouble(priceString);
-            //}
+            price = readValues.ReadDouble();
 
             Console.WriteLine("Gib das Gewicht des Essens ein:");
-            string weightString = Console.ReadLine();
-            //try
-            //{
-                weight = Convert.ToInt32(weightString);
-            //}
-            //catch (Exception e)
-            //{
-            //    //Console.WriteLine("Bitte nur Zahlen eingeben:");
-            //    //weightString = Console.ReadLine();
-            //    //if (weightString == null)
-            //    //{
-            //    //    weight = 0;
-            //    //}
-            //    //weight = Convert.ToInt32(weightString);
-            //}
+            weight = readValues.ReadInt();
 
             food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight);
 
