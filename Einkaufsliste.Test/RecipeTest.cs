@@ -98,7 +98,7 @@ namespace Einkaufsliste.Test
             recipeManager.addFood(name);
 
             //assert
-            recipe = recipeManager.GetRecipe(name);
+            recipe = recipeManager.getRecipe(name);
             Assert.IsNotNull(recipe.Foods.First());
             recipeManager.deleteRecipe(name);
             foodManager.deleteFood(name);
@@ -137,7 +137,7 @@ namespace Einkaufsliste.Test
             recipeManager.addToShoppingList();
 
             //assert
-            recipe = recipeManager.GetRecipe(name);
+            recipe = recipeManager.getRecipe(name);
             Assert.IsNotNull(recipe.Foods.First());
             recipeManager.deleteRecipe(name);
             listManager.deleteShoppingList("");

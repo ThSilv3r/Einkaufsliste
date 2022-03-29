@@ -87,7 +87,7 @@ namespace Einkaufsliste.Test
             Console.SetIn(nameReader);
 
             listManager.createShoppingList();
-            shoppingList = listManager.GetShoppingList(name);
+            shoppingList = listManager.getShoppingList(name);
 
             //act
             nameReader = new StringReader("Test");
@@ -96,7 +96,7 @@ namespace Einkaufsliste.Test
             listManager.addProduct(name);
 
             //assert
-            ShoppingList list = listManager.GetShoppingList(name);
+            ShoppingList list = listManager.getShoppingList(name);
             Product product = list.Products.Find(x => x.Name == expectedProduct.Name);
             Assert.AreEqual(expectedProduct.Name, product.Name);
             productManager.deleteProduct("Test");
@@ -123,7 +123,7 @@ namespace Einkaufsliste.Test
             Console.SetIn(nameReader);
 
             listManager.createShoppingList();
-            shoppingList = listManager.GetShoppingList(name);
+            shoppingList = listManager.getShoppingList(name);
 
             //act
             nameReader = new StringReader("Test");
@@ -132,7 +132,7 @@ namespace Einkaufsliste.Test
             listManager.addFood(name);
 
             //assert
-            ShoppingList list = listManager.GetShoppingList(name);
+            ShoppingList list = listManager.getShoppingList(name);
             Food food = list.Foods.Find(x => x.Name == expectedFood.Name);
             Assert.AreEqual(expectedFood.Name, food.Name);
             foodManager.deleteFood("Test");
@@ -150,7 +150,7 @@ namespace Einkaufsliste.Test
             listManager.createShoppingList();
 
             //act
-            ShoppingList shoppingList = listManager.GetShoppingList(name);
+            ShoppingList shoppingList = listManager.getShoppingList(name);
 
             //assert
             Assert.AreEqual(name, shoppingList.Name);

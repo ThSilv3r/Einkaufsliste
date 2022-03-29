@@ -19,7 +19,7 @@ namespace Einkaufsliste
             FoodManager foodManager = new FoodManager();
             List<Food> foodList = foodManager.getFoodList();
             string name = "Recipe";
-            string food = "";
+            string food = "a";
 
 
             Console.WriteLine("Gib den Name des Rezepts ein");
@@ -59,7 +59,7 @@ namespace Einkaufsliste
                 streamWriter.Write(jsonRecipe);
             }
         }
-        public Recipe GetRecipe(string name)
+        public Recipe getRecipe(string name)
         {
             Recipe recipe = new Recipe();
 
@@ -75,6 +75,16 @@ namespace Einkaufsliste
             return recipe;
         }
 
+        public void readRecipe(string name)
+        {
+            Recipe recipe = getRecipe(name);
+
+            Console.WriteLine("Zutaten:");
+            foreach (Food food in recipe.Foods)
+            {
+                Console.WriteLine("Name: " + food.Name + " Gewicht: " + food.Weight);
+            }
+        }
         public void deleteRecipe(string name)
         {
             File.Delete(path + name + ".json");
@@ -82,7 +92,7 @@ namespace Einkaufsliste
 
         public void addFood(string recipeName)
         {
-            Recipe recipe = GetRecipe(recipeName);
+            Recipe recipe = getRecipe(recipeName);
             int count = 0;
             FoodManager foodManager = new FoodManager();
             Food foodItem = new Food();
@@ -103,12 +113,12 @@ namespace Einkaufsliste
         {
             Console.WriteLine("Gib den Namen des Rezept ein:");
             string recipeName = Console.ReadLine();
-            Recipe recipe = GetRecipe(recipeName);
+            Recipe recipe = getRecipe(recipeName);
 
             ShoppingListManager shoppingListManager = new ShoppingListManager();
             Console.WriteLine("Gib den Namen der Einkaufsliste ein:");
             string shoppingListName = Console.ReadLine();
-            ShoppingList shoppingList = shoppingListManager.GetShoppingList(shoppingListName);
+            ShoppingList shoppingList = shoppingListManager.getShoppingList(shoppingListName);
 
             foreach(var food in recipe.Foods)
             {

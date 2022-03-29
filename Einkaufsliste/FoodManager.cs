@@ -94,8 +94,16 @@ namespace Einkaufsliste
                     foods = JsonSerializer.Deserialize<List<Food>>(foodsString);
                 }
             }
-
             return foods;
+        }
+
+        public void readFoodList()
+        {
+            List<Food> foods = getFoodList();
+            foreach(Food food in foods)
+            {
+                Console.WriteLine("Name: " + food.Name + " Preis: " + food.Price + " Gewicht: " + food.Weight);
+            }
         }
 
         public void saveFoodList(List<Food> foods)

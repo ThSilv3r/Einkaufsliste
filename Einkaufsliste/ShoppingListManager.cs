@@ -33,7 +33,23 @@ namespace Einkaufsliste
             Console.WriteLine(shoppingList);
             saveShoppingList(shoppingList);
         }
-        public ShoppingList GetShoppingList(string name)
+        public void readShoppingList(string name)
+        {
+            ShoppingList shoppingList = getShoppingList(name);
+            Console.WriteLine("Produkte:");
+            foreach (Product product in shoppingList.Products)
+            {
+                Console.WriteLine("Name: " + product.Name + " Preis: " + product.Price);
+            }
+
+            Console.WriteLine("Lebensmittel:");
+            foreach(Food food in shoppingList.Foods)
+            {
+                Console.WriteLine("Name: " + food.Name + " Preis: " + food.Price + " Gewicht: " + food.Weight);
+            }
+        }
+
+        public ShoppingList getShoppingList(string name)
         {
             ShoppingList shoppingList = new ShoppingList();
 
@@ -75,7 +91,7 @@ namespace Einkaufsliste
 
         public void addFood(string listName)
         {
-            ShoppingList list = GetShoppingList(listName);
+            ShoppingList list = getShoppingList(listName);
             int count = 0;
             FoodManager foodManager = new FoodManager();
             Food foodItem = new Food();
@@ -94,7 +110,7 @@ namespace Einkaufsliste
 
         public void addProduct(string listName)
         {
-            ShoppingList list = GetShoppingList(listName);
+            ShoppingList list = getShoppingList(listName);
             int count = 0;
             ProductManager productManager = new ProductManager();
             Product productItem = new Product();

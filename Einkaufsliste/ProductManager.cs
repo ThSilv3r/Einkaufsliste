@@ -79,6 +79,14 @@ namespace Einkaufsliste
 
             return products;
         }
+        public void readProductList()
+        {
+            List<Product> products = getProductList();
+            foreach (Product product in products)
+            {
+                Console.WriteLine("Name: " + product.Name + " Preis: " + product.Price);
+            }
+        }
 
         public void saveProductList(List<Product> products)
         {
