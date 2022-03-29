@@ -14,7 +14,7 @@ namespace Einkaufsliste
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
         public void createRecipe()
         {
-            Recipe recipe = new Recipe();
+            FluentRecipe recipe = new FluentRecipe();
             List<Food> foods = new List<Food>();
             FoodManager foodManager = new FoodManager();
             List<Food> foodList = foodManager.getFoodList();
@@ -45,11 +45,12 @@ namespace Einkaufsliste
                     Console.WriteLine("Gebe nichts ein, um dies Auswahl zu Beenden.");
                 }
             }
-            recipe.Name = name;
-            recipe.Foods = foods;
+            Console.WriteLine("Enter the description:");
+            string desc = Console.ReadLine();
+            recipe.NameOfTheRecipe(name).FoodOfTheRecipe(foods).DescOfTheRecipe(desc);
             Console.WriteLine(recipe);
 
-            saveRecipe(recipe);
+            saveRecipe(recipe.recipe);
         }
         public void saveRecipe(Recipe recipe)
         {

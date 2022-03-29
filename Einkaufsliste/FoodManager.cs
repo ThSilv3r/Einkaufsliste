@@ -18,7 +18,7 @@ namespace Einkaufsliste
             double price;
             int weight;
             string priceString;
-            Food food = new Food();
+            FluentFood food = new FluentFood();
             List<Food> foods = getFoodList();
 
             Console.WriteLine("Gib den Namen des Essens ein:");
@@ -63,13 +63,11 @@ namespace Einkaufsliste
             //    //weight = Convert.ToInt32(weightString);
             //}
 
-            food.Name = name;
-            food.Price = price;
-            food.Weight = weight;
+            food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight);
 
             Console.WriteLine(food);
 
-            foods.Add(food);
+            foods.Add(food.food);
 
             saveFoodList(foods);
         }

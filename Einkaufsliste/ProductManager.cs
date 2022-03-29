@@ -17,7 +17,7 @@ namespace Einkaufsliste
             string name;
             double price;
             string priceString;
-            Product product = new Product();
+            FluentProduct product = new FluentProduct();
             List<Product> products = getProductList();
             
             Console.WriteLine("Gib den Produktnamen ein:");
@@ -27,8 +27,6 @@ namespace Einkaufsliste
                 Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
                 return;
             }
-
-            product.Name = name;
 
             Console.WriteLine("Gib den Preis ein:");
             priceString = Console.ReadLine();
@@ -47,11 +45,11 @@ namespace Einkaufsliste
             //    price = Convert.ToDouble(priceString);
             //}
 
-            product.Price = price;
+            product.NameOfTheProduct(name).PriceOfTheProduct(price);
 
             Console.WriteLine(product);
 
-            products.Add(product);
+            products.Add(product.product);
             saveProductList(products);
         }
 
