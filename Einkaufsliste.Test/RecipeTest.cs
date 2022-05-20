@@ -74,7 +74,7 @@ namespace Einkaufsliste.Test
         public void AddFood()
         {
             //arange
-            string name = "Test";
+            string name = "AddFoodTest";
             List<Food> foods = new List<Food>();
             Recipe recipe = new Recipe
             {
@@ -121,6 +121,7 @@ namespace Einkaufsliste.Test
             };
             ShoppingList shoppingList = new ShoppingList
             {
+                Name = name,
                 Foods = foods
             };
             foods.Add(food);
@@ -129,7 +130,7 @@ namespace Einkaufsliste.Test
             listManager.saveShoppingList(shoppingList);
             StringReader foodReader = new StringReader(name);
             Console.SetIn(foodReader);
-            listManager.addFood("");
+            listManager.addFood(name);
 
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);

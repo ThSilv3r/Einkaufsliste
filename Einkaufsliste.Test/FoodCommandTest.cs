@@ -10,22 +10,7 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class FoodCommandTest
     {
-        [TestMethod]
-        public void CreateFoodCommand()
-        {
-            //arrange
-            string command = "createFood test";
 
-            var startInfo = createStartInfo(command);
-
-            //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-
-            //assert
-            Assert.IsNotNull(output);
-        }
         [TestMethod]
         public void GetFoodCommand()
         {

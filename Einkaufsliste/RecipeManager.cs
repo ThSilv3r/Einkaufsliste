@@ -20,7 +20,7 @@ namespace Einkaufsliste
             FoodManager foodManager = new FoodManager();
             List<Food> foodList = foodManager.getFoodList();
             string name = "Recipe";
-            string food = "a";
+            string food = "";
 
 
             Console.WriteLine("Gib den Name des Rezepts ein");
@@ -31,10 +31,10 @@ namespace Einkaufsliste
             {
                 Console.WriteLine(fd.Name);
             }
-            while(food != "")
+            while(food != "" && food != null)
             {
                 food = readValues.ReadString();
-                if(food != "")
+                if(food != "" && food != null)
                 {
                     var addedFood = foodList.FirstOrDefault(f => f.Name == food);
                     foods.Add(addedFood);
@@ -43,10 +43,14 @@ namespace Einkaufsliste
             }
             Console.WriteLine("Enter the description:");
             string desc = readValues.ReadString();
-            recipe.NameOfTheRecipe(name).FoodOfTheRecipe(foods).DescOfTheRecipe(desc);
-            Console.WriteLine(recipe);
 
-            saveRecipe(recipe.recipe);
+            if(name != null)
+            {
+                recipe.NameOfTheRecipe(name).FoodOfTheRecipe(foods).DescOfTheRecipe(desc);
+                Console.WriteLine(recipe);
+
+                saveRecipe(recipe.recipe);
+            }
         }
         public void saveRecipe(Recipe recipe)
         {
@@ -91,7 +95,7 @@ namespace Einkaufsliste
         {
             Recipe recipe = getRecipe(recipeName);
             int count = 0;
-            string food = "a";
+            string food = "";
             FoodManager foodManager = new FoodManager();
             Food foodItem = new Food();
             List<Food> foods = new List<Food>();
@@ -100,10 +104,10 @@ namespace Einkaufsliste
             {
                 Console.WriteLine(fd.Name);
             }
-            while (food != "")
+            while (food != null)
             {
                 food = readValues.ReadString();
-                if (food != "")
+                if (food != null)
                 {
                     var addedFood = foodList.FirstOrDefault(f => f.Name == food);
                     foods.Add(addedFood);
@@ -118,11 +122,15 @@ namespace Einkaufsliste
         {
             Console.WriteLine("Gib den Namen des Rezept ein:");
             string recipeName = readValues.ReadString();
+            string shoppingListName = "";
             Recipe recipe = getRecipe(recipeName);
 
             ShoppingListManager shoppingListManager = new ShoppingListManager();
             Console.WriteLine("Gib den Namen der Einkaufsliste ein:");
-            string shoppingListName = readValues.ReadString();
+            while (shoppingListName != null)
+            {
+                shoppingListName = readValues.ReadString();
+            }
             ShoppingList shoppingList = shoppingListManager.getShoppingList(shoppingListName);
 
             foreach(var food in recipe.Foods)

@@ -21,10 +21,5 @@ namespace Einkaufsliste.ClassLibrary
             product.Price = price;
             return this;    
         }
-        public FluentProduct IdOfProduct(int id)
-        {
-            product.Id = id;
-            return this;
-        }
     }
 }

@@ -10,22 +10,7 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class RecipeCommandTest
     {
-        [TestMethod]
-        public void CreateRecipeCommand()
-        {
-            //arrange
-            string command = "createRecipe test";
 
-            var startInfo = createStartInfo(command);
-
-            //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-
-            //assert
-            Assert.IsNotNull(output);
-        }
         [TestMethod]
         public void GetRecipeCommand()
         {
@@ -47,22 +32,6 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string command = "deleteRecipe";
-
-            var startInfo = createStartInfo(command);
-
-            //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-
-            //assert
-            Assert.IsNotNull(output);
-        }
-        [TestMethod]
-        public void AddRecipeCommand()
-        {
-            //arrange
-            string command = "addRecipeToList test";
 
             var startInfo = createStartInfo(command);
 

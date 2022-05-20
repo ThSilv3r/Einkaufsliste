@@ -23,9 +23,12 @@ namespace Einkaufsliste
             Console.WriteLine("Gib den Name der Einkaufsliste ein");
             name = readValues.ReadString();
 
-            shoppingList.NameOfTheList(name).FoodsOfTheList(foods).ProductsOfTheList(products);
-            Console.WriteLine(shoppingList);
-            saveShoppingList(shoppingList.shoppingList);
+            if(name != null)
+            {
+                shoppingList.NameOfTheList(name).FoodsOfTheList(foods).ProductsOfTheList(products);
+                Console.WriteLine(shoppingList);
+                saveShoppingList(shoppingList.shoppingList);
+            }
         }
         public void readShoppingList(string name)
         {
@@ -88,7 +91,7 @@ namespace Einkaufsliste
             ShoppingList list = getShoppingList(listName);
             int count = 0;
             FoodManager foodManager = new FoodManager();
-            string food = "a";
+            string food = "";
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodManager.getFoodList();
 
@@ -104,10 +107,10 @@ namespace Einkaufsliste
                 {
                     Console.WriteLine(fd.Name);
                 }
-                while (food != "")
+                while (food != null)
                 {
                     food = readValues.ReadString();
-                    if (food != "")
+                    if (food != null)
                     {
                         var addedFood = foodList.FirstOrDefault(f => f.Name == food);
                         foods.Add(addedFood);
@@ -126,7 +129,7 @@ namespace Einkaufsliste
             int count = 0;
             ProductManager productManager = new ProductManager();
             Product productItem = new Product();
-            string product = "a";
+            string product = "";
             List<Product> products = new List<Product>();
             List<Product> productList = productManager.getProductList();
             products.AddRange(list.Products);
@@ -142,10 +145,10 @@ namespace Einkaufsliste
                 {
                     Console.WriteLine(pr.Name);
                 }
-                while (product != "")
+                while (product != null)
                 {
                     product = readValues.ReadString();
-                    if (product != "")
+                    if (product != null)
                     {
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         products.Add(addedProduct);

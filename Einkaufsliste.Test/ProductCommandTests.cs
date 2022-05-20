@@ -11,22 +11,6 @@ namespace Einkaufsliste.Test
     public class ProductCommandTest
     {
         [TestMethod]
-        public void CreateProductCommand()
-        {
-            //arrange
-            string command = "createProduct test";
-
-            var startInfo = createStartInfo(command);
-
-            //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
-
-            //assert
-            Assert.IsNotNull(output);
-        }
-        [TestMethod]
         public void GetProductCommand()
         {
             //arrange

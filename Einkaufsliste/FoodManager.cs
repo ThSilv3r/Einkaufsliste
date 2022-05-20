@@ -29,14 +29,16 @@ namespace Einkaufsliste
 
             Console.WriteLine("Gib das Gewicht des Essens ein:");
             weight = readValues.ReadInt();
+            if(name != null)
+            {
+                food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight);
 
-            food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight);
+                Console.WriteLine(food);
 
-            Console.WriteLine(food);
+                foods.Add(food.food);
 
-            foods.Add(food.food);
-
-            saveFoodList(foods);
+                saveFoodList(foods);
+            }
         }
         public void deleteFood(string name)
         {

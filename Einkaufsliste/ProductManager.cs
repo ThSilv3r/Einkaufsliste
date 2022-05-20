@@ -27,12 +27,14 @@ namespace Einkaufsliste
             Console.WriteLine("Gib den Preis ein:");
             price = readValues.ReadDouble();
 
-            product.NameOfProduct(name).PriceOfProduct(price).IdOfProduct(products.Count+1);
+            if(name != null)
+            {
+                product.NameOfProduct(name).PriceOfProduct(price);
+                Console.WriteLine(product);
 
-            Console.WriteLine(product);
-
-            products.Add(product.product);
-            saveProductList(products);
+                products.Add(product.product);
+                saveProductList(products);
+            }
         }
 
         public void deleteProduct(string name)
