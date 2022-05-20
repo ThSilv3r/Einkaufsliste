@@ -88,17 +88,35 @@ namespace Einkaufsliste
             ShoppingList list = getShoppingList(listName);
             int count = 0;
             FoodManager foodManager = new FoodManager();
-            Food foodItem = new Food();
+            string food = "a";
+            List<Food> foods = new List<Food>();
             List<Food> foodList = foodManager.getFoodList();
-            foreach(Food food in foodList)
-            {
-                Console.WriteLine(count + ".:" + food.Name);
-            }
-            Console.WriteLine("Please enter the food name:");
-            string foodName = readValues.ReadString();
-            foodItem = foodList.FirstOrDefault(x => x.Name == foodName);
 
-            list.Foods.Add(foodItem);
+            foods.AddRange(list.Foods);
+            Console.WriteLine("Choose the food:");
+            if (foodList.Count == 0)
+            {
+                Console.WriteLine("Please add foods to the food list first.");
+            }
+            else
+            {
+                foreach (var fd in foodList)
+                {
+                    Console.WriteLine(fd.Name);
+                }
+                while (food != "")
+                {
+                    food = readValues.ReadString();
+                    if (food != "")
+                    {
+                        var addedFood = foodList.FirstOrDefault(f => f.Name == food);
+                        foods.Add(addedFood);
+                        Console.WriteLine("Enter nothing to close.");
+                    }
+                }
+            }
+
+            list.Foods = foods;
             saveShoppingList(list);
         }
 
@@ -108,16 +126,36 @@ namespace Einkaufsliste
             int count = 0;
             ProductManager productManager = new ProductManager();
             Product productItem = new Product();
+            string product = "a";
+            List<Product> products = new List<Product>();
             List<Product> productList = productManager.getProductList();
-            foreach (Product product in productList)
-            {
-                Console.WriteLine(count + ".:" + product.Name);
-            }
-            Console.WriteLine("Please enter the food name:");
-            string foodName = readValues.ReadString();
-            productItem = productList.FirstOrDefault(x => x.Name == foodName);
+            products.AddRange(list.Products);
+            Console.WriteLine("Choose the product:");
 
-            list.Products.Add(productItem);
+            if(productList.Count == 0)
+            {
+                Console.WriteLine("Please add products to the porduct list first.");
+            }
+            else
+            {
+                foreach (var pr in productList)
+                {
+                    Console.WriteLine(pr.Name);
+                }
+                while (product != "")
+                {
+                    product = readValues.ReadString();
+                    if (product != "")
+                    {
+                        var addedProduct = productList.FirstOrDefault(f => f.Name == product);
+                        products.Add(addedProduct);
+                        Console.WriteLine("Enter nothing to close.");
+                    }
+                }
+            }
+
+
+            list.Products = products;
             saveShoppingList(list);
         }
     }

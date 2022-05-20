@@ -10,16 +10,21 @@ namespace Einkaufsliste.ClassLibrary
     {
         public Product product = new Product();
 
-        public FluentProduct NameOfTheProduct(string name)
+        public FluentProduct NameOfProduct(string name)
         {
             product.Name = name;
             return this;
         }
 
-        public FluentProduct PriceOfTheProduct(double price)
+        public FluentProduct PriceOfProduct(double price)
         {
             product.Price = price;
             return this;    
+        }
+        public FluentProduct IdOfProduct(int id)
+        {
+            product.Id = id;
+            return this;
         }
     }
 }

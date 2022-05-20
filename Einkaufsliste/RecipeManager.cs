@@ -91,18 +91,26 @@ namespace Einkaufsliste
         {
             Recipe recipe = getRecipe(recipeName);
             int count = 0;
+            string food = "a";
             FoodManager foodManager = new FoodManager();
             Food foodItem = new Food();
+            List<Food> foods = new List<Food>();
             List<Food> foodList = foodManager.getFoodList();
-            foreach (Food food in foodList)
+            foreach (var fd in foodList)
             {
-                Console.WriteLine(count + ".:" + food.Name);
+                Console.WriteLine(fd.Name);
             }
-            Console.WriteLine("Please enter the food name:");
-            string foodName = readValues.ReadString();
-            foodItem = foodList.FirstOrDefault(x => x.Name == foodName);
-
-            recipe.Foods.Add(foodItem);
+            while (food != "")
+            {
+                food = readValues.ReadString();
+                if (food != "")
+                {
+                    var addedFood = foodList.FirstOrDefault(f => f.Name == food);
+                    foods.Add(addedFood);
+                    Console.WriteLine("Gebe nichts ein, um dies Auswahl zu Beenden.");
+                }
+            }
+            recipe.Foods = foods;
             saveRecipe(recipe);
         }
 

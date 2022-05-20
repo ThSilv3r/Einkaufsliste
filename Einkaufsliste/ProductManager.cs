@@ -27,7 +27,7 @@ namespace Einkaufsliste
             Console.WriteLine("Gib den Preis ein:");
             price = readValues.ReadDouble();
 
-            product.NameOfTheProduct(name).PriceOfTheProduct(price);
+            product.NameOfProduct(name).PriceOfProduct(price).IdOfProduct(products.Count+1);
 
             Console.WriteLine(product);
 
