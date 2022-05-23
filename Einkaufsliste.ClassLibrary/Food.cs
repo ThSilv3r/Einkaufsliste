@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary
 {
-    public class Food : Product
+    public class Food : IProduct
     {
+        public string Name { get; set; }
+        public double Price { get; set; }
         public int Weight { get; set; }
     }
 }
