@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Manager.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class ProductManager
+    public class ProductManager : IProductManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
         private ReadValues readValues = new ReadValues();

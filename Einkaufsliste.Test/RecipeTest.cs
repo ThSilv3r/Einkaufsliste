@@ -89,7 +89,7 @@ namespace Einkaufsliste.Test
             foods.Add(food);
 
             recipeManager.saveRecipe(recipe);
-            foodManager.saveFoodList(foods);
+            foodManager.saveFood(foods);
 
             StringReader nameReader = new StringReader(name);
             Console.SetIn(nameReader);
@@ -126,7 +126,7 @@ namespace Einkaufsliste.Test
             };
             foods.Add(food);
             recipeManager.saveRecipe(recipe);
-            foodManager.saveFoodList(foods);
+            foodManager.saveFood(foods);
             listManager.saveShoppingList(shoppingList);
             StringReader foodReader = new StringReader(name);
             Console.SetIn(foodReader);

@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Manager.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class ShoppingListManager
+    public class ShoppingListManager : IShoppingListManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
         private ReadValues readValues = new ReadValues();
@@ -20,7 +21,7 @@ namespace Einkaufsliste
             List<Product> products = new List<Product>();
             string name = "List";
 
-            Console.WriteLine("Gib den Name der Einkaufsliste ein");
+            Console.WriteLine("Enter the name of the shoppinglist");
             name = readValues.ReadString();
 
             if(name != null)
@@ -33,16 +34,16 @@ namespace Einkaufsliste
         public void readShoppingList(string name)
         {
             ShoppingList shoppingList = getShoppingList(name);
-            Console.WriteLine("Produkte:");
+            Console.WriteLine("Products:");
             foreach (Product product in shoppingList.Products)
             {
-                Console.WriteLine("Name: " + product.Name + " Preis: " + product.Price);
+                Console.WriteLine("Name: " + product.Name + " Price: " + product.Price);
             }
 
-            Console.WriteLine("Lebensmittel:");
+            Console.WriteLine("Foods:");
             foreach(Food food in shoppingList.Foods)
             {
-                Console.WriteLine("Name: " + food.Name + " Preis: " + food.Price + " Gewicht: " + food.Weight);
+                Console.WriteLine("Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight);
             }
         }
 
@@ -90,7 +91,7 @@ namespace Einkaufsliste
         {
             ShoppingList list = getShoppingList(listName);
             int count = 0;
-            FoodManager foodManager = new FoodManager();
+            IFoodManager foodManager = new FoodManager();
             string food = "";
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodManager.getFoodList();
@@ -107,14 +108,14 @@ namespace Einkaufsliste
                 {
                     Console.WriteLine(fd.Name);
                 }
-                while (food != null)
+                while (food != null && food != "q")
                 {
                     food = readValues.ReadString();
-                    if (food != null)
+                    if (food != null && food != "q")
                     {
                         var addedFood = foodList.FirstOrDefault(f => f.Name == food);
                         foods.Add(addedFood);
-                        Console.WriteLine("Enter nothing to close.");
+                        Console.WriteLine("Enter q to close.");
                     }
                 }
             }
@@ -127,7 +128,7 @@ namespace Einkaufsliste
         {
             ShoppingList list = getShoppingList(listName);
             int count = 0;
-            ProductManager productManager = new ProductManager();
+            IProductManager productManager = new ProductManager();
             Product productItem = new Product();
             string product = "";
             List<Product> products = new List<Product>();
@@ -145,14 +146,14 @@ namespace Einkaufsliste
                 {
                     Console.WriteLine(pr.Name);
                 }
-                while (product != null)
+                while (product != null && product != "q")
                 {
                     product = readValues.ReadString();
-                    if (product != null)
+                    if (product != null && product != "q")
                     {
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         products.Add(addedProduct);
-                        Console.WriteLine("Enter nothing to close.");
+                        Console.WriteLine("Enter q to close.");
                     }
                 }
             }

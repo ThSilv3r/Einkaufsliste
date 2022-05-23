@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.Manager.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Einkaufsliste
     {
         public void foodCommands(string[] args)
         {
-            FoodManager foodManager = new FoodManager();
+            IFoodManager foodManager = new FoodManager();
             if (args[0] == "createFood")
             {
                 foodManager.createFood();
@@ -25,12 +26,12 @@ namespace Einkaufsliste
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void listCommands(string[] args)
         {
-            ShoppingListManager listManager = new ShoppingListManager();
+            IShoppingListManager listManager = new ShoppingListManager();
             if (args[0] == "createShoppingList")
             {
                 Console.WriteLine("Creating ShoppingList");
@@ -54,12 +55,12 @@ namespace Einkaufsliste
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void productCommand(string[] args)
         {
-            ProductManager productManager = new ProductManager();
+            IProductManager productManager = new ProductManager();
             if (args[0] == "createProduct")
             {
                 productManager.createProduct();
@@ -74,12 +75,12 @@ namespace Einkaufsliste
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void recipeCommand(string[] args)
         {
-            RecipeManager recipeManager = new RecipeManager();
+            IRecipeManager recipeManager = new RecipeManager();
             if (args[0] == "createRecipe")
             {
                 recipeManager.createRecipe();
@@ -99,7 +100,7 @@ namespace Einkaufsliste
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+               //Console.WriteLine("Kein echter Befehl");
             }
         }
     }

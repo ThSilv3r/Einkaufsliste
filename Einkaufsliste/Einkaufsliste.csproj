@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Iterator\**" />
     <Compile Remove="Recipes - Copy\**" />
+    <EmbeddedResource Remove="Iterator\**" />
     <EmbeddedResource Remove="Recipes - Copy\**" />
+    <None Remove="Iterator\**" />
     <None Remove="Recipes - Copy\**" />
   </ItemGroup>
 
@@ -16,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Iterator\" />
     <Folder Include="ShoppingLists\" />
   </ItemGroup>
 

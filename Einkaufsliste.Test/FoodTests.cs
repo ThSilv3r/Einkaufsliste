@@ -84,7 +84,7 @@ namespace Einkaufsliste.Test
             //arrange
             List<Food> foods = expectedFoods;
             foods.Add(apple);
-            foodManager.saveFoodList(foods);
+            foodManager.saveFood(foods);
 
             //act
             foodManager.deleteFood(apple.Name);

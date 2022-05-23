@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Manager.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class FoodManager
+    public class FoodManager : IFoodManager
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
         private ReadValues readValues = new ReadValues();
@@ -18,16 +19,15 @@ namespace Einkaufsliste
             string name;
             double price;
             int weight;
-            string priceString;
             FluentFood food = new FluentFood();
             List<Food> foods = getFoodList();
 
             name = readValues.ReadString();
 
-            Console.WriteLine("Gib den Preis ein:");
+            Console.WriteLine("Enter the price:");
             price = readValues.ReadDouble();
 
-            Console.WriteLine("Gib das Gewicht des Essens ein:");
+            Console.WriteLine("Enter the weight of the food:");
             weight = readValues.ReadInt();
             if(name != null)
             {
@@ -37,7 +37,7 @@ namespace Einkaufsliste
 
                 foods.Add(food.food);
 
-                saveFoodList(foods);
+                saveFood(foods);
             }
         }
         public void deleteFood(string name)
@@ -47,7 +47,7 @@ namespace Einkaufsliste
 
             foods.Remove(food);
 
-            saveFoodList(foods);
+            saveFood(foods);
         }
 
         public List<Food> getFoodList()
@@ -69,11 +69,11 @@ namespace Einkaufsliste
             List<Food> foods = getFoodList();
             foreach(Food food in foods)
             {
-                Console.WriteLine("Name: " + food.Name + " Preis: " + food.Price + " Gewicht: " + food.Weight);
+                Console.WriteLine("Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight);
             }
         }
 
-        public void saveFoodList(List<Food> foods)
+        public void saveFood(List<Food> foods)
         {
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
