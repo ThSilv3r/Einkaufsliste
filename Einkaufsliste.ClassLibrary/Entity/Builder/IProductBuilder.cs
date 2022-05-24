@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
-    internal interface IProductBuilder
+    public interface IProductBuilder
     {
         void BuildName(string name);
         void BuildPrice(Price price);

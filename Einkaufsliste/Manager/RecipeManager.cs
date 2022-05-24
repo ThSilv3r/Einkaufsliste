@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
@@ -36,6 +37,7 @@ namespace Einkaufsliste
         public void createRecipe(string name)
         {
             RecipeBuilder recipeBuilder = new RecipeBuilder();
+            RecipeEngineer recipeEngineer = new RecipeEngineer(recipeBuilder);
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodPlugin.getFoodList();
             string food = "";
@@ -60,11 +62,8 @@ namespace Einkaufsliste
 
             if(name != null && name != "")
             {
-                recipeBuilder.BuildName(name);
-                recipeBuilder.BuildFoods(foods);
-                recipeBuilder.BuildDescription(desc);
-                recipeBuilder.BuildId(Guid.NewGuid());
-                Recipe recipe = recipeBuilder.GetRecipe();
+                recipeEngineer.constructRecipe(name, desc, foods);
+                Recipe recipe = recipeEngineer.GetRecipe();
 
                 recipePlugin.saveRecipe(recipe);
             }

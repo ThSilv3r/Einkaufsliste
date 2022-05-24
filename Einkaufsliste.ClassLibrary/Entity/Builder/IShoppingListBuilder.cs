@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
-    internal interface IShoppingListBuilder
+    public interface IShoppingListBuilder
     {
         void BuildName(string  name);
         void BuildId(Guid guid);

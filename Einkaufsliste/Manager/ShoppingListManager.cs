@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
@@ -41,16 +42,14 @@ namespace Einkaufsliste
         public void createShoppingList(string name)
         {
             ShoppingListBuilder shoppingListBuilder = new ShoppingListBuilder();
+            ShoppingListEngineer shoppingListEngineer = new ShoppingListEngineer(shoppingListBuilder);
             List<Food> foods = new List<Food>();
             List<Product> products = new List<Product>();
 
             if(name != null && name != "")
             {
-                shoppingListBuilder.BuildName(name);
-                shoppingListBuilder.BuildFood(foods);
-                shoppingListBuilder.BuildProducts(products);
-                shoppingListBuilder.BuildId(Guid.NewGuid());
-                ShoppingList shoppingList = shoppingListBuilder.GetShoppingList();
+                shoppingListEngineer.constructShoppingList(name, products, foods);
+                ShoppingList shoppingList = shoppingListEngineer.GetShoppingList();
 
                 shoppingListPlugin.saveShoppingList(shoppingList);
             }

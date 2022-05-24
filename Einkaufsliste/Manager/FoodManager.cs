@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
@@ -32,6 +33,7 @@ namespace Einkaufsliste
             double priceDouble;
             int weight;
             FoodBuilder foodBuilder = new FoodBuilder();
+            FoodEngineer foodEngineer = new FoodEngineer(foodBuilder);
             List<Food> foods = foodPlugin.getFoodList();
 
             foodOutputs.enterPriceMessage();
@@ -42,11 +44,8 @@ namespace Einkaufsliste
             weight = readValues.ReadInt();
             if(name != null)
             {
-                foodBuilder.BuildName(name);
-                foodBuilder.BuildPrice(price);
-                foodBuilder.BuildWeight(weight);
-                foodBuilder.BuildId(Guid.NewGuid());
-                Food food = foodBuilder.GetFood();
+                foodEngineer.constructProduct(name, weight, price);
+                Food food = foodEngineer.GetProduct();
 
                 foodOutputs.writeFood(food);
 

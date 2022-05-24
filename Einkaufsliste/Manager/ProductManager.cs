@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
@@ -32,6 +33,7 @@ namespace Einkaufsliste
             Price price = new Price();
             double priceDouble;
             ProductBuilder productBuilder = new ProductBuilder();
+            ProductEngineer productEngineer = new ProductEngineer(productBuilder);
             List<Product> products = productPlugin.getProductList();
 
             productOutputs.enterPriceMessage();
@@ -40,10 +42,8 @@ namespace Einkaufsliste
 
             if(name != null)
             {
-                productBuilder.BuildName(name);
-                productBuilder.BuildPrice(price);
-                productBuilder.BuildId(Guid.NewGuid());
-                Product product = productBuilder.GetProduct();
+                productEngineer.constructProduct(name, price);
+                Product product = productEngineer.GetProduct();
                 productOutputs.writeProduct(product);
 
                 products.Add(product);
