@@ -49,8 +49,8 @@ namespace Einkaufsliste
                 foodOutputs, shoppingListOutputs, readValues, productPlugin, foodManager);
             if (args[0] == "createShoppingList")
             {
-                Console.WriteLine("Creating ShoppingList");
                 listManager.createShoppingList(args[1]);
+                shoppingListOutputs.createListMessage();
             }
             else if (args[0] == "getShoppingList")
             {

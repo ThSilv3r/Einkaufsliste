@@ -11,11 +11,11 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
     {
         public void enterNameMessage()
         {
-            Console.WriteLine("Please enter a name");
+            Console.WriteLine("Please enter a name.");
         }
         public void closeEntryMessage()
         {
-            Console.WriteLine("Enter q to finish");
+            Console.WriteLine("Enter q to finish.");
         }
     }
 }

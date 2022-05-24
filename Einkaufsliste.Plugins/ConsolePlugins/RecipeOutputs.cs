@@ -15,7 +15,7 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         }
         public void enterRecipeNameMessage()
         {
-            Console.WriteLine("Eneter the recipe name.");
+            Console.WriteLine("Enter the recipe name.");
         }
         public void foodsMessage()
         {

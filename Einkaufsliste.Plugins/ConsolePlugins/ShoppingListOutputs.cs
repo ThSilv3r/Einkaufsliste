@@ -18,5 +18,9 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         {
             Console.WriteLine("Products:");
         }
+        public void createListMessage()
+        {
+            Console.WriteLine("Created ShoppingList");
+        }
     }
 }

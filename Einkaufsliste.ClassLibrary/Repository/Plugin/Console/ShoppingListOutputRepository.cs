@@ -10,5 +10,6 @@ namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Console
     {
         void foodsMessage();
         void productsMessage();
+        void createListMessage();
     }
 }

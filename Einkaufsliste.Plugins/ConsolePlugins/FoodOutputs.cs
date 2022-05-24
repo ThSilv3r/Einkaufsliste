@@ -16,7 +16,7 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         }
         public void enterPriceMessage()
         {
-            Console.WriteLine("Please enter the Price of the food");
+            Console.WriteLine("Please enter the Price of the food.");
         }
         public void writeFood(Food food)
         {
