@@ -15,12 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj" />
-    <ProjectReference Include="..\Einkaufsliste.Plugins\Einkaufsliste.Plugins.csproj" />
+    <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Recipes\" />
     <Folder Include="ShoppingLists\" />
   </ItemGroup>
 

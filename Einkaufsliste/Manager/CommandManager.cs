@@ -1,4 +1,7 @@
-﻿using Einkaufsliste.Manager.Abstract;
+﻿
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +12,26 @@ namespace Einkaufsliste
 {
     public class CommandManager
     {
+        FoodPlugin foodPlugin = new FoodPlugin();
+        ProductPlugin productPlugin = new ProductPlugin();
+        ShoppingListPlugin listPlugin = new ShoppingListPlugin();
+        RecipePlugin recipePlugin = new RecipePlugin();
+        OutputValues outputValues = new OutputValues();
+        ReadValues readValues = new ReadValues();
+        FoodOutputs foodOutputs = new FoodOutputs();
+        ProductOutputs productOutputs = new ProductOutputs();
+        ShoppingListOutputs shoppingListOutputs = new ShoppingListOutputs();
+        RecipeOutputs recipeOutputs = new RecipeOutputs();
         public void foodCommands(string[] args)
         {
-            IFoodManager foodManager = new FoodManager();
+            FoodRepository foodManager = new FoodManager(foodPlugin, foodOutputs, outputValues, readValues);
             if (args[0] == "createFood")
             {
-                foodManager.createFood();
+                foodManager.createFood(args[1]);
             }
             else if(args[0] == "deleteFood")
             {
-                foodManager.deleteFood(args[1]);
+                foodPlugin.deleteFood(args[1]);
             }
             else if (args[0] == "getFoodList")
             {
@@ -31,11 +44,13 @@ namespace Einkaufsliste
         }
         public void listCommands(string[] args)
         {
-            IShoppingListManager listManager = new ShoppingListManager();
+            FoodRepository foodManager = new FoodManager(foodPlugin, foodOutputs, outputValues, readValues);
+            ShoppingListRepository listManager = new ShoppingListManager(listPlugin, outputValues, productOutputs, 
+                foodOutputs, shoppingListOutputs, readValues, productPlugin, foodManager);
             if (args[0] == "createShoppingList")
             {
                 Console.WriteLine("Creating ShoppingList");
-                listManager.createShoppingList();
+                listManager.createShoppingList(args[1]);
             }
             else if (args[0] == "getShoppingList")
             {
@@ -43,7 +58,7 @@ namespace Einkaufsliste
             }
             else if (args[0] == "deleteShoppingList")
             {
-                listManager.deleteShoppingList(args[1]);
+                listPlugin.deleteShoppingList(args[1]);
             }
             else if (args[0] == "addProductToShoppingList")
             {
@@ -60,14 +75,14 @@ namespace Einkaufsliste
         }
         public void productCommand(string[] args)
         {
-            IProductManager productManager = new ProductManager();
+            ProductRepository productManager = new ProductManager(productPlugin, readValues, outputValues, productOutputs);
             if (args[0] == "createProduct")
             {
-                productManager.createProduct();
+                productManager.createProduct(args[1]);
             }
             else if (args[0] == "deleteProduct")
             {
-                productManager.deleteProduct(args[1]);
+                productPlugin.deleteProduct(args[1]);
             }
             else if (args[0] == "getProductList")
             {
@@ -80,10 +95,10 @@ namespace Einkaufsliste
         }
         public void recipeCommand(string[] args)
         {
-            IRecipeManager recipeManager = new RecipeManager();
+            RecipeRepository recipeManager = new RecipeManager(recipePlugin, readValues, listPlugin, foodPlugin, outputValues, recipeOutputs, foodOutputs);
             if (args[0] == "createRecipe")
             {
-                recipeManager.createRecipe();
+                recipeManager.createRecipe(args[1]);
 
             }
             else if (args[0] == "getRecipe")
@@ -92,11 +107,11 @@ namespace Einkaufsliste
             }
             else if (args[0] == "deleteRecipe")
             {
-                recipeManager.deleteRecipe(args[1]);
+                recipePlugin.deleteRecipe(args[1]);
             }
             else if (args[0] == "addRecipeToList")
             {
-                recipeManager.addToShoppingList();
+                recipeManager.addToShoppingList(args[1], args[2]);
             }
             else
             {

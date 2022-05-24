@@ -1,85 +1,72 @@
 ﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.Manager.Abstract;
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class FoodManager : IFoodManager
+    public class FoodManager : FoodRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
-        private ReadValues readValues = new ReadValues();
-        public void createFood()
+        ReadValuesRepository readValues;
+        FoodOutputRepository foodOutputs;
+        OutputValuesRepository outputValues;
+        FoodPluginRepository foodPlugin;
+        public FoodManager(FoodPluginRepository foodPlugin, FoodOutputRepository foodOutput,
+            OutputValuesRepository outputValues, ReadValuesRepository readValues)
         {
-            string name;
-            double price;
+            this.foodPlugin = foodPlugin;
+            this.foodOutputs = foodOutput;
+            this.outputValues = outputValues;
+            this.readValues = readValues;
+        }
+        public void createFood(string name)
+        {
+            Price price = new Price();
+            double priceDouble;
             int weight;
             FluentFood food = new FluentFood();
-            List<Food> foods = getFoodList();
+            List<Food> foods = foodPlugin.getFoodList();
 
-            name = readValues.ReadString();
+            foodOutputs.enterPriceMessage();
+            priceDouble = readValues.ReadDouble();
+            price.price = priceDouble;
 
-            Console.WriteLine("Enter the price:");
-            price = readValues.ReadDouble();
-
-            Console.WriteLine("Enter the weight of the food:");
+            foodOutputs.enterWeightMessage();
             weight = readValues.ReadInt();
             if(name != null)
             {
-                food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight);
+                food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight).IdOfTheFood(Guid.NewGuid());
 
                 Console.WriteLine(food);
 
                 foods.Add(food.food);
 
-                saveFood(foods);
+                foodPlugin.saveFood(foods);
             }
         }
-        public void deleteFood(string name)
-        {
-            List<Food> foods = getFoodList();
-            Food food = foods.Find(x => x.Name == name);
-
-            foods.Remove(food);
-
-            saveFood(foods);
-        }
-
-        public List<Food> getFoodList()
-        {
-            List<Food> foods = new List<Food>();
-            using (StreamReader streamReader = new StreamReader(path))
-            {
-                string foodsString = streamReader.ReadToEnd();
-                if (foodsString != "")
-                {
-                    foods = JsonSerializer.Deserialize<List<Food>>(foodsString);
-                }
-            }
-            return foods;
-        }
+       
 
         public void readFoodList()
         {
-            List<Food> foods = getFoodList();
+            List<Food> foods = foodPlugin.getFoodList();
             foreach(Food food in foods)
             {
-                Console.WriteLine("Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight);
+                foodOutputs.writeFood(food);
             }
         }
 
-        public void saveFood(List<Food> foods)
+        public Food getFoodById(Guid guid)
         {
-            using (StreamWriter streamWriter = new StreamWriter(path))
-            {
-                string jsonFoods = JsonSerializer.Serialize(foods);
-                streamWriter.Write(jsonFoods);
-            }
+            List<Food> foods = foodPlugin.getFoodList();
+            Food food = foods.Find(x => x.Id == guid);
+            return food;
         }
     }
 }

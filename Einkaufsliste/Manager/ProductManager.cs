@@ -1,83 +1,68 @@
 ﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.Manager.Abstract;
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class ProductManager : IProductManager
+    public class ProductManager : ProductRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
-        private ReadValues readValues = new ReadValues();
-        public void createProduct()
+        string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
+        ReadValuesRepository readValues;
+        OutputValuesRepository outputValues;
+        ProductOutputRepository productOutputs;
+        ProductPluginRepository productPlugin;
+        public ProductManager(ProductPluginRepository productPlugin, ReadValuesRepository readValues, 
+            OutputValuesRepository outputValues, ProductOutputRepository productOutput)
         {
-            string name;
-            double price;
-            string priceString;
+            this.productOutputs = productOutput;
+            this.readValues = readValues;
+            this.outputValues = outputValues;
+            this.productPlugin = productPlugin;
+        }
+        public void createProduct(string name)
+        {
+            Price price = new Price();
+            double priceDouble;
             FluentProduct product = new FluentProduct();
-            List<Product> products = getProductList();
-            
-            Console.WriteLine("Gib den Produktnamen ein:");
-            name = readValues.ReadString();
+            List<Product> products = productPlugin.getProductList();
 
-            Console.WriteLine("Gib den Preis ein:");
-            price = readValues.ReadDouble();
+            productOutputs.enterPriceMessage();
+            priceDouble = readValues.ReadDouble();
+            price.price = priceDouble;
 
             if(name != null)
             {
-                product.NameOfProduct(name).PriceOfProduct(price);
+                product.NameOfProduct(name).PriceOfProduct(price).IdOfTheProduct(Guid.NewGuid());
                 Console.WriteLine(product);
 
                 products.Add(product.product);
-                saveProductList(products);
+                productPlugin.saveProductList(products);
             }
         }
 
-        public void deleteProduct(string name)
-        {
-            List<Product> products = getProductList();
-            Product product = products.Find(x => x.Name == name);
-
-            products.Remove(product);
-
-            saveProductList(products);
-        }
-
-        public List<Product> getProductList()
-        {
-            List<Product> products = new List<Product>();
-            using (StreamReader streamReader = new StreamReader(path))
-            {
-                string productsString = streamReader.ReadToEnd();
-                if (productsString != "")
-                {
-                    products = JsonSerializer.Deserialize<List<Product>>(productsString);
-                }
-            }
-
-            return products;
-        }
+        
         public void readProductList()
         {
-            List<Product> products = getProductList();
+            List<Product> products = productPlugin.getProductList();
             foreach (Product product in products)
             {
-                Console.WriteLine("Name: " + product.Name + " Preis: " + product.Price);
+                productOutputs.writeProduct(product);
             }
         }
 
-        public void saveProductList(List<Product> products)
+        public Product getById(Guid guid)
         {
-            using (StreamWriter streamWriter = new StreamWriter(path))
-            {
-                string jsonProducts = JsonSerializer.Serialize(products);
-                streamWriter.Write(jsonProducts);
-            }
+            List<Product> products = productPlugin.getProductList();
+            Product product = products.Find(x => x.Id == guid);
+            return product;
         }
     }
 }

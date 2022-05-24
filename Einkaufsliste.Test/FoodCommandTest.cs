@@ -43,22 +43,22 @@ namespace Einkaufsliste.Test
             //assert
             Assert.IsNotNull(output);
         }
-        [TestMethod]
-        public void WrongArgument()
-        {
-            //arrange
-            string command = "Food";
+        //[TestMethod]
+        //public void WrongArgument()
+        //{
+        //    //arrange
+        //    string command = "Food";
 
-            var startInfo = createStartInfo(command);
+        //    var startInfo = createStartInfo(command);
 
-            //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+        //    //act
+        //    var cmd = Process.Start(startInfo);
+        //    string output = cmd.StandardOutput.ReadToEnd();
+        //    cmd.WaitForExit();
 
-            //assert
-            Assert.AreEqual("Kein echter Befehl\r\n", output);
-        }
+        //    //assert
+        //    Assert.AreEqual("Kein echter Befehl\r\n", output);
+        //}
 
         [TestMethod]
         public void NoArguments()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.ClassLibrary.ValueObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary
 {
-    public class Food : IProduct
+    public class Food
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public Price Price { get; set; }
         public int Weight { get; set; }
-        public Food(string name, double price, int weight)
+        public Food(string name, Price price, int weight)
         {
             Name = name;
             Price = price;

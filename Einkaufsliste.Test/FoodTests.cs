@@ -1,4 +1,10 @@
 using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,54 +15,59 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class FoodTest
     {
-        private FoodManager foodManager;
-        private Food apple;
-        private List<Food> expectedFoods;
+        FoodRepository foodManager;
+        FoodPluginRepository foodPlugin;
+        Food apple;
+        List<Food> expectedFoods;
+        ReadValuesRepository readValues;
+        FoodOutputRepository foodOutput;
+        OutputValuesRepository outputValues;
         [TestInitialize]
         public void Startup()
         {
-            foodManager = new FoodManager();
+            readValues = new ReadValues();
+            foodOutput = new FoodOutputs();
+            outputValues = new OutputValues();
+            foodPlugin = new FoodPlugin();
+            foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
             apple = new Food
             {
                 Name = "Apple",
-                Price = 0,
+                Price = new Price{price = 0},
                 Weight = 0
             };
-            expectedFoods = foodManager.getFoodList();
+            expectedFoods = foodPlugin.getFoodList();
         }
         [TestMethod]
         public void CreateFood()
         {
             //arrange
-            StringReader nameReader = new StringReader("Apple");
-            Console.SetIn(nameReader);
-
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
             //act
-            foodManager.createFood();
+            foodManager.createFood("Apple");
 
             //assert
-            List<Food> foods = foodManager.getFoodList();
+            List<Food> foods = foodPlugin.getFoodList();
             Food food = foods.Find(x => x.Name == apple.Name);
             Assert.AreEqual(apple.ToString(), food.ToString());
-            foodManager.deleteFood(apple.Name);
+            foodPlugin.deleteFood(apple.Name);
         }
         [TestMethod]
         public void CreateFoodNoName()
         {
             //arrange
             expectedFoods.Add(apple);
-
-            StringReader nameReader = new StringReader("");
-            Console.SetIn(nameReader);
-
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
             //act
-            foodManager.createFood();
+            foodManager.createFood("");
 
             //assert
-            List<Food> foods = foodManager.getFoodList();
+            List<Food> foods = foodPlugin.getFoodList();
             Food food = foods.Find(x => x.Name == null);
             Assert.IsNull(food);
-            foodManager.deleteFood(null);
+            foodPlugin.deleteFood(null);
         }
 
         [TestMethod]
@@ -64,17 +75,16 @@ namespace Einkaufsliste.Test
         {
             //arrange
             expectedFoods.Add(apple);
-
-            StringReader nameReader = new StringReader("Apple");
-            Console.SetIn(nameReader);
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
 
             //act
-            foodManager.createFood();
+            foodManager.createFood("Apple");
 
             //assert
-            List<Food> foods = foodManager.getFoodList();
+            List<Food> foods = foodPlugin.getFoodList();
             Food food = foods.Find(x => x.Name == apple.Name);
-            foodManager.deleteFood(apple.Name);
+            foodPlugin.deleteFood(apple.Name);
             Assert.AreEqual(apple.ToString(), food.ToString());
         }
 
@@ -84,10 +94,10 @@ namespace Einkaufsliste.Test
             //arrange
             List<Food> foods = expectedFoods;
             foods.Add(apple);
-            foodManager.saveFood(foods);
+            foodPlugin.saveFood(foods);
 
             //act
-            foodManager.deleteFood(apple.Name);
+            foodPlugin.deleteFood(apple.Name);
 
             //assert
             Assert.AreEqual(expectedFoods, foods);

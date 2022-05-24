@@ -1,4 +1,10 @@
 using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,39 +15,43 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ProductTest
     {
-        private ProductManager productManager;
-        private Product handy;
-        private List<Product> expectedProducts;
+        ProductRepository productManager;
+        ProductPluginRepository productPlugin;
+        ReadValuesRepository readValues;
+        OutputValuesRepository outputValues;
+        ProductOutputRepository productOutputRepository;
+        Product handy;
+        List<Product> expectedProducts;
         [TestInitialize]
         public void Startup()
         {
-            productManager = new ProductManager();
+            readValues = new ReadValues();
+            outputValues = new OutputValues();
+            productOutputRepository = new ProductOutputs();
+            productPlugin = new ProductPlugin();
+            productManager = new ProductManager(productPlugin, readValues, outputValues, productOutputRepository);
             handy = new Product
             {
                 Name = "Handy",
-                Price = 0
+                Price = new Price {price = 0 }
             };
-            expectedProducts = productManager.getProductList();
+            expectedProducts = productPlugin.getProductList();
         }
         [TestMethod]
         public void CreateProduct()
         {
             //arrange
             expectedProducts.Add(handy);
-
-            StringReader nameReader = new StringReader("Handy");
-            Console.SetIn(nameReader);
-
-            //StringReader priceReader = new StringReader("100");
-            //Console.SetIn(priceReader);
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
 
             //act
-            productManager.createProduct();
+            productManager.createProduct("Handy");
 
             //assert
-            List<Product> products = productManager.getProductList();
+            List<Product> products = productPlugin.getProductList();
             Product product = products.Find(x => x.Name == handy.Name);
-            productManager.deleteProduct(handy.Name);
+            productPlugin.deleteProduct(handy.Name);
             Assert.AreEqual(handy.ToString(), product.ToString());
         }
 
@@ -50,18 +60,17 @@ namespace Einkaufsliste.Test
         {
             //arrange
             expectedProducts.Add(handy);
-
-            StringReader nameReader = new StringReader("");
-            Console.SetIn(nameReader);
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
 
             //act
-            productManager.createProduct();
+            productManager.createProduct("");
 
             //assert
-            List<Product> products = productManager.getProductList();
+            List<Product> products = productPlugin.getProductList();
             Product product = products.Find(x => x.Name == null);
             Assert.IsNull(product);
-            productManager.deleteProduct(null);
+            productPlugin.deleteProduct(null);
         }
         [TestMethod]
         public void DeleteProduct()
@@ -69,10 +78,12 @@ namespace Einkaufsliste.Test
             //arrange
             List<Product> products = expectedProducts;
             products.Add(handy);
-            productManager.saveProductList(products);
+            productPlugin.saveProductList(products);
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
 
             //act
-            productManager.deleteProduct(handy.Name);
+            productPlugin.deleteProduct(handy.Name);
 
             //assert
             Assert.AreEqual(expectedProducts, products);

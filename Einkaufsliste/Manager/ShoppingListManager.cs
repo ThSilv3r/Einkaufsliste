@@ -1,112 +1,91 @@
 ﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.Manager.Abstract;
+using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
+using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Plugins;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Einkaufsliste
 {
-    public class ShoppingListManager : IShoppingListManager
+    public class ShoppingListManager : ShoppingListRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
-        private ReadValues readValues = new ReadValues();
-        public void createShoppingList()
+        OutputValuesRepository outputValues;
+        ProductOutputRepository productOutputs;
+        FoodOutputRepository foodOutputs;
+        ShoppingListOutputRepository shoppingListOutputs;
+        ReadValuesRepository readValues;
+        ShoppingListPluginRepository shoppingListPlugin;
+        ProductPluginRepository productPlugin;
+        FoodRepository foodManager;
+
+        public ShoppingListManager(ShoppingListPluginRepository shoppingListPlugin, OutputValuesRepository outputValues,
+            ProductOutputRepository productOutput, FoodOutputRepository foodOutput,
+            ShoppingListOutputRepository shoppingListOutputRepository, ReadValuesRepository readValues, 
+            ProductPluginRepository productPlugin, FoodRepository foodManager)
+        {
+            this.shoppingListPlugin = shoppingListPlugin;
+            this.productOutputs = productOutput;
+            this.shoppingListOutputs = shoppingListOutputRepository;
+            this.foodOutputs = foodOutput;
+            this.readValues = readValues;
+            this.outputValues = outputValues;
+            this.productOutputs = productOutput;
+            this.productPlugin = productPlugin;
+            this.foodManager = foodManager;
+        }
+        public void createShoppingList(string name)
         {
             FluentShoppingList shoppingList = new FluentShoppingList();
             List<Food> foods = new List<Food>();
             List<Product> products = new List<Product>();
-            string name = "List";
 
-            Console.WriteLine("Enter the name of the shoppinglist");
-            name = readValues.ReadString();
-
-            if(name != null)
+            if(name != null && name != "")
             {
                 shoppingList.NameOfTheList(name).FoodsOfTheList(foods).ProductsOfTheList(products);
-                Console.WriteLine(shoppingList);
-                saveShoppingList(shoppingList.shoppingList);
+
+                shoppingListPlugin.saveShoppingList(shoppingList.shoppingList);
             }
         }
         public void readShoppingList(string name)
         {
-            ShoppingList shoppingList = getShoppingList(name);
-            Console.WriteLine("Products:");
+            ShoppingList shoppingList = shoppingListPlugin.getShoppingList(name);
+            shoppingListOutputs.productsMessage();
             foreach (Product product in shoppingList.Products)
             {
-                Console.WriteLine("Name: " + product.Name + " Price: " + product.Price);
+                productOutputs.writeProduct(product);
             }
 
-            Console.WriteLine("Foods:");
+            shoppingListOutputs.foodsMessage();
             foreach(Food food in shoppingList.Foods)
             {
-                Console.WriteLine("Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight);
+                foodOutputs.writeFood(food);
             }
-        }
-
-        public ShoppingList getShoppingList(string name)
-        {
-            ShoppingList shoppingList = new ShoppingList();
-
-            using (StreamReader streamReader = new StreamReader(path + name + ".json"))
-            {
-                string shoppingListString = streamReader.ReadToEnd();
-                if (shoppingListString != "")
-                {
-                    shoppingList = JsonSerializer.Deserialize<ShoppingList>(shoppingListString);
-                }
-            }
-
-            return shoppingList;
-        }
-        public void saveShoppingList(ShoppingList shoppingList)
-        {
-            using (StreamWriter streamWriter = new StreamWriter(path + shoppingList.Name + ".json"))
-            {
-                if(shoppingList.Id == 0)
-                {
-                    DirectoryInfo dir = new DirectoryInfo(path);
-                    int count = dir.GetFiles().Length;
-                    shoppingList.Id = count + 1;
-
-                    string jsonList = JsonSerializer.Serialize(shoppingList);
-                    streamWriter.Write(jsonList);
-                }
-                else
-                {
-                    string jsonList = JsonSerializer.Serialize(shoppingList);
-                    streamWriter.Write(jsonList);
-                }
-            }
-        }
-        public void deleteShoppingList(string name)
-        {
-            File.Delete(path + name + ".json");
         }
 
         public void addFood(string listName)
         {
-            ShoppingList list = getShoppingList(listName);
-            int count = 0;
-            IFoodManager foodManager = new FoodManager();
+            ShoppingList list = shoppingListPlugin.getShoppingList(listName);
+            FoodPlugin foodPlugin = new FoodPlugin();
             string food = "";
             List<Food> foods = new List<Food>();
-            List<Food> foodList = foodManager.getFoodList();
+            List<Food> foodList = foodPlugin.getFoodList();
 
             foods.AddRange(list.Foods);
-            Console.WriteLine("Choose the food:");
+            foodOutputs.chooseFoodMessage();
             if (foodList.Count == 0)
             {
-                Console.WriteLine("Please add foods to the food list first.");
+                foodOutputs.noFoodWarning();
             }
             else
             {
                 foreach (var fd in foodList)
                 {
-                    Console.WriteLine(fd.Name);
+                    foodOutputs.writeFood(fd);
                 }
                 while (food != null && food != "q")
                 {
@@ -115,36 +94,34 @@ namespace Einkaufsliste
                     {
                         var addedFood = foodList.FirstOrDefault(f => f.Name == food);
                         foods.Add(addedFood);
-                        Console.WriteLine("Enter q to close.");
+                        outputValues.closeEntryMessage();
                     }
                 }
             }
 
             list.Foods = foods;
-            saveShoppingList(list);
+            shoppingListPlugin.saveShoppingList(list);
         }
 
         public void addProduct(string listName)
         {
-            ShoppingList list = getShoppingList(listName);
-            int count = 0;
-            IProductManager productManager = new ProductManager();
+            ShoppingList list = shoppingListPlugin.getShoppingList(listName);
             Product productItem = new Product();
             string product = "";
             List<Product> products = new List<Product>();
-            List<Product> productList = productManager.getProductList();
+            List<Product> productList = productPlugin.getProductList();
             products.AddRange(list.Products);
-            Console.WriteLine("Choose the product:");
+            productOutputs.chooseProductMessage();
 
             if(productList.Count == 0)
             {
-                Console.WriteLine("Please add products to the porduct list first.");
+                productOutputs.noProductWarning();
             }
             else
             {
                 foreach (var pr in productList)
                 {
-                    Console.WriteLine(pr.Name);
+                    productOutputs.writeProduct(pr);
                 }
                 while (product != null && product != "q")
                 {
@@ -153,14 +130,14 @@ namespace Einkaufsliste
                     {
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         products.Add(addedProduct);
-                        Console.WriteLine("Enter q to close.");
+                        outputValues.closeEntryMessage();
                     }
                 }
             }
 
 
             list.Products = products;
-            saveShoppingList(list);
+            shoppingListPlugin.saveShoppingList(list);
         }
     }
 }
