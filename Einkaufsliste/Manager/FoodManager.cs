@@ -44,7 +44,7 @@ namespace Einkaufsliste
             {
                 food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight).IdOfTheFood(Guid.NewGuid());
 
-                Console.WriteLine(food);
+                foodOutputs.writeFood(food.food);
 
                 foods.Add(food.food);
 
@@ -53,9 +53,12 @@ namespace Einkaufsliste
         }
        
 
-        public void readFoodList()
+        public void readFoodList(List<Food> foods = null)
         {
-            List<Food> foods = foodPlugin.getFoodList();
+            if(foods == null)
+            {
+                foods = foodPlugin.getFoodList();
+            }
             foreach(Food food in foods)
             {
                 foodOutputs.writeFood(food);

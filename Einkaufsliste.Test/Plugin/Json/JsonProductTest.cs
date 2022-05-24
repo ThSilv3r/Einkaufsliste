@@ -9,11 +9,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Einkaufsliste.Test
 {
     [TestClass]
-    public class ProductTest
+    public class JsonProductTest
     {
         ProductRepository productManager;
         ProductPluginRepository productPlugin;
@@ -38,7 +39,7 @@ namespace Einkaufsliste.Test
             expectedProducts = productPlugin.getProductList();
         }
         [TestMethod]
-        public void CreateProduct()
+        public void SaveFood()
         {
             //arrange
             expectedProducts.Add(handy);
@@ -46,31 +47,28 @@ namespace Einkaufsliste.Test
             Console.SetIn(priceReader);
 
             //act
-            productManager.createProduct("Handy");
+            productPlugin.saveProductList(expectedProducts);
 
             //assert
             List<Product> products = productPlugin.getProductList();
             Product product = products.Find(x => x.Name == handy.Name);
-            productPlugin.deleteProduct(handy.Name);
             Assert.AreEqual(handy.ToString(), product.ToString());
+            productPlugin.deleteProduct(handy.Name);
         }
-
         [TestMethod]
-        public void CreateProductNoName()
+        public void GetFood()
         {
             //arrange
-            expectedProducts.Add(handy);
-            StringReader priceReader = new StringReader("");
-            Console.SetIn(priceReader);
+            List<Product> foods = expectedProducts;
+            foods.Add(handy);
+            productPlugin.saveProductList(foods);
 
             //act
-            productManager.createProduct("");
+            var products = productPlugin.getProductList();
 
             //assert
-            List<Product> products = productPlugin.getProductList();
-            Product product = products.Find(x => x.Name == null);
-            Assert.IsNull(product);
-            productPlugin.deleteProduct(null);
+            Assert.AreEqual(expectedProducts.Last().Name, products.Last().Name);
+            productPlugin.deleteProduct(handy.Name);
         }
         [TestMethod]
         public void DeleteProduct()
@@ -79,8 +77,6 @@ namespace Einkaufsliste.Test
             List<Product> products = expectedProducts;
             products.Add(handy);
             productPlugin.saveProductList(products);
-            StringReader priceReader = new StringReader("");
-            Console.SetIn(priceReader);
 
             //act
             productPlugin.deleteProduct(handy.Name);

@@ -25,12 +25,12 @@ namespace Einkaufsliste
 
         public ShoppingListManager(ShoppingListPluginRepository shoppingListPlugin, OutputValuesRepository outputValues,
             ProductOutputRepository productOutput, FoodOutputRepository foodOutput,
-            ShoppingListOutputRepository shoppingListOutputRepository, ReadValuesRepository readValues, 
+            ShoppingListOutputRepository shoppingListOutput, ReadValuesRepository readValues, 
             ProductPluginRepository productPlugin, FoodRepository foodManager)
         {
             this.shoppingListPlugin = shoppingListPlugin;
             this.productOutputs = productOutput;
-            this.shoppingListOutputs = shoppingListOutputRepository;
+            this.shoppingListOutputs = shoppingListOutput;
             this.foodOutputs = foodOutput;
             this.readValues = readValues;
             this.outputValues = outputValues;

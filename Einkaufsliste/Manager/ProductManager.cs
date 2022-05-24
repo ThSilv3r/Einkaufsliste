@@ -49,9 +49,12 @@ namespace Einkaufsliste
         }
 
         
-        public void readProductList()
+        public void readProductList(List<Product> products = null)
         {
-            List<Product> products = productPlugin.getProductList();
+            if(products == null)
+            {
+                products = productPlugin.getProductList();
+            }
             foreach (Product product in products)
             {
                 productOutputs.writeProduct(product);

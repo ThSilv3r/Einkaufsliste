@@ -32,6 +32,7 @@ namespace Einkaufsliste.Test
             foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
             apple = new Food
             {
+                Id = Guid.NewGuid(),
                 Name = "Apple",
                 Price = new Price{price = 0},
                 Weight = 0
@@ -69,38 +70,61 @@ namespace Einkaufsliste.Test
             Assert.IsNull(food);
             foodPlugin.deleteFood(null);
         }
-
         [TestMethod]
-        public void GetFood()
+        public void ReadFoodListTest()
         {
             //arrange
-            expectedFoods.Add(apple);
-            StringReader priceReader = new StringReader("");
-            Console.SetIn(priceReader);
-
+            string output;
+            List<Food> foods = new List<Food>();
+            foods.Add(apple);
+            string expected = "Name: Apple Price: 0 Weight: 0\r\n";
             //act
-            foodManager.createFood("Apple");
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                foodManager.readFoodList(foods);
+                output = sw.ToString();
+            }
 
             //assert
-            List<Food> foods = foodPlugin.getFoodList();
-            Food food = foods.Find(x => x.Name == apple.Name);
-            foodPlugin.deleteFood(apple.Name);
-            Assert.AreEqual(apple.ToString(), food.ToString());
+            Assert.AreEqual(expected, output);
         }
-
         [TestMethod]
-        public void DeleteFood()
+        public void ReadNullFoodListTest()
         {
             //arrange
-            List<Food> foods = expectedFoods;
+            string output;
+            List<Food> foods = new List<Food>();
             foods.Add(apple);
             foodPlugin.saveFood(foods);
-
             //act
-            foodPlugin.deleteFood(apple.Name);
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                foodManager.readFoodList();
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.AreEqual(expectedFoods, foods);
+            Assert.IsNotNull(output);
+            foodPlugin.deleteFood(apple.Name);
+        }
+        [TestMethod]
+        public void GetFoodByIdTest()
+        {
+            //arrange
+            string output;
+            List<Food> foods = new List<Food>();
+            foods.Add(apple);
+            StringReader priceReader = new StringReader("");
+            Console.SetIn(priceReader);
+            foodPlugin.saveFood(foods);
+            //act
+            var food = foodManager.getFoodById(apple.Id);
+
+            //assert
+            Assert.AreEqual(apple.Id, food.Id);
+            foodPlugin.deleteFood(apple.Name);
         }
     }
 }

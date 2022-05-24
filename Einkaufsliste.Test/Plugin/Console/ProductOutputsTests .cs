@@ -49,7 +49,7 @@ namespace Einkaufsliste.Test
                 Price = new Price { price = 2 }
             };
             string output = "";
-            string expected = "Name: " + product.Name + " Preis: " + product.Price + "\r\n";
+            string expected = "Name: " + product.Name + " Price: " + product.Price.price + "\r\n";
             //act
             using (StringWriter sw = new StringWriter())
             {

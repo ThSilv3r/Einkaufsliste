@@ -69,7 +69,7 @@ namespace Einkaufsliste.Test
                 Weight = 100
             };
             string output = "";
-            string expected = "Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight + "\r\n";
+            string expected = "Name: " + food.Name + " Price: " + food.Price.price + " Weight: " + food.Weight + "\r\n";
             //act
             using (StringWriter sw = new StringWriter())
             {
