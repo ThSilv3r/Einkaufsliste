@@ -35,7 +35,7 @@ namespace Einkaufsliste
         }
         public void createRecipe(string name)
         {
-            FluentRecipe recipe = new FluentRecipe();
+            RecipeBuilder recipeBuilder = new RecipeBuilder();
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodPlugin.getFoodList();
             string food = "";
@@ -60,10 +60,13 @@ namespace Einkaufsliste
 
             if(name != null && name != "")
             {
-                recipe.NameOfTheRecipe(name).FoodOfTheRecipe(foods).DescOfTheRecipe(desc);
-                Console.WriteLine(recipe);
+                recipeBuilder.BuildName(name);
+                recipeBuilder.BuildFoods(foods);
+                recipeBuilder.BuildDescription(desc);
+                recipeBuilder.BuildId(Guid.NewGuid());
+                Recipe recipe = recipeBuilder.GetRecipe();
 
-                recipePlugin.saveRecipe(recipe.recipe);
+                recipePlugin.saveRecipe(recipe);
             }
         }
 

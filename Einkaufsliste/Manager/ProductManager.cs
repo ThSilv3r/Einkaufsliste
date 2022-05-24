@@ -31,7 +31,7 @@ namespace Einkaufsliste
         {
             Price price = new Price();
             double priceDouble;
-            FluentProduct product = new FluentProduct();
+            ProductBuilder productBuilder = new ProductBuilder();
             List<Product> products = productPlugin.getProductList();
 
             productOutputs.enterPriceMessage();
@@ -40,10 +40,13 @@ namespace Einkaufsliste
 
             if(name != null)
             {
-                product.NameOfProduct(name).PriceOfProduct(price).IdOfTheProduct(Guid.NewGuid());
-                Console.WriteLine(product);
+                productBuilder.BuildName(name);
+                productBuilder.BuildPrice(price);
+                productBuilder.BuildId(Guid.NewGuid());
+                Product product = productBuilder.GetProduct();
+                productOutputs.writeProduct(product);
 
-                products.Add(product.product);
+                products.Add(product);
                 productPlugin.saveProductList(products);
             }
         }

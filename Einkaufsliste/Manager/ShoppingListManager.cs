@@ -40,15 +40,19 @@ namespace Einkaufsliste
         }
         public void createShoppingList(string name)
         {
-            FluentShoppingList shoppingList = new FluentShoppingList();
+            ShoppingListBuilder shoppingListBuilder = new ShoppingListBuilder();
             List<Food> foods = new List<Food>();
             List<Product> products = new List<Product>();
 
             if(name != null && name != "")
             {
-                shoppingList.NameOfTheList(name).FoodsOfTheList(foods).ProductsOfTheList(products);
+                shoppingListBuilder.BuildName(name);
+                shoppingListBuilder.BuildFood(foods);
+                shoppingListBuilder.BuildProducts(products);
+                shoppingListBuilder.BuildId(Guid.NewGuid());
+                ShoppingList shoppingList = shoppingListBuilder.GetShoppingList();
 
-                shoppingListPlugin.saveShoppingList(shoppingList.shoppingList);
+                shoppingListPlugin.saveShoppingList(shoppingList);
             }
         }
         public void readShoppingList(string name)

@@ -13,12 +13,6 @@ namespace Einkaufsliste.ClassLibrary
         public string Name { get; set; }
         public Price Price { get; set; }
         public int Weight { get; set; }
-        public Food(string name, Price price, int weight)
-        {
-            Name = name;
-            Price = price;
-            Weight = weight;
-        }
         public Food() { }
     }
 }

@@ -31,7 +31,7 @@ namespace Einkaufsliste
             Price price = new Price();
             double priceDouble;
             int weight;
-            FluentFood food = new FluentFood();
+            FoodBuilder foodBuilder = new FoodBuilder();
             List<Food> foods = foodPlugin.getFoodList();
 
             foodOutputs.enterPriceMessage();
@@ -42,11 +42,15 @@ namespace Einkaufsliste
             weight = readValues.ReadInt();
             if(name != null)
             {
-                food.NameOfTheFood(name).PriceOfTheFood(price).WeightOfTheFood(weight).IdOfTheFood(Guid.NewGuid());
+                foodBuilder.BuildName(name);
+                foodBuilder.BuildPrice(price);
+                foodBuilder.BuildWeight(weight);
+                foodBuilder.BuildId(Guid.NewGuid());
+                Food food = foodBuilder.GetFood();
 
-                foodOutputs.writeFood(food.food);
+                foodOutputs.writeFood(food);
 
-                foods.Add(food.food);
+                foods.Add(food);
 
                 foodPlugin.saveFood(foods);
             }
