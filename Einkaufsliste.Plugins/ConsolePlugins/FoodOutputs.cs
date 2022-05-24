@@ -20,7 +20,7 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         }
         public void writeFood(Food food)
         {
-            Console.WriteLine("Name: " + food.Name + " Price: " + food.Price + " Weight: " + food.Weight);
+            Console.WriteLine("Name: " + food.Name + " Price: " + food.Price.price + " Weight: " + food.Weight);
         }
         public void chooseFoodMessage()
         {

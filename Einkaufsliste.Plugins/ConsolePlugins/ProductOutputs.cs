@@ -16,7 +16,7 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         }
         public void writeProduct(Product product)
         {
-            Console.WriteLine("Name: " + product.Name + " Preis: " + product.Price);
+            Console.WriteLine("Name: " + product.Name + " Price: " + product.Price.price);
         }
         public void chooseProductMessage()
         {

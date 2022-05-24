@@ -9,6 +9,7 @@ namespace Einkaufsliste.ClassLibrary.Repository
     public interface FoodRepository
     {
         void createFood(string name);
-        void readFoodList();
+        void readFoodList(List<Food> foods = null);
+        Food getFoodById(Guid guid);
     }
 }
