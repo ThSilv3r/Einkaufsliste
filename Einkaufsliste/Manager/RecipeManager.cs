@@ -107,13 +107,20 @@ namespace Einkaufsliste
             recipePlugin.saveRecipe(recipe);
         }
 
-        public void addToShoppingList(string recipeName, string listName)
+        public void addToShoppingList(string recipeName = null, string listName = null)
         {
-            recipeOutputs.enterRecipeNameMessage();
-            //string recipeName = readValues.ReadString();
+            if(recipeName == null)
+            {
+                recipeOutputs.enterRecipeNameMessage();
+                recipeName = readValues.ReadString();
+            }
             Recipe recipe = recipePlugin.getRecipe(recipeName);
 
-            recipeOutputs.enterListNameMessage();
+            if(listName == null)
+            {
+                recipeOutputs.enterListNameMessage();
+                listName = readValues.ReadString();
+            }
             ShoppingList shoppingList = shoppingListPlugin.getShoppingList(listName);
 
             foreach(var food in recipe.Foods)
