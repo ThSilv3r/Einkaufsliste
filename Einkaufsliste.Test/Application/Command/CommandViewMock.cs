@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.Plugins.Repository.Views;
+using Einkaufsliste.Plugins.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Test.Application.Command
 {
-    public class CommandViewMock : CommandViewRepository
+    public class CommandViewMock : CommandView
     {
-        public void foodCommands(string command)
+        public new void foodCommands(string command)
         {
             if (command == "createFood")
             {
@@ -28,8 +29,7 @@ namespace Einkaufsliste.Test.Application.Command
                 Console.WriteLine("Kein echter Befehl");
             }
         }
-
-        public void listCommands(string command)
+        public new void listCommands(string command)
         {
             if (command == "createShoppingList")
             {
@@ -57,7 +57,7 @@ namespace Einkaufsliste.Test.Application.Command
             }
         }
 
-        public void productCommand(string command)
+        public new void productCommand(string command)
         {
             if (command == "createProduct")
             {
@@ -77,7 +77,7 @@ namespace Einkaufsliste.Test.Application.Command
             }
         }
 
-        public void recipeCommand(string command)
+        public new void recipeCommand(string command)
         {
             if (command == "createRecipe")
             {
