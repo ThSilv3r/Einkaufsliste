@@ -14,7 +14,7 @@ namespace Einkaufsliste.Plugins
             string str = Console.ReadLine();
             if (str == null || str == "")
             {
-                Console.WriteLine("Bitte Versuche es erneut mit einem Namen.");
+                Console.WriteLine("Please enter a text.");
                 return Console.ReadLine();
             }
             return str;
@@ -29,7 +29,7 @@ namespace Einkaufsliste.Plugins
             }
             catch (Exception e)
             {
-                Console.WriteLine("Bitte nur Zahlen eingeben:");
+                Console.WriteLine("Please enter a decimal number");
                 doubleString = Console.ReadLine();
                 if (doubleString == null)
                 {
@@ -52,7 +52,7 @@ namespace Einkaufsliste.Plugins
             }
             catch (Exception e)
             {
-                Console.WriteLine("Bitte nur Zahlen eingeben:");
+                Console.WriteLine("Please enter a number without decimal place");
                 weightString = Console.ReadLine();
                 if (weightString == null)
                 {

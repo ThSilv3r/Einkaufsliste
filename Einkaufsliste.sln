@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste", "Einkaufsliste\Einkaufsliste.csproj", "{DC6E82C4-1759-4BC6-8252-B54CD0B527A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste.Application", "Einkaufsliste\Einkaufsliste.Application.csproj", "{DC6E82C4-1759-4BC6-8252-B54CD0B527A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste.ClassLibrary", "Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj", "{A7BE22F0-4D31-48A1-80F0-A6C332211C42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste.Test", "Einkaufsliste.Test\Einkaufsliste.Test.csproj", "{7B4635A5-CB14-420C-B027-189A002A92DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einkaufsliste.Adapters", "Einkaufsliste.Adapters\Einkaufsliste.Adapters.csproj", "{4945D5C3-5E2A-47FE-B8D8-0DE5BEDC4DFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste.Adapters", "Einkaufsliste.Adapters\Einkaufsliste.Adapters.csproj", "{4945D5C3-5E2A-47FE-B8D8-0DE5BEDC4DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einkaufsliste.Plugins", "Einkaufsliste.Plugins\Einkaufsliste.Plugins.csproj", "{C1A99B7B-A8CD-4B6E-A989-D805DA368E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Einkaufsliste.Plugins", "Einkaufsliste.Plugins\Einkaufsliste.Plugins.csproj", "{C1A99B7B-A8CD-4B6E-A989-D805DA368E81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Einkaufsliste", "Einkaufslist\Einkaufsliste.csproj", "{46DFB5B1-917A-4343-AEEC-14D0F57DB1D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C1A99B7B-A8CD-4B6E-A989-D805DA368E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1A99B7B-A8CD-4B6E-A989-D805DA368E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1A99B7B-A8CD-4B6E-A989-D805DA368E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DFB5B1-917A-4343-AEEC-14D0F57DB1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46DFB5B1-917A-4343-AEEC-14D0F57DB1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46DFB5B1-917A-4343-AEEC-14D0F57DB1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46DFB5B1-917A-4343-AEEC-14D0F57DB1D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

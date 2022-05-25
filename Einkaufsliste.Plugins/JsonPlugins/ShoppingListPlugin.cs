@@ -1,5 +1,6 @@
 ﻿using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,26 +34,29 @@ namespace Einkaufsliste.Plugins
         {
             using (StreamWriter streamWriter = new StreamWriter(path + shoppingList.Name + ".json"))
             {
-
-                if (shoppingList.Id == null)
-                {
-                    DirectoryInfo dir = new DirectoryInfo(path);
-                    int count = dir.GetFiles().Length;
-                    shoppingList.Id = Guid.NewGuid();
-
-                    string jsonList = JsonSerializer.Serialize(shoppingList);
-                    streamWriter.Write(jsonList);
-                }
-                else
-                {
-                    string jsonList = JsonSerializer.Serialize(shoppingList);
-                    streamWriter.Write(jsonList);
-                }
+                string jsonList = JsonSerializer.Serialize(shoppingList);
+                streamWriter.Write(jsonList);
             }
         }
-        public void deleteShoppingList(string name)
+        public void deleteShoppingList(string name = null)
         {
-            File.Delete(path + name + ".json");
+            OutputValues outputValues = new OutputValues();
+            if (name == null)
+            {
+                ReadValues readValues = new ReadValues();
+                outputValues.enterNameMessage();
+                name = readValues.ReadString();
+            }
+            if (name != "")
+            {
+                File.Delete(path + name + ".json");
+
+                Console.WriteLine("Deleted: " + name);
+            }
+            else
+            {
+                outputValues.nameWarning();
+            }
         }
     }
 }

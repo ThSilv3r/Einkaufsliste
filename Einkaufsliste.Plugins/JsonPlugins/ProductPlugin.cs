@@ -1,5 +1,6 @@
 ﻿using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,14 +22,29 @@ namespace Einkaufsliste.Plugins
                 streamWriter.Write(jsonProducts);
             }
         }
-        public void deleteProduct(string name)
+        public void deleteProduct(string name = null)
         {
+            OutputValues outputValues = new OutputValues();
+            if (name == null)
+            {
+                ReadValues readValues = new ReadValues();
+                outputValues.enterNameMessage();
+                name = readValues.ReadString();
+            }
             List<Product> products = getProductList();
-            Product product = products.Find(x => x.Name == name);
+            if (name != "")
+            {
+                Product product = products.Find(x => x.Name == name);
 
-            products.Remove(product);
+                products.Remove(product);
 
-            saveProductList(products);
+                saveProductList(products);
+                Console.WriteLine("Deleted: " + product.Name);
+            }
+            else
+            {
+                outputValues.nameWarning();
+            }
         }
 
         public List<Product> getProductList()

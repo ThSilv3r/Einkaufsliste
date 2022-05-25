@@ -1,5 +1,6 @@
 ﻿using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,14 +36,29 @@ namespace Einkaufsliste.Plugins
             return foods;
         }
 
-        public void deleteFood(string name)
+        public void deleteFood(string name = null)
         {
+            OutputValues outputValues = new OutputValues();
+            if (name == null)
+            {
+                ReadValues readValues = new ReadValues();
+                outputValues.enterNameMessage();
+                name = readValues.ReadString();
+            }
+
             List<Food> foods = getFoodList();
-            Food food = foods.Find(x => x.Name == name);
+            if(name != "")
+            {
+                Food food = foods.Find(x => x.Name == name);
+                foods.Remove(food);
 
-            foods.Remove(food);
-
-            saveFood(foods);
+                saveFood(foods);
+                Console.WriteLine("Deleted: " + food.Name);
+            }
+            else
+            {
+                outputValues.nameWarning();
+            }
         }
     }
 }

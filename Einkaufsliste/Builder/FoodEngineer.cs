@@ -21,7 +21,7 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
             return foodBuilder.GetFood();
         }
 
-        public void constructProduct(string name, int Weight, Price price)
+        public void constructProduct(string name = null, int Weight = 0, Price price = null)
         {
             this.foodBuilder.BuildName(name);
             this.foodBuilder.BuildWeight(Weight);

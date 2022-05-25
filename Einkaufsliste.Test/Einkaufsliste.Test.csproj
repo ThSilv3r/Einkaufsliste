@@ -15,7 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj" />
-    <ProjectReference Include="..\Einkaufsliste\Einkaufsliste.csproj" />
+    <ProjectReference Include="..\Einkaufsliste.Plugins\Einkaufsliste.Plugins.csproj" />
+    <ProjectReference Include="..\Einkaufsliste\Einkaufsliste.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

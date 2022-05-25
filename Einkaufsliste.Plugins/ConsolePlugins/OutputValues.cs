@@ -17,5 +17,9 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
         {
             Console.WriteLine("Enter q to finish.");
         }
+        public void nameWarning()
+        {
+            Console.WriteLine("Please enter a name next time");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,9 +37,25 @@ namespace Einkaufsliste.Plugins
 
             return recipe;
         }
-        public void deleteRecipe(string name)
+        public void deleteRecipe(string name = null)
         {
-            File.Delete(path + name + ".json");
+            OutputValues outputValues = new OutputValues();
+            if (name == null)
+            {
+                ReadValues readValues = new ReadValues();
+                outputValues.enterNameMessage();
+                name = readValues.ReadString();
+            }
+            if (name != "")
+            {
+                File.Delete(path + name + ".json");
+
+                Console.WriteLine("Deleted: " + name);
+            }
+            else
+            {
+                outputValues.nameWarning();
+            }
         }
     }
 }
