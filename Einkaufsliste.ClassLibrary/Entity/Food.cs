@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary
 {
-    public class Food : IProduct, Weightable
+    public class Food : IProduct, Weightable, IEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

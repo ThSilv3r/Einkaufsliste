@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary
 {
-    public class Product : IProduct
+    public class Product : IProduct, IEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
