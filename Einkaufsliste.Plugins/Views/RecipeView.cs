@@ -18,31 +18,19 @@ namespace Einkaufsliste.Plugins.Views
         RecipeOutputs recipeOutputs = new RecipeOutputs();
         FoodOutputs foodOutputs = new FoodOutputs();
         RecipeManager recipeManager = new RecipeManager();
+        UserInputs userInputs = new UserInputs();
         public void createRecipe()
         {
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodPlugin.getFoodList();
-            string food = "";
             string name = "";
 
-            outputValues.enterNameMessage();
-            name = readValues.ReadString();
+            name = userInputs.getName();
 
             foodOutputs.chooseFoodMessage();
-            foreach (var fd in foodList)
-            {
-                Console.WriteLine(fd.Name);
-            }
-            while (food != null && food != "q")
-            {
-                food = readValues.ReadString();
-                if (food != "q" && food != null)
-                {
-                    var addedFood = foodList.FirstOrDefault(f => f.Name == food);
-                    foods.Add(addedFood);
-                    outputValues.closeEntryMessage();
-                }
-            }
+
+            foods = userInputs.chooseFoods(foodList);
+
             recipeOutputs.enterDescriptionMessage();
             string desc = readValues.ReadString();
 
@@ -58,8 +46,7 @@ namespace Einkaufsliste.Plugins.Views
             if (name == null)
             {
                 ReadValues readValues = new ReadValues();
-                outputValues.enterNameMessage();
-                name = readValues.ReadString();
+                name = userInputs.getName();
             }
             Recipe recipe = recipePlugin.getRecipe(name);
 
@@ -73,44 +60,29 @@ namespace Einkaufsliste.Plugins.Views
         public void addFood(string recipeName)
         {
             Recipe recipe = recipePlugin.getRecipe(recipeName);
-            int count = 0;
-            string food = "";
-            Food addedFood = new Food();
             List<Food> foods = new List<Food>();
             List<Food> foodList = foodPlugin.getFoodList();
-            foreach (var fd in foodList)
+
+            foods = userInputs.chooseFoods(foodList);
+
+            foreach(Food fd in foods)
             {
-                Console.WriteLine(fd.Name);
-            }
-            while (food != null && food != "q")
-            {
-                food = readValues.ReadString();
-                if (food != null && food != "q")
-                {
-                    addedFood = foodList.FirstOrDefault(f => f.Name == food);
-                    if (addedFood != null)
-                    {
-                        recipeManager.addFood(recipe, addedFood);
-                    }
-                    outputValues.closeEntryMessage();
-                }
+                recipeManager.addFood(recipe, fd);
             }
             recipePlugin.saveRecipe(recipe);
-        }
+        } 
 
         public void addToShoppingList(string recipeName = null, string listName = null)
         {
             if (recipeName == null)
             {
-                recipeOutputs.enterRecipeNameMessage();
-                recipeName = readValues.ReadString();
+                recipeName = userInputs.getName();
             }
             Recipe recipe = recipePlugin.getRecipe(recipeName);
 
             if (listName == null)
             {
-                recipeOutputs.enterListNameMessage();
-                listName = readValues.ReadString();
+                listName = userInputs.getName();
             }
             ShoppingList shoppingList = shoppingListPlugin.getShoppingList(listName);
 

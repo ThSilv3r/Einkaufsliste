@@ -17,20 +17,18 @@ namespace Einkaufsliste.Plugins.Views
         FoodPlugin foodPlugin = new FoodPlugin();
         FoodManager foodManager = new FoodManager();
         OutputValues outputValues = new OutputValues();
+        UserInputs userInputs = new UserInputs();
         public void createFood()
         {
             Price price = new Price();
             double priceDouble;
             int weight;
-            string name;
+            string name; 
             List<Food> foods = foodPlugin.getFoodList();
 
-            outputValues.enterNameMessage();
-            name = readValues.ReadString();
+            name = userInputs.getName();
 
-            foodOutputs.enterPriceMessage();
-            priceDouble = readValues.ReadDouble();
-            price.price = priceDouble;
+            price = userInputs.getPrice();
 
             foodOutputs.enterWeightMessage();
             weight = readValues.ReadInt();

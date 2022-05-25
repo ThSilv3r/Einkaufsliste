@@ -19,14 +19,14 @@ namespace Einkaufsliste.Plugins.Views
         ProductPlugin productPlugin = new ProductPlugin();
         FoodManager foodManager = new FoodManager();
         ShoppingListManager shoppingListManager = new ShoppingListManager();
+        UserInputs userInputs = new UserInputs();
         public void createShoppingList()
         {
             List<Food> foods = new List<Food>();
             List<Product> products = new List<Product>();
             string name = "";
 
-            outputValues.enterNameMessage();
-            name = readValues.ReadString();
+            name = userInputs.getName();
 
             shoppingListManager.createShoppingList(name);
         }
@@ -74,22 +74,11 @@ namespace Einkaufsliste.Plugins.Views
             }
             else
             {
-                foreach (var fd in foodList)
+
+                List<Food> foods = userInputs.chooseFoods(foodList);
+                foreach(Food fd in foods)
                 {
-                    foodOutputs.writeFood(fd);
-                }
-                while (food != null && food != "q")
-                {
-                    food = readValues.ReadString();
-                    if (food != null && food != "q")
-                    {
-                        var addedFood = foodList.FirstOrDefault(f => f.Name == food);
-                        if(food != null)
-                        {
-                            list = shoppingListManager.addFood(list, addedFood);
-                        }
-                        outputValues.closeEntryMessage();
-                    }
+                    list = shoppingListManager.addFood(list, fd);
                 }
             }
 
@@ -134,7 +123,7 @@ namespace Einkaufsliste.Plugins.Views
                 }
             }
 
-
+             
             shoppingListPlugin.saveShoppingList(list);
         }
     }

@@ -17,6 +17,7 @@ namespace Einkaufsliste.Plugins.Views
         ProductOutputs productOutputs = new ProductOutputs();
         ProductPlugin productPlugin = new ProductPlugin();
         ProductManager productManager = new ProductManager();
+        UserInputs userInputs = new UserInputs();
         public void createProduct()
         {
             Price price = new Price();
@@ -24,13 +25,10 @@ namespace Einkaufsliste.Plugins.Views
             string name;
             List<Product> products = productPlugin.getProductList();
 
+             
+            name = userInputs.getName();
 
-            outputValues.enterNameMessage();
-            name = readValues.ReadString();
-
-            productOutputs.enterPriceMessage();
-            priceDouble = readValues.ReadDouble();
-            price.price = priceDouble;
+            price = userInputs.getPrice();
 
 
             Product product = productManager.createProduct(name, price);
