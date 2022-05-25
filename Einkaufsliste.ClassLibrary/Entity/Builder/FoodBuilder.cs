@@ -1,14 +1,13 @@
-﻿using Einkaufsliste.ClassLibrary.Entity.Builder;
-using Einkaufsliste.ClassLibrary.ValueObject;
+﻿using Einkaufsliste.ClassLibrary.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Einkaufsliste.ClassLibrary
+namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
-    public class FoodBuilder : IFoodBuilder 
+    public class FoodBuilder : IFoodBuilder
     {
         private Food food;
         public FoodBuilder()

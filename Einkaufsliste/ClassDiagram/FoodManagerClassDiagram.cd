@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Einkaufsliste.FoodManager">
+    <Position X="9.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAACAAAAAAAAARAAAAAAAgAAAAABgAAAAAAAAA=</HashCode>
+      <FileName>Manager\FoodManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="readValues" />
+      <Field Name="foodOutputs" />
+      <Field Name="outputValues" />
+      <Field Name="foodPlugin" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.FoodPlugin" Collapsed="true">
+    <Position X="15.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.OutputValues" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ReadValues" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.FoodOutputs" Collapsed="true">
+    <Position X="15.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.CommandManager" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQACARgCAAQAAACAAAgBAAABQgAAAAQBAABAEAAAAA=</HashCode>
+      <FileName>Manager\CommandManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="foodManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Console.ReadValuesRepository" Collapsed="true">
+    <Position X="11.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Console.FoodOutputRepository" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Json.FoodPluginRepository" Collapsed="true">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Console.OutputValuesRepository" Collapsed="true">
+    <Position X="11.25" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

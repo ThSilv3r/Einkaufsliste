@@ -8,4 +8,8 @@
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.ClassLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClassDiagram\Json\" />
+  </ItemGroup>
+
 </Project>

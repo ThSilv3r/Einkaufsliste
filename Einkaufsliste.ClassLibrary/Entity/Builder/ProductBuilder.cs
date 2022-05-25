@@ -1,12 +1,11 @@
-﻿using Einkaufsliste.ClassLibrary.Entity.Builder;
-using Einkaufsliste.ClassLibrary.ValueObject;
+﻿using Einkaufsliste.ClassLibrary.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Einkaufsliste.ClassLibrary
+namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
     public class ProductBuilder : IProductBuilder
     {
@@ -27,11 +26,11 @@ namespace Einkaufsliste.ClassLibrary
 
         public void BuildPrice(Price price)
         {
-            product.Price = price; 
+            product.Price = price;
         }
         public Product GetProduct()
         {
             return product;
-        } 
+        }
     }
 }
