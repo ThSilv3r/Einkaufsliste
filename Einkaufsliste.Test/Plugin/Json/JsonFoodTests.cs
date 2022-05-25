@@ -30,7 +30,7 @@ namespace Einkaufsliste.Test
             foodOutput = new FoodOutputs();
             outputValues = new OutputValues();
             foodPlugin = new FoodPlugin();
-            foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
+            foodManager = new FoodManager();
             apple = new Food
             {
                 Name = "Apple",

@@ -38,11 +38,10 @@ namespace Einkaufsliste.Test
             foodPlugin = new FoodPlugin();
             productPlugin = new ProductPlugin();
             foodPlugin = new FoodPlugin();
-            foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
-            productManager = new ProductManager(productPlugin, readValues, outputValues, productOutput);
+            foodManager = new FoodManager();
+            productManager = new ProductManager();
             shoppingListPlugin = new ShoppingListPlugin();
-            listManager = new ShoppingListManager(shoppingListPlugin, outputValues, 
-                productOutput, foodOutput, shoppingListOutputRepository, readValues, productPlugin, foodManager);
+            listManager = new ShoppingListManager();
         }
         [TestMethod]
         public void SaveList()
@@ -66,7 +65,8 @@ namespace Einkaufsliste.Test
             //arrange
             string name = "TestListe";
 
-            listManager.createShoppingList(name);
+            ShoppingList expectedShoppingList = listManager.createShoppingList(name);
+            shoppingListPlugin.saveShoppingList(expectedShoppingList);
 
             //act
             ShoppingList shoppingList = shoppingListPlugin.getShoppingList(name);

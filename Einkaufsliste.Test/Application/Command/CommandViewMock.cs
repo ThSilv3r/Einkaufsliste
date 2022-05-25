@@ -1,118 +1,100 @@
-﻿using Einkaufsliste.Plugins.ConsolePlugins;
-using Einkaufsliste.Plugins.Repository.Views;
+﻿using Einkaufsliste.Plugins.Repository.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Einkaufsliste.Plugins.Views
+namespace Einkaufsliste.Test.Application.Command
 {
-    public class CommandView : CommandViewRepository
+    public class CommandViewMock : CommandViewRepository
     {
-        FoodPlugin foodPlugin = new FoodPlugin();
-        ProductPlugin productPlugin = new ProductPlugin();
-        ShoppingListPlugin listPlugin = new ShoppingListPlugin();
-        RecipePlugin recipePlugin = new RecipePlugin();
-        OutputValues outputValues = new OutputValues();
-        ReadValues readValues = new ReadValues();
-        FoodOutputs foodOutputs = new FoodOutputs();
-        ProductOutputs productOutputs = new ProductOutputs();
-        ShoppingListOutputs shoppingListOutputs = new ShoppingListOutputs();
-        RecipeOutputs recipeOutputs = new RecipeOutputs();
-        FoodView foodView;
-        ShoppingListView listView;
-        RecipeView recipeView;
-        ProductView productView;
         public void foodCommands(string command)
         {
-            foodView = new FoodView();
             if (command == "createFood")
             {
-                foodView.createFood();
+                Console.WriteLine("true");
             }
             else if (command == "deleteFood")
             {
-                foodPlugin.deleteFood();
+                Console.WriteLine("true");
             }
             else if (command == "getFoodList")
             {
-                foodView.readFoodList();
+                Console.WriteLine("true");
             }
             else
             {
                 Console.WriteLine("Kein echter Befehl");
             }
         }
+
         public void listCommands(string command)
         {
-            foodView = new FoodView();
-            listView = new ShoppingListView();
             if (command == "createShoppingList")
             {
-                listView.createShoppingList();
-                shoppingListOutputs.createListMessage();
+                Console.WriteLine("true");
             }
             else if (command == "getShoppingList")
             {
-                listView.readShoppingList();
+                Console.WriteLine("true");
             }
             else if (command == "deleteShoppingList")
             {
-                listPlugin.deleteShoppingList();
+                Console.WriteLine("true");
             }
             else if (command == "addProductToShoppingList")
             {
-                listView.addProduct();
+                Console.WriteLine("true");
             }
             else if (command == "addFoodToShoppingList")
             {
-                listView.addFood();
+                Console.WriteLine("true");
             }
             else
             {
                 Console.WriteLine("Kein echter Befehl");
             }
         }
+
         public void productCommand(string command)
         {
-            productView = new ProductView();
             if (command == "createProduct")
             {
-                productView.createProduct();
+                Console.WriteLine("true");
             }
             else if (command == "deleteProduct")
             {
-                productPlugin.deleteProduct();
+                Console.WriteLine("true");
             }
             else if (command == "getProductList")
             {
-                productView.readProductList();
+                Console.WriteLine("true");
             }
             else
             {
                 Console.WriteLine("Kein echter Befehl");
             }
         }
+
         public void recipeCommand(string command)
         {
-            recipeView = new RecipeView();
             if (command == "createRecipe")
             {
-                recipeView.createRecipe();
+                Console.WriteLine("true");
 
             }
             else if (command == "getRecipe")
             {
-                recipeView.readRecipe();
+                Console.WriteLine("true");
             }
             else if (command == "deleteRecipe")
             {
-                recipePlugin.deleteRecipe();
+                Console.WriteLine("true");
             }
             else if (command == "addRecipeToList")
             {
-                recipeView.addToShoppingList();
+                Console.WriteLine("true");
             }
             else
             {

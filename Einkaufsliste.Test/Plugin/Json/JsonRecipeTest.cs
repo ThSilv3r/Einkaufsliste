@@ -34,7 +34,7 @@ namespace Einkaufsliste.Test
             outputValues = new OutputValues();
             foodPlugin = new FoodPlugin();
             shoppingListPlugin = new ShoppingListPlugin();
-            recipeManager = new RecipeManager(recipePlugin, readValues, shoppingListPlugin, foodPlugin, outputValues, recipeOutput, foodOutput);
+            recipeManager = new RecipeManager();
         }
         [TestMethod]
         public void SaveRecipe()

@@ -35,16 +35,17 @@ namespace Einkaufsliste
             //priceDouble = readValues.ReadDouble();
             //price.price = priceDouble;
 
-            if(name != null)
+            if(name != null && name != "")
             {
                 productEngineer.constructProduct(name, price);
                 product = productEngineer.GetProduct();
+                return product;
                 //productOutputs.writeProduct(product);
 
                 //products.Add(product);
                 //productPlugin.saveProductList(products);
             }
-            return product;
+            return null;
         }
 
         

@@ -27,6 +27,7 @@ namespace Einkaufsliste.Test
         FoodOutputRepository foodOutput;
         OutputValuesRepository outputValues;
         ProductOutputRepository productOutput;
+        ShoppingList shoppingList;
         [TestInitialize]
         public void Startup()
         {
@@ -40,10 +41,16 @@ namespace Einkaufsliste.Test
             foodPlugin = new FoodPlugin();
             shoppingListPlugin = new ShoppingListPlugin();
             shoppingListOutputRepository = new ShoppingListOutputs();
-            foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
-            productManager = new ProductManager(productPlugin, readValues, outputValues, productOutput);
-            listManager = new ShoppingListManager(shoppingListPlugin, outputValues, 
-                productOutput, foodOutput, shoppingListOutputRepository, readValues, productPlugin, foodManager);
+            foodManager = new FoodManager();
+            productManager = new ProductManager();
+            listManager = new ShoppingListManager();
+            shoppingList = new ShoppingList
+            {
+                Name = "Test",
+                Foods = new List<Food>(),
+                Products = new List<Product>(),
+                Id = Guid.NewGuid()
+            };
         }
         [TestMethod]
         public void CreateList()
@@ -52,12 +59,10 @@ namespace Einkaufsliste.Test
             string name = "TestListe";
 
             //act
-            listManager.createShoppingList(name);
+            ShoppingList shoppingList = listManager.createShoppingList(name);
 
             //assert
-            bool exists = File.Exists(path + name + ".json");
-            Assert.IsTrue(exists);
-            shoppingListPlugin.deleteShoppingList(name);
+            Assert.IsNotNull(shoppingList);
         }
         [TestMethod]
         public void CreateListNoName()
@@ -66,118 +71,97 @@ namespace Einkaufsliste.Test
             string name = "";
 
             //act
-            listManager.createShoppingList(name);
+            ShoppingList shoppingList = listManager.createShoppingList(name);
+
 
             //assert
-            bool exists = File.Exists(path + name + ".json");
-            Assert.IsFalse(exists);
-            shoppingListPlugin.deleteShoppingList(name);
+            Assert.IsNull(shoppingList);
         }
         [TestMethod]
         public void AddProduct()
         {
             //arrange
-            ShoppingList shoppingList = new ShoppingList();
             string name = "TestListe";
             string productName = "Test";
             Product expectedProduct = new Product
             {
                 Name = "Test",
-                Price = new Price { price = 0}
+                Price = new Price { price = 0},
+                Id = Guid.NewGuid()
             };
-            StringReader nameReader = new StringReader(name);
-            Console.SetIn(nameReader);
-            productManager.createProduct(productName);
-
-            listManager.createShoppingList(name);
-            shoppingList = shoppingListPlugin.getShoppingList(name);
 
             //act
-            nameReader = new StringReader(productName);
-            Console.SetIn(nameReader);
 
-            listManager.addProduct(name);
+            listManager.addProduct(shoppingList, expectedProduct);
 
             //assert
-            ShoppingList list = shoppingListPlugin.getShoppingList(name);
-            Product product = list.Products.Find(x => x.Name == expectedProduct.Name);
+            Product product = shoppingList.Products.Find(x => x.Name == expectedProduct.Name);
             Assert.AreEqual(expectedProduct.Name, product.Name);
-            productPlugin.deleteProduct(productName);
-            shoppingListPlugin.deleteShoppingList(name);
+            shoppingList.Products.Remove(expectedProduct);
         }
         [TestMethod]
         public void AddFood()
         {
             //arrange
-            ShoppingList shoppingList = new ShoppingList();
             string name = "TestListe";
             string foodName = "Test";
             Food expectedFood = new Food
             {
-                Name = foodName,
-                Price = new Price { price = 0},
+                Id = Guid.NewGuid(),
+                Name = "Apple",
+                Price = new Price { price = 0 },
                 Weight = 0
             };
-            StringReader nameReader = new StringReader(foodName);
-            Console.SetIn(nameReader);
-            foodManager.createFood(foodName);
-
-            listManager.createShoppingList(name);
-            shoppingList = shoppingListPlugin.getShoppingList(name);
 
             //act
-            nameReader = new StringReader(foodName);
-            Console.SetIn(nameReader);
 
-            listManager.addFood(name);
+            listManager.addFood(shoppingList, expectedFood);
 
             //assert
-            ShoppingList list = shoppingListPlugin.getShoppingList(name);
-            Food food = list.Foods.Find(x => x.Name == expectedFood.Name);
+            Food food = shoppingList.Foods.Find(x => x.Name == expectedFood.Name);
             Assert.AreEqual(expectedFood.Name, food.Name);
-            foodPlugin.deleteFood(foodName);
-            shoppingListPlugin.deleteShoppingList(name);
+            shoppingList.Foods.Remove(expectedFood);
         }
-        [TestMethod]
-        public void ReadProductListTest()
-        {
-            //arrange
-            string output;
-            string name = "Test";
-            List<Product> products = new List<Product>();
-            List<Food> foods = new List<Food>();
-            Food food = new Food
-            {
-                Name = name,
-                Price = new Price { price = 0},
-                Weight = 1
-            };
-            Product product = new Product
-            {
-                Name = name,
-                Price = new Price { price = 0 }
-            };
-            products.Add(product);
-            foods.Add(food);
-            ShoppingList shoppingList = new ShoppingList
-            {
-                Name = name,
-                Foods = new List<Food>(),
-                Products = new List<Product>()
-            };
-            shoppingListPlugin.saveShoppingList(shoppingList);
-            string expected = "Products:\r\nFoods:\r\n";
-            //act
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                listManager.readShoppingList(shoppingList.Name);
-                output = sw.ToString();
-            }
+        //[TestMethod]
+        //public void ReadProductListTest()
+        //{
+        //    //arrange
+        //    string output;
+        //    string name = "Test";
+        //    List<Product> products = new List<Product>();
+        //    List<Food> foods = new List<Food>();
+        //    Food food = new Food
+        //    {
+        //        Name = name,
+        //        Price = new Price { price = 0},
+        //        Weight = 1
+        //    };
+        //    Product product = new Product
+        //    {
+        //        Name = name,
+        //        Price = new Price { price = 0 }
+        //    };
+        //    products.Add(product);
+        //    foods.Add(food);
+        //    ShoppingList shoppingList = new ShoppingList
+        //    {
+        //        Name = name,
+        //        Foods = new List<Food>(),
+        //        Products = new List<Product>()
+        //    };
+        //    shoppingListPlugin.saveShoppingList(shoppingList);
+        //    string expected = "Products:\r\nFoods:\r\n";
+        //    //act
+        //    using (StringWriter sw = new StringWriter())
+        //    {
+        //        Console.SetOut(sw);
+        //        listManager.readShoppingList(shoppingList.Name);
+        //        output = sw.ToString();
+        //    }
 
-            //assert
-            Assert.AreEqual(expected, output);
-            shoppingListPlugin.deleteShoppingList(shoppingList.Name);
-        }
+        //    //assert
+        //    Assert.AreEqual(expected, output);
+        //    shoppingListPlugin.deleteShoppingList(shoppingList.Name);
+        //}
     }
 }

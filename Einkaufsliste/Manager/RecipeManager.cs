@@ -66,10 +66,10 @@ namespace Einkaufsliste
             {
                 recipeEngineer.constructRecipe(name, description, foods);
                 recipe = recipeEngineer.GetRecipe();
-
+                return recipe;
                 //recipePlugin.saveRecipe(recipe);
             }
-            return recipe;
+            return null;
         }
 
         //public void readRecipe(string name)

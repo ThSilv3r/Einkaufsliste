@@ -1,4 +1,5 @@
 using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Test.Application.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -10,89 +11,84 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class FoodCommandTest
     {
+        CommandViewMock commandViewMock;
 
+        [TestInitialize]
+        public void Startup()
+        {
+            commandViewMock = new CommandViewMock();
+        }
         [TestMethod]
         public void GetFoodCommand()
         {
             //arrange
             string command = "getFoodList";
-
-            var startInfo = createStartInfo(command);
-
+            string output = "";
+            string expected = "true\r\n";
             //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.foodCommands(command);
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
         public void DeleteFoodCommand()
         {
             //arrange
             string command = "deleteFood";
-
-            var startInfo = createStartInfo(command);
-
+            string output = "";
+            string expected = "true\r\n";
             //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.foodCommands(command);
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual(expected, output);
         }
-        //[TestMethod]
-        //public void WrongArgument()
-        //{
-        //    //arrange
-        //    string command = "Food";
-
-        //    var startInfo = createStartInfo(command);
-
-        //    //act
-        //    var cmd = Process.Start(startInfo);
-        //    string output = cmd.StandardOutput.ReadToEnd();
-        //    cmd.WaitForExit();
-
-        //    //assert
-        //    Assert.AreEqual("Kein echter Befehl\r\n", output);
-        //}
-
         [TestMethod]
-        public void NoArguments()
+        public void CreateFoodCommand()
         {
             //arrange
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "Einkaufsliste.exe",
-                Verb = "runas",
-                RedirectStandardOutput = true,
-                UseShellExecute = false
-            };
-
+            string command = "createFood";
+            string output = "";
+            string expected = "true\r\n";
             //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.foodCommands(command);
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual(expected, output);
         }
-
-        private ProcessStartInfo createStartInfo(string command)
+        [TestMethod]
+        public void WrongArgument()
         {
-            var startInfo = new ProcessStartInfo
+            //arrange
+            string command = "Food";
+            string output = "";
+            string expected = "Kein echter Befehl\r\n";
+            //act
+            using (StringWriter sw = new StringWriter())
             {
-                FileName = "Einkaufsliste.exe",
-                Verb = "runas",
-                Arguments = command,
-                WindowStyle = ProcessWindowStyle.Hidden,
-                RedirectStandardOutput = true,
-                UseShellExecute = false
-            };
-            return startInfo;
+                Console.SetOut(sw);
+                commandViewMock.foodCommands(command);
+                output = sw.ToString();
+            }
+
+            //assert
+            Assert.AreEqual(expected, output);
         }
     }
 }

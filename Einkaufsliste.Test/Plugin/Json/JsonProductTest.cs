@@ -30,7 +30,7 @@ namespace Einkaufsliste.Test
             outputValues = new OutputValues();
             productOutputRepository = new ProductOutputs();
             productPlugin = new ProductPlugin();
-            productManager = new ProductManager(productPlugin, readValues, outputValues, productOutputRepository);
+            productManager = new ProductManager();
             handy = new Product
             {
                 Name = "Handy",

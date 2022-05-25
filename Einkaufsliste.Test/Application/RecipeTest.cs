@@ -44,10 +44,9 @@ namespace Einkaufsliste.Test
             foodPlugin = new FoodPlugin();
             productPlugin = new ProductPlugin();
             shoppingListPlugin = new ShoppingListPlugin();
-            recipeManager = new RecipeManager(recipePlugin, readValues, shoppingListPlugin, foodPlugin, outputValues, recipeOutput, foodOutput);
-            foodManager = new FoodManager(foodPlugin, foodOutput, outputValues, readValues);
-            listManager = new ShoppingListManager(shoppingListPlugin, outputValues, productOutput,
-                foodOutput, shoppingListOutput, readValues, productPlugin, foodManager);
+            recipeManager = new RecipeManager();
+            foodManager = new FoodManager();
+            listManager = new ShoppingListManager();
         }
         [TestMethod]
         public void CreateRecipe()
@@ -57,21 +56,18 @@ namespace Einkaufsliste.Test
             List<Food> foods = new List<Food>();
             Food food = new Food
             {
-                Name = name
+                Id = Guid.NewGuid(),
+                Name = "Apple",
+                Price = new Price { price = 0 },
+                Weight = 0
             };
             foods.Add(food);
-            foodPlugin.saveFood(foods);
-            StringReader priceReader = new StringReader(name);
-            Console.SetIn(priceReader);
 
             //act
-            recipeManager.createRecipe(name);
+            Recipe recipe = recipeManager.createRecipe(name, foods, name);
 
             //assert
-            bool exists = File.Exists(path + name + ".json");
-            Assert.IsTrue(exists);
-            recipePlugin.deleteRecipe(name);
-            foodPlugin.deleteFood(food.Name);
+            Assert.IsNotNull(recipe);
         }
         [TestMethod]
         public void CreateRecipeNoName()
@@ -79,14 +75,22 @@ namespace Einkaufsliste.Test
             //arrange
             string name = "";
             StringReader stringReader = new StringReader("");
-            Console.SetIn(stringReader);
+            Console.SetIn(stringReader); 
+            List<Food> foods = new List<Food>();
+            Food food = new Food
+            {
+                Id = Guid.NewGuid(),
+                Name = "Apple",
+                Price = new Price { price = 0 },
+                Weight = 0
+            };
+            foods.Add(food);
+
             //act
-            recipeManager.createRecipe(name);
+            Recipe recipe = recipeManager.createRecipe(name, foods, name);
 
             //assert
-            bool exists = File.Exists(path + name + ".json");
-            Assert.IsFalse(exists);
-            recipePlugin.deleteRecipe(name);
+            Assert.IsNull(recipe);
         }      
         [TestMethod]
         public void AddFood()
@@ -94,32 +98,25 @@ namespace Einkaufsliste.Test
             //arange
             string name = "AddFoodTest";
             List<Food> foods = new List<Food>();
+            Food food = new Food
+            {
+                Id = Guid.NewGuid(),
+                Name = "Apple",
+                Price = new Price { price = 0 },
+                Weight = 0
+            };
             Recipe recipe = new Recipe
             {
                 Name = name,
                 Foods = foods
             };
-
-            Food food = new Food
-            {
-                Name = name
-            };
             foods.Add(food);
 
-            recipePlugin.saveRecipe(recipe);
-            foodPlugin.saveFood(foods);
-
-            StringReader nameReader = new StringReader(name);
-            Console.SetIn(nameReader);
-
             //act
-            recipeManager.addFood(name);
+            recipe = recipeManager.addFood(recipe, food);
 
             //assert
-            recipe = recipePlugin.getRecipe(name);
             Assert.IsNotNull(recipe.Foods.First());
-            recipePlugin.deleteRecipe(name);
-            foodPlugin.deleteFood(name);
         }
         [TestMethod]
         public void AddToShoppingList()
@@ -127,74 +124,63 @@ namespace Einkaufsliste.Test
             //arange
             string name = "Test";
             List<Food> foods = new List<Food>();
+            Food food = new Food
+            {
+                Id = Guid.NewGuid(),
+                Name = "Apple",
+                Price = new Price { price = 0 },
+                Weight = 0
+            };
+            foods.Add(food);
             Recipe recipe = new Recipe
             {
                 Name = name,
                 Foods = foods
-            };
-            Food food = new Food
-            {
-                Name = name,
-                Price = new Price { price = 1}
             };
             ShoppingList shoppingList = new ShoppingList
             {
                 Name = name,
-                Foods = foods
+                Foods = new List<Food>()
             };
-            foods.Add(food);
-            recipePlugin.saveRecipe(recipe);
-            foodPlugin.saveFood(foods);
-            shoppingListPlugin.saveShoppingList(shoppingList);
-            StringReader foodReader = new StringReader(name);
-            Console.SetIn(foodReader);
-            listManager.addFood(name);
-
-            foodReader = new StringReader(name);
-            Console.SetIn(foodReader);
             //act
-            recipeManager.addToShoppingList(name, name);
+            shoppingList =  recipeManager.addToShoppingList(recipe, shoppingList);
 
             //assert
-            recipe = recipePlugin.getRecipe(name);
-            Assert.IsNotNull(recipe.Foods.First());
-            recipePlugin.deleteRecipe(name);
-            shoppingListPlugin.deleteShoppingList(name);
-            foodPlugin.deleteFood(name);
+            Assert.AreEqual(recipe.Foods.Last().Name, shoppingList.Foods.Last().Name);
         }
-        [TestMethod]
-        public void ReadProductListTest()
-        {
-            //arrange
-            string output;
-            string name = "Test";
-            List<Food> foods = new List<Food>();
-            Recipe recipe = new Recipe
-            {
-                Name = name,
-                Foods = foods
-            };
-            Food food = new Food
-            {
-                Name = name,
-                Price = new Price { price = 1 }
-            };
-            foods.Add(food);
-            recipePlugin.saveRecipe(recipe);
-            foodPlugin.saveFood(foods);
-            string expected = "Foods:\r\nName: Test Price: 1 Weight: 0\r\n";
-            //act
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                recipeManager.readRecipe(recipe.Name);
-                output = sw.ToString();
-            }
+        //[TestMethod]
+        //public void ReadProductListTest()
+        //{
+        //    //arrange
+        //    string output;
+        //    string name = "Test";
+        //    List<Food> foods = new List<Food>();
+        //    Recipe recipe = new Recipe
+        //    {
+        //        Name = name,
+        //        Foods = foods
+        //    };
+        //    Food food = new Food
+        //    {
+        //        Name = name,
+        //        Price = new Price { price = 1 }
+        //    };
+        //    foods.Add(food);
+        //    recipePlugin.saveRecipe(recipe);
+        //    foodPlugin.saveFood(foods);
+        //    string expected = "Foods:\r\nName: Test Price: 1 Weight: 0\r\n";
+        //    //act
+        //    using (StringWriter sw = new StringWriter())
+        //    {
+        //        Console.SetOut(sw);
+        //        recipeManager.readRecipe(recipe.Name);
+        //        output = sw.ToString();
+        //    }
 
-            //assert
-            Assert.AreEqual(expected, output);
-            recipePlugin.deleteRecipe(recipe.Name);
-            foodPlugin.deleteFood(food.Name);
-        }
+        //    //assert
+        //    Assert.AreEqual(expected, output);
+        //    recipePlugin.deleteRecipe(recipe.Name);
+        //    foodPlugin.deleteFood(food.Name);
+        //}
     }
 }

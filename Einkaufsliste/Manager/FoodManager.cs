@@ -40,18 +40,18 @@ namespace Einkaufsliste
 
             //foodOutputs.enterWeightMessage();
             //weight = readValues.ReadInt();
-            if(name != null)
+            if(name != null && name != "")
             {
                 foodEngineer.constructProduct(name, weight, price);
                 food = foodEngineer.GetProduct();
-
+                return food;
                 //foodOutputs.writeFood(food);
 
                 //foods.Add(food);
 
                 //foodPlugin.saveFood(foods);
             }
-            return food;
+            return null;
         }
        
 

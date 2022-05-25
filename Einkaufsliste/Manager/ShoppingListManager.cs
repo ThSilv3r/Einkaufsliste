@@ -43,10 +43,10 @@ namespace Einkaufsliste
             {
                 shoppingListEngineer.constructShoppingList(name, products, foods);
                 shoppingList = shoppingListEngineer.GetShoppingList();
-
+                return shoppingList;
                 //shoppingListPlugin.saveShoppingList(shoppingList);
             }
-            return shoppingList;
+            return null;
         }
         //public void readShoppingList(string name)
         //{

@@ -1,4 +1,5 @@
 using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Test.Application.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -11,66 +12,102 @@ namespace Einkaufsliste.Test
     public class RecipeCommandTest
     {
 
+        CommandViewMock commandViewMock;
+
+        [TestInitialize]
+        public void Startup()
+        {
+            commandViewMock = new CommandViewMock();
+        }
+        [TestMethod]
+        public void CreateRecipeCommand()
+        {
+            //arrange
+            string command = "createRecipe";
+            string output = "";
+            string expected = "true\r\n";
+            //act
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.recipeCommand(command);
+                output = sw.ToString();
+            }
+
+            //assert
+            Assert.AreEqual(expected, output);
+        }
         [TestMethod]
         public void GetRecipeCommand()
         {
             //arrange
             string command = "getRecipe";
-
-            var startInfo = createStartInfo(command);
-
+            string output = "";
+            string expected = "true\r\n";
             //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.recipeCommand(command);
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
         public void DeleteRecipeCommand()
         {
             //arrange
             string command = "deleteRecipe";
-
-            var startInfo = createStartInfo(command);
-
+            string output = "";
+            string expected = "true\r\n";
             //act
-            var cmd = Process.Start(startInfo);
-            string output = cmd.StandardOutput.ReadToEnd();
-            cmd.WaitForExit();
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.recipeCommand(command);
+                output = sw.ToString();
+            }
 
             //assert
-            Assert.IsNotNull(output);
+            Assert.AreEqual(expected, output);
         }
-        //[TestMethod]
-        //public void WrongArgument()
-        //{
-        //    //arrange
-        //    string command = "Recipe";
-
-        //    var startInfo = createStartInfo(command);
-
-        //    //act
-        //    var cmd = Process.Start(startInfo);
-        //    string output = cmd.StandardOutput.ReadToEnd();
-        //    cmd.WaitForExit();
-
-        //    //assert
-        //    Assert.AreEqual("Kein echter Befehl\r\n", output);
-        //}
-
-        private ProcessStartInfo createStartInfo(string command)
+        [TestMethod]
+        public void AddRecipeToListCommand()
         {
-            var startInfo = new ProcessStartInfo
+            //arrange
+            string command = "addRecipeToList";
+            string output = "";
+            string expected = "true\r\n";
+            //act
+            using (StringWriter sw = new StringWriter())
             {
-                FileName = "Einkaufsliste.exe",
-                Arguments = command,
-                WindowStyle = ProcessWindowStyle.Normal,
-                RedirectStandardOutput = true,
-                UseShellExecute = false
-            };
-            return startInfo;
+                Console.SetOut(sw);
+                commandViewMock.recipeCommand(command);
+                output = sw.ToString();
+            }
+
+            //assert
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
+        public void WrongArgument()
+        {
+            //arrange
+            string command = "Recipe";
+            string output = "";
+            string expected = "Kein echter Befehl\r\n";
+            //act
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                commandViewMock.recipeCommand(command);
+                output = sw.ToString();
+            }
+
+            //assert
+            Assert.AreEqual(expected, output);
         }
     }
 }
