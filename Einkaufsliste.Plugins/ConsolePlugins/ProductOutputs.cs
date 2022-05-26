@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.ConsolePlugins
 {
-    public class ProductOutputs : ProductOutputRepository
+    public class ProductOutputs : IProductOutput
     {
         public void enterPriceMessage()
         {

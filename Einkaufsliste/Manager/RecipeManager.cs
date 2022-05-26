@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Einkaufsliste
 {
-    public class RecipeManager : RecipeRepository
+    public class RecipeManager : IRecipeManager
     {
         RecipeBuilder recipeBuilder;
         RecipeEngineer recipeEngineer;

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Test.Application.Command
 {
-    public class CommandViewMock : CommandView
+    public class CommandViewMock : ICommandView
     {
-        public new void foodCommands(string command)
+        public void foodCommands(string command)
         {
             if (command == "createFood")
             {
@@ -29,7 +29,7 @@ namespace Einkaufsliste.Test.Application.Command
                 Console.WriteLine("Kein echter Befehl");
             }
         }
-        public new void listCommands(string command)
+        public void listCommands(string command)
         {
             if (command == "createShoppingList")
             {
@@ -57,7 +57,7 @@ namespace Einkaufsliste.Test.Application.Command
             }
         }
 
-        public new void productCommand(string command)
+        public void productCommand(string command)
         {
             if (command == "createProduct")
             {
@@ -77,7 +77,7 @@ namespace Einkaufsliste.Test.Application.Command
             }
         }
 
-        public new void recipeCommand(string command)
+        public void recipeCommand(string command)
         {
             if (command == "createRecipe")
             {

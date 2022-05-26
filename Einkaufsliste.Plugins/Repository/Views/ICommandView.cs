@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.Repository.Views
 {
-    public interface CommandViewRepository
+    public interface ICommandView
     {
         void foodCommands(string command);
         void listCommands(string command);

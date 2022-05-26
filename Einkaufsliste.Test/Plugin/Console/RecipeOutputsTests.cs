@@ -16,7 +16,7 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class RecipeOutputsTest
     {
-        RecipeOutputRepository recipeOutput;
+        IRecipeOutput recipeOutput;
         [TestInitialize]
         public void Startup()
         {

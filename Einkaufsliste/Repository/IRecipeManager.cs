@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository
 {
-    public interface RecipeRepository
+    public interface IRecipeManager
     {
         Recipe createRecipe(string name, List<Guid> foods, string description);
         Recipe addFoodToRecipe(Recipe recipe, Guid food);

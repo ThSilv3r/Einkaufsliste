@@ -1,4 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
+﻿using Einkaufsliste.Adapters.Interfaces;
+using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.ValueObject;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Adapters
 {
-    public class ProductAdapter
+    public class ProductViewAdapter : IProductAdapter
     {
         ProductManager productManager = new ProductManager();
         public Product createProduct(string name, Price price)

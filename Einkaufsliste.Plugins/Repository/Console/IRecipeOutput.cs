@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Console
 {
-    public interface ReadValuesRepository
+    public interface IRecipeOutput
     {
-        string ReadString();
-        double ReadDouble();
-        int ReadInt();
+        void enterListNameMessage();
+        void enterRecipeNameMessage();
+        void foodsMessage();
+        void enterDescriptionMessage();
     }
 }

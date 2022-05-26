@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Console
 {
-    public interface FoodOutputRepository
+    public interface IFoodOutput
     {
         void enterWeightMessage();
         void enterPriceMessage();

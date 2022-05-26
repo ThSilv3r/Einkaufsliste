@@ -1,19 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Einkaufsliste.Plugins.FoodPlugin">
-    <Position X="9.25" Y="3.5" Width="1.5" />
+    <Position X="9.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAACAAAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>JsonPlugins\FoodPlugin.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Json.FoodPluginRepository">
-    <Position X="9.25" Y="1.5" Width="1.5" />
+  <Class Name="Einkaufsliste.Plugins.Views.FoodView">
+    <Position X="11.25" Y="5" Width="1.5" />
+    <AssociationLine Name="readValues" Type="Einkaufsliste.Plugins.ReadValues" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.75" Y="5" />
+        <Point X="11.75" Y="1.994" />
+        <Point X="13.25" Y="1.994" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAEAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>Repository\Json\FoodPluginRepository.cs</FileName>
+      <HashCode>AAAACAAACAAAAAgAAAQAAAgAAAgAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Views\FoodView.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="userInputs" />
+      <Field Name="readValues" />
+      <Field Name="foodPlugin" />
+      <Field Name="foodOutputs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.UserInputs">
+    <Position X="12.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAIAAAAAAAAAAAABAAAAAAAAAABAAEAAAAAAA=</HashCode>
+      <FileName>ConsolePlugins\UserInputs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="outputValues" />
+      <Field Name="readValues" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ReadValues">
+    <Position X="13.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQgAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsolePlugins\ReadValues.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.FoodOutputs">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAIAQAAAIAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>ConsolePlugins\FoodOutputs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.OutputValues">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAABAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsolePlugins\OutputValues.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Einkaufsliste.ClassLibrary.Repository.Plugin.Json.FoodPluginRepository">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

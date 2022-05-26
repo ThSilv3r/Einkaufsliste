@@ -15,7 +15,7 @@ namespace Einkaufsliste.Plugins.Views
         string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
         ProductOutputs productOutputs = new ProductOutputs();
         ProductPlugin productPlugin = new ProductPlugin();
-        ProductAdapter productAdapter = new ProductAdapter();
+        ProductViewAdapter productAdapter = new ProductViewAdapter();
         UserInputs userInputs = new UserInputs();
         public void createProduct()
         {

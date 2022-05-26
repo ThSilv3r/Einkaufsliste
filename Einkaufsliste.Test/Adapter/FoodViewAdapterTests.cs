@@ -1,3 +1,4 @@
+using Einkaufsliste.Adapters;
 using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
@@ -13,62 +14,44 @@ using System.IO;
 namespace Einkaufsliste.Test
 {
     [TestClass]
-    public class FoodTest
+    public class FoodViewAdapterTest
     {
-        IFoodManager foodManager;
-        FoodPluginRepository foodPlugin;
+        FoodViewAdapter foodAdapter;
         Food apple;
-        List<Food> expectedFoods;
         [TestInitialize]
         public void Startup()
         {
-            foodPlugin = new FoodPlugin();
-            foodManager = new FoodManager();
+            foodAdapter = new FoodViewAdapter();
             apple = new Food
             {
                 Id = Guid.NewGuid(),
                 Name = "Apple",
-                Price = new Price{price = 0},
+                Price = new Price{price = 1},
                 Weight = 0
             };
-            expectedFoods = foodPlugin.getFoodList();
         }
         [TestMethod]
-        public void CreateFood()
+        public void CreateFoodTest()
         {
             //arrange
 
             //act
-            Food food = foodManager.createFood(apple.Name, apple.Weight, apple.Price);
+            Food food = foodAdapter.createFood(apple.Name, apple.Weight, apple.Price);
 
             //assert
-            Assert.AreEqual(apple.ToString(), food.ToString());
-        }
-        [TestMethod]
-        public void CreateFoodNoName()
-        {
-            //arrange
-            expectedFoods.Add(apple);
-            StringReader priceReader = new StringReader("");
-            Console.SetIn(priceReader);
-            //act
-            Food food = foodManager.createFood("", apple.Weight, apple.Price);
-
-            //assert
-            Assert.IsNull(food);
+            Assert.AreEqual(apple.Name, food.Name);
         }
         [TestMethod]
         public void GetFoodByIdTest()
         {
             //arrange
-            string output;
             List<Food> foods = new List<Food>();
             foods.Add(apple);
             //act
-            var food = foodManager.getFoodById(apple.Id, foods);
+            Food food = foodAdapter.getFoodById(apple.Id, foods);
 
             //assert
-            Assert.AreEqual(apple.Id, food.Id);
+            Assert.AreEqual(apple.ToString(), food.ToString());
         }
     }
 }

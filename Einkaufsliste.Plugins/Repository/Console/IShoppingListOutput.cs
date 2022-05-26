@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Console
 {
-    public interface OutputValuesRepository
+    public interface IShoppingListOutput
     {
-        void enterNameMessage();
-        void closeEntryMessage();
+        void foodsMessage();
+        void productsMessage();
+        void createListMessage();
     }
 }

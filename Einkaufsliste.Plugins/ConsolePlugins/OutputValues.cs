@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.ConsolePlugins
 {
-    public class OutputValues : OutputValuesRepository
+    public class OutputValues : IOutputValues
     {
         public void enterNameMessage()
         {

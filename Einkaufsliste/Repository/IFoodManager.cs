@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository
 {
-    public interface FoodRepository
+    public interface IFoodManager
     {
         Food createFood(string name, int weight, Price price);
         Food getFoodById(Guid guid, List<Food> foods);

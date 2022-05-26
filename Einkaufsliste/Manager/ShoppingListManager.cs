@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Einkaufsliste
 {
-    public class ShoppingListManager : ShoppingListRepository
+    public class ShoppingListManager : IShoppingListManager
     {
         ShoppingListBuilder shoppingListBuilder;
         ShoppingListEngineer shoppingListEngineer;

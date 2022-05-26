@@ -14,7 +14,7 @@ namespace Einkaufsliste.Plugins
     public class FoodPlugin : FoodPluginRepository
     {
         private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
-        public void saveFood(List<Food> foods)
+        public void saveFoodList(List<Food> foods)
         {
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
@@ -52,7 +52,7 @@ namespace Einkaufsliste.Plugins
                 Food food = foods.Find(x => x.Name == name);
                 foods.Remove(food);
 
-                saveFood(foods);
+                saveFoodList(foods);
                 Console.WriteLine("Deleted: " + food.Name);
             }
             else

@@ -16,13 +16,13 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class JsonFoodTest
     {
-        FoodRepository foodManager;
+        IFoodManager foodManager;
         FoodPluginRepository foodPlugin;
         Food apple;
         List<Food> expectedFoods;
-        ReadValuesRepository readValues;
-        FoodOutputRepository foodOutput;
-        OutputValuesRepository outputValues;
+        IReadValues readValues;
+        IFoodOutput foodOutput;
+        IOutputValues outputValues;
         [TestInitialize]
         public void Startup()
         {
@@ -49,7 +49,7 @@ namespace Einkaufsliste.Test
             Console.SetIn(priceReader);
 
             //act
-            foodPlugin.saveFood(expectedFoods);
+            foodPlugin.saveFoodList(expectedFoods);
 
             //assert
             List<Food> foods = foodPlugin.getFoodList();
@@ -63,7 +63,7 @@ namespace Einkaufsliste.Test
             //arrange
             List<Food> foods = expectedFoods;
             foods.Add(apple);
-            foodPlugin.saveFood(foods);
+            foodPlugin.saveFoodList(foods);
 
             //act
             var foodList = foodPlugin.getFoodList();
@@ -79,7 +79,7 @@ namespace Einkaufsliste.Test
             //arrange
             List<Food> foods = expectedFoods;
             foods.Add(apple);
-            foodPlugin.saveFood(foods);
+            foodPlugin.saveFoodList(foods);
 
             //act
             foodPlugin.deleteFood(apple.Name);

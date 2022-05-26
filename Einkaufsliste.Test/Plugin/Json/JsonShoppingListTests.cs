@@ -16,17 +16,17 @@ namespace Einkaufsliste.Test
     public class JsonShoppingListTest
     {
         private string path;
-        ShoppingListRepository listManager;
+        IShoppingListManager listManager;
         ShoppingListPluginRepository shoppingListPlugin;
         ProductPluginRepository productPlugin;
-        FoodRepository foodManager;
-        ProductRepository productManager;
-        ShoppingListOutputRepository shoppingListOutputRepository;
+        IFoodManager foodManager;
+        IProductManager productManager;
+        IShoppingListOutput shoppingListOutputRepository;
         FoodPluginRepository foodPlugin;
-        ReadValuesRepository readValues;
-        FoodOutputRepository foodOutput;
-        OutputValuesRepository outputValues;
-        ProductOutputRepository productOutput;
+        IReadValues readValues;
+        IFoodOutput foodOutput;
+        IOutputValues outputValues;
+        IProductOutput productOutput;
         [TestInitialize]
         public void Startup()
         {

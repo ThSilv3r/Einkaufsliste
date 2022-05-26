@@ -18,12 +18,12 @@ namespace Einkaufsliste.Test
         string path;
         RecipePluginRepository recipePlugin;
         ShoppingListPluginRepository shoppingListPlugin;
-        RecipeOutputRepository recipeOutput;
+        IRecipeOutput recipeOutput;
         FoodPluginRepository foodPlugin;
-        ReadValuesRepository readValues;
-        FoodOutputRepository foodOutput;
-        OutputValuesRepository outputValues;
-        RecipeRepository recipeManager;
+        IReadValues readValues;
+        IFoodOutput foodOutput;
+        IOutputValues outputValues;
+        IRecipeManager recipeManager;
         [TestInitialize]
         public void Startup()
         {

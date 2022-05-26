@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository
 {
-    public interface ShoppingListRepository
+    public interface IShoppingListManager
     {
         ShoppingList createShoppingList(string name);
         ShoppingList addFoodToShoppingList(ShoppingList list, Guid foodId);

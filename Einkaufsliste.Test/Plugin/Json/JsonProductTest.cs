@@ -16,11 +16,11 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class JsonProductTest
     {
-        ProductRepository productManager;
+        IProductManager productManager;
         ProductPluginRepository productPlugin;
-        ReadValuesRepository readValues;
-        OutputValuesRepository outputValues;
-        ProductOutputRepository productOutputRepository;
+        IReadValues readValues;
+        IOutputValues outputValues;
+        IProductOutput productOutputRepository;
         Product handy;
         List<Product> expectedProducts;
         [TestInitialize]

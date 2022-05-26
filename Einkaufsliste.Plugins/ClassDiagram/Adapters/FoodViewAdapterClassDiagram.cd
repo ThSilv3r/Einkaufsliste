@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Einkaufsliste.Adapters.FoodViewAdapter">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.FoodView">
+    <Position X="12.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAACAAAAAgAAAQAAAgAAAgAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Views\FoodView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="foodViewAdapter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.ShoppingListView">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAACAAACQACAAwCAAAgAAAAAEgAAAAABAAQgEAABAA=</HashCode>
+      <FileName>Views\ShoppingListView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="foodAdapter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.RecipeView">
+    <Position X="14.25" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAACARACQAAAAgAAAAAAAgAAAgAAAAAAAAQAAAEFBA=</HashCode>
+      <FileName>Views\RecipeView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="foodAdapter" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

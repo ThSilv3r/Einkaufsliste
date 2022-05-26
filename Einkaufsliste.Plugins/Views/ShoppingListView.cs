@@ -23,7 +23,7 @@ namespace Einkaufsliste.Plugins.Views
         ShoppingListAdapter shoppingListAdapter = new ShoppingListAdapter();
         UserInputs userInputs = new UserInputs();
         FoodPlugin foodPlugin = new FoodPlugin();
-        ProductAdapter productAdapter =  new ProductAdapter();
+        ProductViewAdapter productAdapter =  new ProductViewAdapter();
         public void createShoppingList()
         {
             List<Food> foods = new List<Food>();

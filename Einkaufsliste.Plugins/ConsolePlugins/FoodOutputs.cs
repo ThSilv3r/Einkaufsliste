@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.ConsolePlugins
 {
-    public class FoodOutputs : FoodOutputRepository
+    public class FoodOutputs : IFoodOutput
     {
         public void enterWeightMessage()
         {

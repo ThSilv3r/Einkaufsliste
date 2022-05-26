@@ -18,7 +18,7 @@ namespace Einkaufsliste.Test
     public class RecipeTest
     {
         string path;
-        RecipeRepository recipeManager;
+        IRecipeManager recipeManager;
         [TestInitialize]
         public void Startup()
         {

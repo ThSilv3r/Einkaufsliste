@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Console
 {
-    public interface ProductOutputRepository
+    public interface IProductOutput
     {
         void enterPriceMessage();
         void writeProduct(Product product);

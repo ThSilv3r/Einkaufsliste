@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Einkaufsliste.Test.FoodCommandTest">
-    <Position X="10.5" Y="4" Width="1.5" />
+    <Position X="10" Y="4" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAABAAAgAAIAQAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAQBAACgAAIAQAAAAAAAAAABA=</HashCode>
       <FileName>Application\Command\FoodCommandTest.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -11,11 +11,16 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Einkaufsliste.Test.Application.Command.CommandViewMock">
-    <Position X="14" Y="4" Width="1.5" />
+    <Position X="13.25" Y="4.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAQAAAAAAAAAAAABAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Application\Command\CommandViewMock.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
+  <Interface Name="Einkaufsliste.Plugins.Repository.Views.ICommandView">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Einkaufsliste
 {
-    public class FoodManager : FoodRepository
+    public class FoodManager : IFoodManager
     {
         Food food;
         FoodBuilder foodBuilder;

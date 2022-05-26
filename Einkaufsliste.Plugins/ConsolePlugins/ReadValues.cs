@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins
 {
-    public class ReadValues : ReadValuesRepository
+    public class ReadValues : IReadValues
     {
         public string ReadString()
         {

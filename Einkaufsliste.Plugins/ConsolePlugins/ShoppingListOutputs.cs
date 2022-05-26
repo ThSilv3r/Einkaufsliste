@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.ConsolePlugins
 {
-    public class ShoppingListOutputs : ShoppingListOutputRepository
+    public class ShoppingListOutputs : IShoppingListOutput
     {
         public void foodsMessage()
         {

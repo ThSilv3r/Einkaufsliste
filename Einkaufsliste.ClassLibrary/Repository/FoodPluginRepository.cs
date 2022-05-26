@@ -8,7 +8,7 @@ namespace Einkaufsliste.ClassLibrary.Repository.Plugin.Json
 {
     public interface FoodPluginRepository
     {
-        void saveFood(List<Food> foodList);
+        void saveFoodList(List<Food> foodList);
         List<Food> getFoodList();
         void deleteFood(string name);
     }

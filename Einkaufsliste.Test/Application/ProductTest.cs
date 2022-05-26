@@ -15,7 +15,7 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ProductTest
     {
-        ProductRepository productManager;
+        IProductManager productManager;
         ProductPluginRepository productPlugin;
         Product handy;
         List<Product> expectedProducts;

@@ -17,7 +17,7 @@ namespace Einkaufsliste.Test
     public class ShoppingListTest
     {
         private string path;
-        ShoppingListRepository listManager;
+        IShoppingListManager listManager;
         ShoppingList shoppingList;
         [TestInitialize]
         public void Startup()

@@ -16,7 +16,7 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class OutputValuesTest
     {
-        OutputValuesRepository outputValues;
+        IOutputValues outputValues;
         [TestInitialize]
         public void Startup()
         {

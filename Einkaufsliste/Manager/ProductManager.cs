@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Einkaufsliste
 {
-    public class ProductManager : ProductRepository
+    public class ProductManager : IProductManager
     {
         public Product createProduct(string name, Price price)
         {

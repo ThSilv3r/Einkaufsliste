@@ -36,7 +36,7 @@ namespace Einkaufsliste.Plugins.Views
             Food food = foodViewAdapter.createFood(name, weight, price);
             foodOutputs.writeFood(food);
             foods.Add(food);
-            foodPlugin.saveFood(foods);
+            foodPlugin.saveFoodList(foods);
         }
 
         public void readFoodList(List<Food> foods = null)

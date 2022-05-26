@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 
 namespace Einkaufsliste.Plugins.Views
 {
-    public class CommandView : CommandViewRepository
+    public class CommandView : ICommandView
     {
         FoodPlugin foodPlugin = new FoodPlugin();
         ProductPlugin productPlugin = new ProductPlugin();
         ShoppingListPlugin listPlugin = new ShoppingListPlugin();
         RecipePlugin recipePlugin = new RecipePlugin();
-        OutputValues outputValues = new OutputValues();
-        ReadValues readValues = new ReadValues();
-        FoodOutputs foodOutputs = new FoodOutputs();
-        ProductOutputs productOutputs = new ProductOutputs();
         ShoppingListOutputs shoppingListOutputs = new ShoppingListOutputs();
-        RecipeOutputs recipeOutputs = new RecipeOutputs();
         FoodView foodView;
         ShoppingListView listView;
         RecipeView recipeView;
