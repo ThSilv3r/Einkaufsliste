@@ -9,12 +9,8 @@ namespace Einkaufsliste.ClassLibrary.Repository
 {
     public interface ShoppingListRepository
     {
-        //void createShoppingList(string name);
         ShoppingList createShoppingList(string name);
-        //void readShoppingList(string name);
         ShoppingList addFood(ShoppingList list, Guid foodId);
-        //void addFood(string listName);
         ShoppingList addProduct(ShoppingList list, Guid productId);
-        //void addProduct(string listName);
     }
 }
