@@ -10,7 +10,7 @@ namespace Einkaufsliste.ClassLibrary.Repository
     public interface RecipeRepository
     {
         Recipe createRecipe(string name, List<Guid> foods, string description);
-        Recipe addFood(Recipe recipe, Guid food);
-        ShoppingList addToShoppingList(Recipe recipe, ShoppingList list);
+        Recipe addFoodToRecipe(Recipe recipe, Guid food);
+        ShoppingList addRecipeToShoppingList(Recipe recipe, ShoppingList list);
     }
 }

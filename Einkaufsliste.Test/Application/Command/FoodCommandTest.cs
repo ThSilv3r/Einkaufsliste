@@ -12,10 +12,13 @@ namespace Einkaufsliste.Test
     public class FoodCommandTest
     {
         CommandViewMock commandViewMock;
-
+        string output;
+        string expected;
         [TestInitialize]
         public void Startup()
         {
+            output = "";
+            expected = "true\r\n";
             commandViewMock = new CommandViewMock();
         }
         [TestMethod]
@@ -23,8 +26,6 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string command = "getFoodList";
-            string output = "";
-            string expected = "true\r\n";
             //act
             using (StringWriter sw = new StringWriter())
             {
@@ -41,8 +42,6 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string command = "deleteFood";
-            string output = "";
-            string expected = "true\r\n";
             //act
             using (StringWriter sw = new StringWriter())
             {
@@ -59,8 +58,6 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string command = "createFood";
-            string output = "";
-            string expected = "true\r\n";
             //act
             using (StringWriter sw = new StringWriter())
             {
@@ -77,7 +74,6 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string command = "Food";
-            string output = "";
             string expected = "Kein echter Befehl\r\n";
             //act
             using (StringWriter sw = new StringWriter())

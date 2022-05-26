@@ -10,6 +10,6 @@ namespace Einkaufsliste.ClassLibrary.Repository
     public interface ProductRepository
     {
         Product createProduct(string name, Price price);
-        Product getById(Guid guid, List<Product> products);
+        Product getProductById(Guid guid, List<Product> products);
     }
 }

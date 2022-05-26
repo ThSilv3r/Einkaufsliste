@@ -19,35 +19,11 @@ namespace Einkaufsliste.Test
     {
         string path;
         RecipeRepository recipeManager;
-        RecipePluginRepository recipePlugin;
-        ShoppingListPluginRepository shoppingListPlugin;
-        ShoppingListRepository listManager;
-        FoodRepository foodManager;
-        RecipeOutputRepository recipeOutput;
-        FoodPluginRepository foodPlugin;
-        ProductOutputRepository productOutput;
-        ReadValuesRepository readValues;
-        FoodOutputRepository foodOutput;
-        OutputValuesRepository outputValues;
-        ShoppingListOutputRepository shoppingListOutput;
-        ProductPluginRepository productPlugin;
         [TestInitialize]
         public void Startup()
         {
             path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
-            recipePlugin = new RecipePlugin();
-            readValues = new ReadValues();
-            foodOutput = new FoodOutputs();
-            productOutput = new ProductOutputs();
-            recipeOutput = new RecipeOutputs();
-            shoppingListOutput = new ShoppingListOutputs();
-            outputValues = new OutputValues();
-            foodPlugin = new FoodPlugin();
-            productPlugin = new ProductPlugin();
-            shoppingListPlugin = new ShoppingListPlugin();
             recipeManager = new RecipeManager();
-            foodManager = new FoodManager();
-            listManager = new ShoppingListManager();
         }
         [TestMethod]
         public void CreateRecipe()
@@ -123,7 +99,7 @@ namespace Einkaufsliste.Test
             foodIds.Add(food.Id);
 
             //act
-            recipe = recipeManager.addFood(recipe, food.Id);
+            recipe = recipeManager.addFoodToRecipe(recipe, food.Id);
 
             //assert
             Assert.AreEqual(food.Id, recipe.Foods.First());
@@ -153,7 +129,7 @@ namespace Einkaufsliste.Test
                 Foods = new List<Guid>()
             };
             //act
-            shoppingList =  recipeManager.addToShoppingList(recipe, shoppingList);
+            shoppingList =  recipeManager.addRecipeToShoppingList(recipe, shoppingList);
 
             //assert
             Assert.AreEqual(recipe.Foods.Last(), shoppingList.Foods.Last());

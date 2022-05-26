@@ -11,7 +11,6 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ReadValuesTest
     {
-        private ProcessStartInfo startInfo;
 
         [TestMethod]
         public void ReadStringTest()

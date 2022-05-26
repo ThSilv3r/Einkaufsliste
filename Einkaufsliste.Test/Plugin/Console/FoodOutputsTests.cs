@@ -17,12 +17,10 @@ namespace Einkaufsliste.Test
     public class FoodOutputsTest
     {
         FoodOutputRepository foodOutput;
-        ReadValuesRepository readValues;
         [TestInitialize]
         public void Startup()
         {
             foodOutput = new FoodOutputs();
-            readValues = new ReadValues();
         }
         [TestMethod]
         public void WeightMessageTest()

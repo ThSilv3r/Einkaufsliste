@@ -14,17 +14,17 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
         {
             product = new Product();
         }
-        public void BuildId(Guid guid)
+        public void BuildProductId(Guid guid)
         {
             product.Id = guid;
         }
 
-        public void BuildName(string name)
+        public void BuildProductName(string name)
         {
             product.Name = name;
         }
 
-        public void BuildPrice(Price price)
+        public void BuildProductPrice(Price price)
         {
             product.Price = price;
         }

@@ -9,9 +9,9 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
     public interface IProductBuilder
     {
-        void BuildName(string name);
-        void BuildPrice(Price price);
-        void BuildId(Guid guid);
+        void BuildProductName(string name);
+        void BuildProductPrice(Price price);
+        void BuildProductId(Guid guid);
         Product GetProduct();
     }
 }

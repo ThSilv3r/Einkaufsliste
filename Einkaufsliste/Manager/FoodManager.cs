@@ -19,7 +19,7 @@ namespace Einkaufsliste
             FoodEngineer foodEngineer = new FoodEngineer(foodBuilder);
             if(name != null && name != "")
             {
-                foodEngineer.constructProduct(name, weight, price);
+                foodEngineer.constructFood(name, weight, price);
                 food = foodEngineer.GetProduct();
                 return food;
             }

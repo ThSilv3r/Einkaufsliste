@@ -9,10 +9,10 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
     public interface IFoodBuilder
     {
-        void BuildName(string name = null);
-        void BuildWeight(int weight = 0);
-        void BuildPrice(Price price = null);
-        void BuildId(Guid guid);
+        void BuildFoodName(string name = null);
+        void BuildFoodWeight(int weight = 0);
+        void BuildFoodPrice(Price price = null);
+        void BuildFoodId(Guid guid);
         Food GetFood();
     }
 }

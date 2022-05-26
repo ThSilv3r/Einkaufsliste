@@ -14,13 +14,13 @@ namespace Einkaufsliste.Adapters
         {
             return recipeManager.createRecipe(name, foodIds, desc);
         }
-        public Recipe addFood(Recipe recipe, Guid foodId)
+        public Recipe addFoodToRecipe(Recipe recipe, Guid foodId)
         {
-            return recipeManager.addFood(recipe, foodId);
+            return recipeManager.addFoodToRecipe(recipe, foodId);
         }
-        public ShoppingList addToShoppingList(Recipe recipe, ShoppingList list)
+        public ShoppingList addRecipeToShoppingList(Recipe recipe, ShoppingList list)
         {
-            return recipeManager.addToShoppingList(recipe, list);
+            return recipeManager.addRecipeToShoppingList(recipe, list);
         }
     }
 }

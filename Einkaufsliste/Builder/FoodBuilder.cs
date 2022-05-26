@@ -14,21 +14,21 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
         {
             food = new Food();
         }
-        public void BuildId(Guid guid)
+        public void BuildFoodId(Guid guid)
         {
             food.Id = guid;
         }
-        public void BuildName(string name)
+        public void BuildFoodName(string name)
         {
             food.Name = name;
         }
 
-        public void BuildPrice(Price price)
+        public void BuildFoodPrice(Price price)
         {
             food.Price = price;
         }
 
-        public void BuildWeight(int weight)
+        public void BuildFoodWeight(int weight)
         {
             food.Weight = weight;
         }

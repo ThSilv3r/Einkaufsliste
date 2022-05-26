@@ -21,12 +21,12 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
             return foodBuilder.GetFood();
         }
 
-        public void constructProduct(string name = null, int Weight = 0, Price price = null)
+        public void constructFood(string name = null, int Weight = 0, Price price = null)
         {
-            this.foodBuilder.BuildName(name);
-            this.foodBuilder.BuildWeight(Weight);
-            this.foodBuilder.BuildPrice(price);
-            this.foodBuilder.BuildId(Guid.NewGuid());
+            this.foodBuilder.BuildFoodName(name);
+            this.foodBuilder.BuildFoodWeight(Weight);
+            this.foodBuilder.BuildFoodPrice(price);
+            this.foodBuilder.BuildFoodId(Guid.NewGuid());
         }
 
     }

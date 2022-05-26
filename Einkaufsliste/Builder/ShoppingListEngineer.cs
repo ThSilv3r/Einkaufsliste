@@ -23,10 +23,10 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 
         public void constructShoppingList(string name, List<Guid> products, List<Guid> foods)
         {
-            this.listBuilder.BuildName(name);
-            this.listBuilder.BuildProducts(products);
-            this.listBuilder.BuildFood(foods);
-            this.listBuilder.BuildId(Guid.NewGuid());
+            this.listBuilder.BuildShoppingListName(name);
+            this.listBuilder.BuildShoppingListProducts(products);
+            this.listBuilder.BuildShoppingListFood(foods);
+            this.listBuilder.BuildShoppingListId(Guid.NewGuid());
         }
     }
 }

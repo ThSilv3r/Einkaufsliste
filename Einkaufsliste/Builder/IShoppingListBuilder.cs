@@ -9,10 +9,10 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 {
     public interface IShoppingListBuilder
     {
-        void BuildName(string  name);
-        void BuildId(Guid guid);
-        void BuildFood(List<Guid> foodIds);
-        void BuildProducts(List<Guid> productIds);
+        void BuildShoppingListName(string  name);
+        void BuildShoppingListId(Guid guid);
+        void BuildShoppingListFood(List<Guid> foodIds);
+        void BuildShoppingListProducts(List<Guid> productIds);
         ShoppingList GetShoppingList();
     }
 }

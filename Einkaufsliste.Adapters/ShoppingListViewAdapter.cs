@@ -14,13 +14,13 @@ namespace Einkaufsliste.Adapters
         {
             return listManager.createShoppingList(name);
         }
-        public ShoppingList addFood(ShoppingList list, Guid foodId)
+        public ShoppingList addFoodToShoppingList(ShoppingList list, Guid foodId)
         {
-            return listManager.addFood(list, foodId);
+            return listManager.addFoodToShoppingList(list, foodId);
         }
-        public ShoppingList addProduct(ShoppingList list, Guid productId)
+        public ShoppingList addProductToShoppingList(ShoppingList list, Guid productId)
         {
-            return listManager.addProduct(list, productId);
+            return listManager.addProductToShoppingList(list, productId);
         }
     }
 }

@@ -19,15 +19,9 @@ namespace Einkaufsliste.Test
         FoodPluginRepository foodPlugin;
         Food apple;
         List<Food> expectedFoods;
-        ReadValuesRepository readValues;
-        FoodOutputRepository foodOutput;
-        OutputValuesRepository outputValues;
         [TestInitialize]
         public void Startup()
         {
-            readValues = new ReadValues();
-            foodOutput = new FoodOutputs();
-            outputValues = new OutputValues();
             foodPlugin = new FoodPlugin();
             foodManager = new FoodManager();
             apple = new Food
@@ -63,45 +57,6 @@ namespace Einkaufsliste.Test
             //assert
             Assert.IsNull(food);
         }
-        //[TestMethod]
-        //public void ReadFoodListTest()
-        //{
-        //    //arrange
-        //    string output;
-        //    List<Food> foods = new List<Food>();
-        //    foods.Add(apple);
-        //    string expected = "Name: Apple Price: 0 Weight: 0\r\n";
-        //    //act
-        //    using (StringWriter sw = new StringWriter())
-        //    {
-        //        Console.SetOut(sw);
-        //        foodManager.readFoodList(foods);
-        //        output = sw.ToString();
-        //    }
-
-        //    //assert
-        //    Assert.AreEqual(expected, output);
-        //}
-        //[TestMethod]
-        //public void ReadNullFoodListTest()
-        //{
-        //    //arrange
-        //    string output;
-        //    List<Food> foods = new List<Food>();
-        //    foods.Add(apple);
-        //    foodPlugin.saveFood(foods);
-        //    //act
-        //    using (StringWriter sw = new StringWriter())
-        //    {
-        //        Console.SetOut(sw);
-        //        foodManager.readFoodList();
-        //        output = sw.ToString();
-        //    }
-
-        //    //assert
-        //    Assert.IsNotNull(output);
-        //    foodPlugin.deleteFood(apple.Name);
-        //}
         [TestMethod]
         public void GetFoodByIdTest()
         {

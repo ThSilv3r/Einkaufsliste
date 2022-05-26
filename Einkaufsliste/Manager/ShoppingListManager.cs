@@ -8,11 +8,14 @@ namespace Einkaufsliste
 {
     public class ShoppingListManager : ShoppingListRepository
     {
+        ShoppingListBuilder shoppingListBuilder;
+        ShoppingListEngineer shoppingListEngineer;
+        ShoppingList shoppingList;
         public ShoppingList createShoppingList(string name)
         {
-            ShoppingListBuilder shoppingListBuilder = new ShoppingListBuilder();
-            ShoppingListEngineer shoppingListEngineer = new ShoppingListEngineer(shoppingListBuilder);
-            ShoppingList shoppingList = new ShoppingList();
+            shoppingListBuilder = new ShoppingListBuilder();
+            shoppingListEngineer = new ShoppingListEngineer(shoppingListBuilder);
+            shoppingList = new ShoppingList();
             List<Guid> foods = new List<Guid>();
             List<Guid> products = new List<Guid>();
 
@@ -25,14 +28,14 @@ namespace Einkaufsliste
             return null;
         }
 
-        public ShoppingList addFood(ShoppingList list, Guid foodId)
+        public ShoppingList addFoodToShoppingList(ShoppingList list, Guid foodId)
         {
 
             list.Foods.Add(foodId);
             return list;
         }
 
-        public ShoppingList addProduct(ShoppingList list, Guid productId)
+        public ShoppingList addProductToShoppingList(ShoppingList list, Guid productId)
         {
             list.Products.Add(productId);
             return list;

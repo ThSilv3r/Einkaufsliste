@@ -26,7 +26,7 @@ namespace Einkaufsliste
             return null;
         }
 
-        public Product getById(Guid guid, List<Product> products)
+        public Product getProductById(Guid guid, List<Product> products)
         {
             Product product = products.Find(x => x.Id == guid);
             return product;

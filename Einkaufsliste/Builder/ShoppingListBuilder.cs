@@ -15,19 +15,19 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
         {
             shoppingList = new ShoppingList();
         }
-        public void BuildName(string name)
+        public void BuildShoppingListName(string name)
         {
             shoppingList.Name = name;
         }
-        public void BuildFood(List<Guid> foodIds)
+        public void BuildShoppingListFood(List<Guid> foodIds)
         {
             shoppingList.Foods = foodIds;
         }
-        public void BuildProducts(List<Guid> productIds)
+        public void BuildShoppingListProducts(List<Guid> productIds)
         {
             shoppingList.Products = productIds;
         }
-        public void BuildId(Guid guid)
+        public void BuildShoppingListId(Guid guid)
         {
             shoppingList.Id = guid;
         }

@@ -63,11 +63,11 @@ namespace Einkaufsliste.Plugins.Views
             }
             else if (command == "addProductToShoppingList")
             {
-                listView.addProduct();
+                listView.addProductToShoppingList();
             }
             else if (command == "addFoodToShoppingList")
             {
-                listView.addFood();
+                listView.addFoodToShoppingList();
             }
             else
             {
@@ -112,7 +112,7 @@ namespace Einkaufsliste.Plugins.Views
             }
             else if (command == "addRecipeToList")
             {
-                recipeView.addToShoppingList();
+                recipeView.addRecipeToShoppingList();
             }
             else
             {

@@ -17,7 +17,7 @@ namespace Einkaufsliste.Adapters
         }
         public Product getProductById(Guid productId, List<Product> products)
         {
-            return productManager.getById(productId, products);
+            return productManager.getProductById(productId, products);
         }
     }
 }

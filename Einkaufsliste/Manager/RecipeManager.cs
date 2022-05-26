@@ -24,13 +24,13 @@ namespace Einkaufsliste
             }
             return null;
         }
-        public Recipe addFood(Recipe recipe, Guid foodId)
+        public Recipe addFoodToRecipe(Recipe recipe, Guid foodId)
         {
             recipe.Foods.Add(foodId);
             return recipe;
         }
 
-        public ShoppingList addToShoppingList(Recipe recipe, ShoppingList list)
+        public ShoppingList addRecipeToShoppingList(Recipe recipe, ShoppingList list)
         {
             foreach (Guid foodId in recipe.Foods)
             {

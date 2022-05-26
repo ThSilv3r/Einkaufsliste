@@ -15,19 +15,19 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
             recipe = new Recipe();
         }
 
-        public void BuildName(string name)
+        public void BuildRecipeName(string name)
         {
             recipe.Name = name;
         }
-        public void BuildFoods(List<Guid> foodIds)
+        public void BuildRecipeFoods(List<Guid> foodIds)
         {
             recipe.Foods = foodIds;
         }
-        public void BuildId(Guid guid)
+        public void BuildRecipeId(Guid guid)
         {
             recipe.Id = guid;
         }
-        public void BuildDescription(string desc)
+        public void BuildRecipeDescription(string desc)
         {
             recipe.Description = desc;
         }

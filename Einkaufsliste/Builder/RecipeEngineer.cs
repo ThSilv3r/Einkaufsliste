@@ -23,10 +23,10 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 
         public void constructRecipe(string name, string desc, List<Guid> foods)
         {
-            this.recipeBuilder.BuildName(name);
-            this.recipeBuilder.BuildFoods(foods);
-            this.recipeBuilder.BuildDescription(desc);
-            this.recipeBuilder.BuildId(Guid.NewGuid());
+            this.recipeBuilder.BuildRecipeName(name);
+            this.recipeBuilder.BuildRecipeFoods(foods);
+            this.recipeBuilder.BuildRecipeDescription(desc);
+            this.recipeBuilder.BuildRecipeId(Guid.NewGuid());
         }
     }
 }

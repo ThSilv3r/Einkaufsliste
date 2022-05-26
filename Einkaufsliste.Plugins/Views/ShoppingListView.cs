@@ -64,7 +64,7 @@ namespace Einkaufsliste.Plugins.Views
             }
         }
 
-        public void addFood(string name = null)
+        public void addFoodToShoppingList(string name = null)
         {
             if (name == null)
             {
@@ -87,14 +87,14 @@ namespace Einkaufsliste.Plugins.Views
                 List<Food> foods = userInputs.chooseFoods(foodList);
                 foreach(Food fd in foods)
                 {
-                    list = shoppingListAdapter.addFood(list, fd.Id);
+                    list = shoppingListAdapter.addFoodToShoppingList(list, fd.Id);
                 }
             }
 
             shoppingListPlugin.saveShoppingList(list);
         }
 
-        public void addProduct(string name = null)
+        public void addProductToShoppingList(string name = null)
         {
             if (name == null)
             {
@@ -125,7 +125,7 @@ namespace Einkaufsliste.Plugins.Views
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         if(addedProduct != null)
                         {
-                            list = shoppingListAdapter.addProduct(list, addedProduct.Id);
+                            list = shoppingListAdapter.addProductToShoppingList(list, addedProduct.Id);
                         }
                         outputValues.closeEntryMessage();
                     }

@@ -65,7 +65,7 @@ namespace Einkaufsliste.Plugins.Views
             }
         }
 
-        public void addFood(string recipeName)
+        public void addFoodToRecipe(string recipeName)
         {
             Recipe recipe = recipePlugin.getRecipe(recipeName);
             List<Food> foods = new List<Food>();
@@ -75,12 +75,12 @@ namespace Einkaufsliste.Plugins.Views
 
             foreach(Food fd in foods)
             {
-                recipe = recipeAdapter.addFood(recipe, fd.Id);
+                recipe = recipeAdapter.addFoodToRecipe(recipe, fd.Id);
             }
             recipePlugin.saveRecipe(recipe);
         } 
 
-        public void addToShoppingList(string recipeName = null, string listName = null)
+        public void addRecipeToShoppingList(string recipeName = null, string listName = null)
         {
             if (recipeName == null)
             {
@@ -96,7 +96,7 @@ namespace Einkaufsliste.Plugins.Views
 
             if(shoppingList != null)
             {
-                shoppingList = recipeAdapter.addToShoppingList(recipe, shoppingList);
+                shoppingList = recipeAdapter.addRecipeToShoppingList(recipe, shoppingList);
                 shoppingListPlugin.saveShoppingList(shoppingList);
             }
 

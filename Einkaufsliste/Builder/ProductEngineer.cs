@@ -23,9 +23,9 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
 
         public void constructProduct(string name, Price price)
         {
-            this.productBuilder.BuildName(name);
-            this.productBuilder.BuildPrice(price);
-            this.productBuilder.BuildId(Guid.NewGuid());
+            this.productBuilder.BuildProductName(name);
+            this.productBuilder.BuildProductPrice(price);
+            this.productBuilder.BuildProductId(Guid.NewGuid());
         }
     }
 }
