@@ -1,4 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
+﻿using Einkaufsliste.Adapters;
+using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.ValueObject;
 using Einkaufsliste.Plugins.ConsolePlugins;
@@ -15,8 +16,7 @@ namespace Einkaufsliste.Plugins.Views
         FoodOutputs foodOutputs = new FoodOutputs();
         ReadValues readValues = new ReadValues();
         FoodPlugin foodPlugin = new FoodPlugin();
-        FoodManager foodManager = new FoodManager();
-        OutputValues outputValues = new OutputValues();
+        FoodViewAdapter foodViewAdapter = new FoodViewAdapter();
         UserInputs userInputs = new UserInputs();
         public void createFood()
         {
@@ -33,7 +33,7 @@ namespace Einkaufsliste.Plugins.Views
             foodOutputs.enterWeightMessage();
             weight = readValues.ReadInt();
 
-            Food food = foodManager.createFood(name, weight, price);
+            Food food = foodViewAdapter.createFood(name, weight, price);
             foodOutputs.writeFood(food);
             foods.Add(food);
             foodPlugin.saveFood(foods);

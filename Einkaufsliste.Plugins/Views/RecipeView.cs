@@ -1,4 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
+﻿using Einkaufsliste.Adapters;
+using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
@@ -15,12 +16,11 @@ namespace Einkaufsliste.Plugins.Views
         RecipePlugin recipePlugin = new RecipePlugin();
         ShoppingListPlugin shoppingListPlugin = new ShoppingListPlugin();
         FoodPlugin foodPlugin = new FoodPlugin();
-        OutputValues outputValues = new OutputValues();
         RecipeOutputs recipeOutputs = new RecipeOutputs();
         FoodOutputs foodOutputs = new FoodOutputs();
-        RecipeManager recipeManager = new RecipeManager();
+        RecipeViewAdapter recipeAdapter = new RecipeViewAdapter();
+        FoodViewAdapter foodAdapter = new FoodViewAdapter();
         UserInputs userInputs = new UserInputs();
-        FoodManager foodManager = new FoodManager();
         public void createRecipe()
         {
             List<Food> foods = new List<Food>();
@@ -43,7 +43,7 @@ namespace Einkaufsliste.Plugins.Views
 
             if(name != null && name != "")
             {
-                Recipe recipe = recipeManager.createRecipe(name, foodIds, desc);
+                Recipe recipe = recipeAdapter.createRecipe(name, foodIds, desc);
                 recipePlugin.saveRecipe(recipe);
             }
         }
@@ -60,7 +60,7 @@ namespace Einkaufsliste.Plugins.Views
             recipeOutputs.foodsMessage();
             foreach (Guid foodId in recipe.Foods)
             {
-                Food food = foodManager.getFoodById(foodId, foods);
+                Food food = foodAdapter.getFoodById(foodId, foods);
                 foodOutputs.writeFood(food);
             }
         }
@@ -75,7 +75,7 @@ namespace Einkaufsliste.Plugins.Views
 
             foreach(Food fd in foods)
             {
-                recipeManager.addFood(recipe, fd.Id);
+                recipe = recipeAdapter.addFood(recipe, fd.Id);
             }
             recipePlugin.saveRecipe(recipe);
         } 
@@ -96,7 +96,7 @@ namespace Einkaufsliste.Plugins.Views
 
             if(shoppingList != null)
             {
-                shoppingList = recipeManager.addToShoppingList(recipe, shoppingList);
+                shoppingList = recipeAdapter.addToShoppingList(recipe, shoppingList);
                 shoppingListPlugin.saveShoppingList(shoppingList);
             }
 

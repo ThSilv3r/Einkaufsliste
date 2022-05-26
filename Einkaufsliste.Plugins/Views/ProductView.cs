@@ -1,4 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
+﻿using Einkaufsliste.Adapters;
+using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.ValueObject;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
@@ -12,11 +13,9 @@ namespace Einkaufsliste.Plugins.Views
     public class ProductView
     {
         string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
-        ReadValues readValues = new ReadValues();
-        OutputValues outputValues = new OutputValues();
         ProductOutputs productOutputs = new ProductOutputs();
         ProductPlugin productPlugin = new ProductPlugin();
-        ProductManager productManager = new ProductManager();
+        ProductAdapter productAdapter = new ProductAdapter();
         UserInputs userInputs = new UserInputs();
         public void createProduct()
         {
@@ -31,7 +30,7 @@ namespace Einkaufsliste.Plugins.Views
             price = userInputs.getPrice();
 
 
-            Product product = productManager.createProduct(name, price);
+            Product product = productAdapter.createProduct(name, price);
             products.Add(product);
             productPlugin.saveProductList(products);
         }

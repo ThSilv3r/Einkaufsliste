@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Einkaufsliste.Adapters\Einkaufsliste.Adapters.csproj" />
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.Domaine.csproj" />
-    <ProjectReference Include="..\Einkaufsliste\Einkaufsliste.Application.csproj" />
   </ItemGroup>
 
 </Project>

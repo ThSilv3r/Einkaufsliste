@@ -1,4 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
+﻿using Einkaufsliste.Adapters;
+using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
@@ -18,11 +19,11 @@ namespace Einkaufsliste.Plugins.Views
         ReadValues readValues = new ReadValues();
         ShoppingListPlugin shoppingListPlugin = new ShoppingListPlugin();
         ProductPlugin productPlugin = new ProductPlugin();
-        FoodManager foodManager = new FoodManager();
-        ShoppingListManager shoppingListManager = new ShoppingListManager();
+        FoodViewAdapter foodAdapter = new FoodViewAdapter();
+        ShoppingListAdapter shoppingListAdapter = new ShoppingListAdapter();
         UserInputs userInputs = new UserInputs();
         FoodPlugin foodPlugin = new FoodPlugin();
-        ProductManager productManager =  new ProductManager();
+        ProductAdapter productAdapter =  new ProductAdapter();
         public void createShoppingList()
         {
             List<Food> foods = new List<Food>();
@@ -31,7 +32,7 @@ namespace Einkaufsliste.Plugins.Views
 
             name = userInputs.getName();
 
-            ShoppingList shoppingList = shoppingListManager.createShoppingList(name);
+            ShoppingList shoppingList = shoppingListAdapter.createShoppingList(name);
             shoppingListPlugin.saveShoppingList(shoppingList);
         }
         public void readShoppingList()
@@ -46,14 +47,14 @@ namespace Einkaufsliste.Plugins.Views
                 List<Food> foods = foodPlugin.getFoodList();
                 foreach (Guid productId in shoppingList.Products)
                 {
-                    Product product = productManager.getById(productId, products);
+                    Product product = productAdapter.getProductById(productId, products);
                     productOutputs.writeProduct(product);
                 }
 
                 shoppingListOutputs.foodsMessage();
                 foreach (Guid foodId in shoppingList.Foods)
                 {
-                    Food food = foodManager.getFoodById(foodId, foods);
+                    Food food = foodAdapter.getFoodById(foodId, foods);
                     foodOutputs.writeFood(food);
                 }
             }
@@ -86,7 +87,7 @@ namespace Einkaufsliste.Plugins.Views
                 List<Food> foods = userInputs.chooseFoods(foodList);
                 foreach(Food fd in foods)
                 {
-                    list = shoppingListManager.addFood(list, fd.Id);
+                    list = shoppingListAdapter.addFood(list, fd.Id);
                 }
             }
 
@@ -124,7 +125,7 @@ namespace Einkaufsliste.Plugins.Views
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         if(addedProduct != null)
                         {
-                            list = shoppingListManager.addProduct(list, addedProduct.Id);
+                            list = shoppingListAdapter.addProduct(list, addedProduct.Id);
                         }
                         outputValues.closeEntryMessage();
                     }
