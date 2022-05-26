@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
             return listBuilder.GetShoppingList();
         }
 
-        public void constructShoppingList(string name, List<Product> products, List<Food> foods)
+        public void constructShoppingList(string name, List<Guid> products, List<Guid> foods)
         {
             this.listBuilder.BuildName(name);
             this.listBuilder.BuildProducts(products);

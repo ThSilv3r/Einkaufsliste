@@ -3,6 +3,7 @@ using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
 using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,6 +55,7 @@ namespace Einkaufsliste.Test
             //arrange
             string name = "Test";
             List<Food> foods = new List<Food>();
+            List<Guid> foodIds = new List<Guid>();
             Food food = new Food
             {
                 Id = Guid.NewGuid(),
@@ -63,8 +65,12 @@ namespace Einkaufsliste.Test
             };
             foods.Add(food);
 
+            foreach(Food fd in foods)
+            {
+                foodIds.Add(fd.Id);
+            }
             //act
-            Recipe recipe = recipeManager.createRecipe(name, foods, name);
+            Recipe recipe = recipeManager.createRecipe(name, foodIds, name);
 
             //assert
             Assert.IsNotNull(recipe);
@@ -77,6 +83,7 @@ namespace Einkaufsliste.Test
             StringReader stringReader = new StringReader("");
             Console.SetIn(stringReader); 
             List<Food> foods = new List<Food>();
+            List<Guid> foodIds = new List<Guid>();
             Food food = new Food
             {
                 Id = Guid.NewGuid(),
@@ -85,9 +92,12 @@ namespace Einkaufsliste.Test
                 Weight = 0
             };
             foods.Add(food);
-
+            foreach(Food fd in foods)
+            {
+                foodIds.Add(fd.Id);
+            }
             //act
-            Recipe recipe = recipeManager.createRecipe(name, foods, name);
+            Recipe recipe = recipeManager.createRecipe(name, foodIds, name);
 
             //assert
             Assert.IsNull(recipe);
@@ -97,7 +107,7 @@ namespace Einkaufsliste.Test
         {
             //arange
             string name = "AddFoodTest";
-            List<Food> foods = new List<Food>();
+            List<Guid> foodIds = new List<Guid>();
             Food food = new Food
             {
                 Id = Guid.NewGuid(),
@@ -108,22 +118,22 @@ namespace Einkaufsliste.Test
             Recipe recipe = new Recipe
             {
                 Name = name,
-                Foods = foods
+                Foods = foodIds
             };
-            foods.Add(food);
+            foodIds.Add(food.Id);
 
             //act
-            recipe = recipeManager.addFood(recipe, food);
+            recipe = recipeManager.addFood(recipe, food.Id);
 
             //assert
-            Assert.IsNotNull(recipe.Foods.First());
+            Assert.AreEqual(food.Id, recipe.Foods.First());
         }
         [TestMethod]
         public void AddToShoppingList()
         {
             //arange
             string name = "Test";
-            List<Food> foods = new List<Food>();
+            List<Guid> foods = new List<Guid>();
             Food food = new Food
             {
                 Id = Guid.NewGuid(),
@@ -131,7 +141,7 @@ namespace Einkaufsliste.Test
                 Price = new Price { price = 0 },
                 Weight = 0
             };
-            foods.Add(food);
+            foods.Add(food.Id);
             Recipe recipe = new Recipe
             {
                 Name = name,
@@ -140,13 +150,13 @@ namespace Einkaufsliste.Test
             ShoppingList shoppingList = new ShoppingList
             {
                 Name = name,
-                Foods = new List<Food>()
+                Foods = new List<Guid>()
             };
             //act
             shoppingList =  recipeManager.addToShoppingList(recipe, shoppingList);
 
             //assert
-            Assert.AreEqual(recipe.Foods.Last().Name, shoppingList.Foods.Last().Name);
+            Assert.AreEqual(recipe.Foods.Last(), shoppingList.Foods.Last());
         }
         //[TestMethod]
         //public void ReadProductListTest()

@@ -1,5 +1,5 @@
-﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+﻿using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;

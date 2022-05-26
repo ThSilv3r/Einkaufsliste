@@ -3,6 +3,7 @@ using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
 using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -47,8 +48,8 @@ namespace Einkaufsliste.Test
             shoppingList = new ShoppingList
             {
                 Name = "Test",
-                Foods = new List<Food>(),
-                Products = new List<Product>(),
+                Foods = new List<Guid>(),
+                Products = new List<Guid>(),
                 Id = Guid.NewGuid()
             };
         }
@@ -92,12 +93,12 @@ namespace Einkaufsliste.Test
 
             //act
 
-            listManager.addProduct(shoppingList, expectedProduct);
+            listManager.addProduct(shoppingList, expectedProduct.Id);
 
             //assert
-            Product product = shoppingList.Products.Find(x => x.Name == expectedProduct.Name);
-            Assert.AreEqual(expectedProduct.Name, product.Name);
-            shoppingList.Products.Remove(expectedProduct);
+            Guid productId = shoppingList.Products.Find(x => x == expectedProduct.Id);
+            Assert.AreEqual(expectedProduct.Id, productId);
+            shoppingList.Products.Remove(expectedProduct.Id);
         }
         [TestMethod]
         public void AddFood()
@@ -115,12 +116,12 @@ namespace Einkaufsliste.Test
 
             //act
 
-            listManager.addFood(shoppingList, expectedFood);
+            listManager.addFood(shoppingList, expectedFood.Id);
 
             //assert
-            Food food = shoppingList.Foods.Find(x => x.Name == expectedFood.Name);
-            Assert.AreEqual(expectedFood.Name, food.Name);
-            shoppingList.Foods.Remove(expectedFood);
+            Guid foodId = shoppingList.Foods.Find(x => x == expectedFood.Id);
+            Assert.AreEqual(expectedFood.Id, foodId);
+            shoppingList.Foods.Remove(expectedFood.Id);
         }
         //[TestMethod]
         //public void ReadProductListTest()

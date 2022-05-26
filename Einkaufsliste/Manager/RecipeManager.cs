@@ -1,6 +1,7 @@
-﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.ClassLibrary.Entity.Builder;
+﻿using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 
 namespace Einkaufsliste
@@ -29,7 +30,7 @@ namespace Einkaufsliste
         RecipeBuilder recipeBuilder;
         RecipeEngineer recipeEngineer;
         Recipe recipe;
-        public Recipe createRecipe(string name, List<Food> foods, string description)
+        public Recipe createRecipe(string name, List<Guid> foods, string description)
         {
             RecipeBuilder recipeBuilder = new RecipeBuilder();
             RecipeEngineer recipeEngineer = new RecipeEngineer(recipeBuilder);
@@ -83,7 +84,7 @@ namespace Einkaufsliste
         //    }
         //}
 
-        public Recipe addFood(Recipe recipe, Food food)
+        public Recipe addFood(Recipe recipe, Guid foodId)
         {
             //Recipe recipe = recipePlugin.getRecipe(recipeName);
             //int count = 0;
@@ -107,7 +108,7 @@ namespace Einkaufsliste
             //}
             //recipe.Foods = foods;
             //recipePlugin.saveRecipe(recipe);
-            recipe.Foods.Add(food);
+            recipe.Foods.Add(foodId);
             return recipe;
         }
 
@@ -132,9 +133,9 @@ namespace Einkaufsliste
             //    shoppingList.Foods.Add(food);
             //}
             //shoppingListPlugin.saveShoppingList(shoppingList);
-            foreach(Food food in recipe.Foods)
+            foreach (Guid foodId in recipe.Foods)
             {
-                list.Foods.Add(food);
+                list.Foods.Add(foodId);
             }
             
             return list;

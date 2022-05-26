@@ -41,7 +41,7 @@ namespace Einkaufsliste.Plugins.Views
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void listCommands(string command)
@@ -71,7 +71,7 @@ namespace Einkaufsliste.Plugins.Views
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void productCommand(string command)
@@ -91,7 +91,7 @@ namespace Einkaufsliste.Plugins.Views
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
         public void recipeCommand(string command)
@@ -116,7 +116,7 @@ namespace Einkaufsliste.Plugins.Views
             }
             else
             {
-                Console.WriteLine("Kein echter Befehl");
+                //Console.WriteLine("Kein echter Befehl");
             }
         }
     }

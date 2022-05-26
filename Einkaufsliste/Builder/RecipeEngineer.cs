@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
             return recipeBuilder.GetRecipe();
         }
 
-        public void constructRecipe(string name, string desc, List<Food> foods)
+        public void constructRecipe(string name, string desc, List<Guid> foods)
         {
             this.recipeBuilder.BuildName(name);
             this.recipeBuilder.BuildFoods(foods);

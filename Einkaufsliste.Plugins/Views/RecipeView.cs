@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,11 @@ namespace Einkaufsliste.Plugins.Views
         FoodOutputs foodOutputs = new FoodOutputs();
         RecipeManager recipeManager = new RecipeManager();
         UserInputs userInputs = new UserInputs();
+        FoodManager foodManager = new FoodManager();
         public void createRecipe()
         {
             List<Food> foods = new List<Food>();
+            List<Guid> foodIds = new List<Guid>();
             List<Food> foodList = foodPlugin.getFoodList();
             string name = "";
 
@@ -30,13 +33,17 @@ namespace Einkaufsliste.Plugins.Views
             foodOutputs.chooseFoodMessage();
 
             foods = userInputs.chooseFoods(foodList);
+            foreach(Food food in foods)
+            {
+                foodIds.Add(food.Id);
+            }
 
             recipeOutputs.enterDescriptionMessage();
             string desc = readValues.ReadString();
 
             if(name != null && name != "")
             {
-                Recipe recipe = recipeManager.createRecipe(name, foods, desc);
+                Recipe recipe = recipeManager.createRecipe(name, foodIds, desc);
                 recipePlugin.saveRecipe(recipe);
             }
         }
@@ -49,10 +56,11 @@ namespace Einkaufsliste.Plugins.Views
                 name = userInputs.getName();
             }
             Recipe recipe = recipePlugin.getRecipe(name);
-
+            List<Food> foods = foodPlugin.getFoodList();
             recipeOutputs.foodsMessage();
-            foreach (Food food in recipe.Foods)
+            foreach (Guid foodId in recipe.Foods)
             {
+                Food food = foodManager.getFoodById(foodId, foods);
                 foodOutputs.writeFood(food);
             }
         }
@@ -67,7 +75,7 @@ namespace Einkaufsliste.Plugins.Views
 
             foreach(Food fd in foods)
             {
-                recipeManager.addFood(recipe, fd);
+                recipeManager.addFood(recipe, fd.Id);
             }
             recipePlugin.saveRecipe(recipe);
         } 

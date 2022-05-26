@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,9 @@ namespace Einkaufsliste.ClassLibrary.Entity.Builder
         {
             recipe.Name = name;
         }
-        public void BuildFoods(List<Food> foods)
+        public void BuildFoods(List<Guid> foodIds)
         {
-            recipe.Foods = foods;
+            recipe.Foods = foodIds;
         }
         public void BuildId(Guid guid)
         {

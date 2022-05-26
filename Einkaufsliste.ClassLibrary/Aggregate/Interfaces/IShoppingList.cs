@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Einkaufsliste.ClassLibrary.Entity.Interfaces
+namespace Einkaufsliste.Domaine.Aggregate.Interfaces
 {
     public interface IShoppingList
     {
         Guid Id { get; set; }
         string Name { get; set; }
-        List<Product> Products { get; set; }
-        List<Food> Foods { get; set; }
+        List<Guid> Products { get; set; }
+        List<Guid> Foods { get; set; }
     }
 }

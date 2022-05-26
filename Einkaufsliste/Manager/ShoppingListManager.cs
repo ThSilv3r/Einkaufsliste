@@ -1,6 +1,7 @@
-﻿using Einkaufsliste.ClassLibrary;
-using Einkaufsliste.ClassLibrary.Entity.Builder;
+﻿using Einkaufsliste.ClassLibrary.Entity.Builder;
 using Einkaufsliste.ClassLibrary.Repository;
+using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 
 namespace Einkaufsliste
@@ -36,8 +37,8 @@ namespace Einkaufsliste
             ShoppingListBuilder shoppingListBuilder = new ShoppingListBuilder();
             ShoppingListEngineer shoppingListEngineer = new ShoppingListEngineer(shoppingListBuilder);
             ShoppingList shoppingList = new ShoppingList();
-            List<Food> foods = new List<Food>();
-            List<Product> products = new List<Product>();
+            List<Guid> foods = new List<Guid>();
+            List<Guid> products = new List<Guid>();
 
             if(name != null && name != "")
             {
@@ -64,7 +65,7 @@ namespace Einkaufsliste
         //    }
         //}
 
-        public ShoppingList addFood(ShoppingList list, Food food)
+        public ShoppingList addFood(ShoppingList list, Guid foodId)
         {
             //ShoppingList list = shoppingListPlugin.getShoppingList(listName);
             //FoodPlugin foodPlugin = new FoodPlugin();
@@ -96,12 +97,12 @@ namespace Einkaufsliste
             //    }
             //}
 
-            list.Foods.Add(food);
+            list.Foods.Add(foodId);
             //shoppingListPlugin.saveShoppingList(list);
             return list;
         }
 
-        public ShoppingList addProduct(ShoppingList list, Product product)
+        public ShoppingList addProduct(ShoppingList list, Guid productId)
         {
             //ShoppingList list = shoppingListPlugin.getShoppingList(listName);
             //Product productItem = new Product();
@@ -134,7 +135,7 @@ namespace Einkaufsliste
             //}
 
 
-            list.Products.Add(product);
+            list.Products.Add(productId);
             return list;
         }
     }

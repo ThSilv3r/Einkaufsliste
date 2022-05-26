@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufsliste.Domaine.Aggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace Einkaufsliste.ClassLibrary.Repository
         //void createShoppingList(string name);
         ShoppingList createShoppingList(string name);
         //void readShoppingList(string name);
-        ShoppingList addFood(ShoppingList list, Food food);
+        ShoppingList addFood(ShoppingList list, Guid foodId);
         //void addFood(string listName);
-        ShoppingList addProduct(ShoppingList list, Product product);
+        ShoppingList addProduct(ShoppingList list, Guid productId);
         //void addProduct(string listName);
     }
 }

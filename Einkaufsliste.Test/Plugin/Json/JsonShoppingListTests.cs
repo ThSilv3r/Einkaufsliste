@@ -1,8 +1,8 @@
-using Einkaufsliste.ClassLibrary;
 using Einkaufsliste.ClassLibrary.Repository;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Console;
 using Einkaufsliste.ClassLibrary.Repository.Plugin.Json;
 using Einkaufsliste.ClassLibrary.ValueObject;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

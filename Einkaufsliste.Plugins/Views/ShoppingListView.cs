@@ -1,4 +1,5 @@
 ﻿using Einkaufsliste.ClassLibrary;
+using Einkaufsliste.Domaine.Aggregate;
 using Einkaufsliste.Plugins.ConsolePlugins;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace Einkaufsliste.Plugins.Views
         FoodManager foodManager = new FoodManager();
         ShoppingListManager shoppingListManager = new ShoppingListManager();
         UserInputs userInputs = new UserInputs();
+        FoodPlugin foodPlugin = new FoodPlugin();
+        ProductManager productManager =  new ProductManager();
         public void createShoppingList()
         {
             List<Food> foods = new List<Food>();
@@ -28,7 +31,8 @@ namespace Einkaufsliste.Plugins.Views
 
             name = userInputs.getName();
 
-            shoppingListManager.createShoppingList(name);
+            ShoppingList shoppingList = shoppingListManager.createShoppingList(name);
+            shoppingListPlugin.saveShoppingList(shoppingList);
         }
         public void readShoppingList()
         {
@@ -38,14 +42,18 @@ namespace Einkaufsliste.Plugins.Views
             {
                 ShoppingList shoppingList = shoppingListPlugin.getShoppingList(name);
                 shoppingListOutputs.productsMessage();
-                foreach (Product product in shoppingList.Products)
+                List<Product> products = productPlugin.getProductList();
+                List<Food> foods = foodPlugin.getFoodList();
+                foreach (Guid productId in shoppingList.Products)
                 {
+                    Product product = productManager.getById(productId, products);
                     productOutputs.writeProduct(product);
                 }
 
                 shoppingListOutputs.foodsMessage();
-                foreach (Food food in shoppingList.Foods)
+                foreach (Guid foodId in shoppingList.Foods)
                 {
+                    Food food = foodManager.getFoodById(foodId, foods);
                     foodOutputs.writeFood(food);
                 }
             }
@@ -78,7 +86,7 @@ namespace Einkaufsliste.Plugins.Views
                 List<Food> foods = userInputs.chooseFoods(foodList);
                 foreach(Food fd in foods)
                 {
-                    list = shoppingListManager.addFood(list, fd);
+                    list = shoppingListManager.addFood(list, fd.Id);
                 }
             }
 
@@ -116,7 +124,7 @@ namespace Einkaufsliste.Plugins.Views
                         var addedProduct = productList.FirstOrDefault(f => f.Name == product);
                         if(addedProduct != null)
                         {
-                            list = shoppingListManager.addProduct(list, addedProduct);
+                            list = shoppingListManager.addProduct(list, addedProduct.Id);
                         }
                         outputValues.closeEntryMessage();
                     }
