@@ -6,7 +6,7 @@ namespace Einkaufsliste
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Wrong Startup Programm. Please start the Einkaufsliste project.");
         }
     }
 }

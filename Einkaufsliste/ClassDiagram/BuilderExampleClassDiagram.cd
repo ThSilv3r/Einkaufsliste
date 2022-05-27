@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Einkaufsliste.ClassLibrary.Entity.Builder.ProductEngineer">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Builder\ProductEngineer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="productBuilder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Einkaufsliste.ClassLibrary.Entity.Builder.ProductBuilder">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAgAAAAAAgAgAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Builder\ProductBuilder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="product" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.ClassLibrary.Product">
+    <Position X="12.5" Y="5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Einkaufsliste.ClassLibrary.Entity.Builder.IProductBuilder">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAgAgAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Builder\IProductBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
