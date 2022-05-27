@@ -18,7 +18,6 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class ShoppingListViewTest
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
         ShoppingListView shoppingListView;
         ShoppingListPlugin shoppingListPlugin;
         FoodPlugin foodPlugin;
@@ -52,6 +51,8 @@ namespace Einkaufsliste.Test
         {
             //arrange
             string name = "TestListe";
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
             StringReader stringReader = new StringReader(name);
             Console.SetIn(stringReader);
 

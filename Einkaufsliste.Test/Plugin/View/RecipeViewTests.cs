@@ -18,7 +18,6 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class RecipeViewTest
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
         RecipeView recipeView;
         RecipePlugin recipePlugin;
         FoodPlugin foodPlugin;
@@ -43,6 +42,8 @@ namespace Einkaufsliste.Test
         [TestMethod]
         public void createRecipeTest()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Recipes\";
             //arrange
             string name = "TestRecipe";
             StringReader stringReader = new StringReader(name);

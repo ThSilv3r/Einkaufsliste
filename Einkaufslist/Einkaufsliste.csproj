@@ -9,4 +9,9 @@
     <ProjectReference Include="..\Einkaufsliste.Plugins\Einkaufsliste.Plugins.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Recipes\" />
+    <Folder Include="ShoppingLists\" />
+  </ItemGroup>
+
 </Project>

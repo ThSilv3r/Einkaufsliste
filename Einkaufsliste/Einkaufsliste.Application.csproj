@@ -18,9 +18,4 @@
     <ProjectReference Include="..\Einkaufsliste.ClassLibrary\Einkaufsliste.Domaine.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Recipes\" />
-    <Folder Include="ShoppingLists\" />
-  </ItemGroup>
-
 </Project>

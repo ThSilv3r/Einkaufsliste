@@ -13,9 +13,10 @@ namespace Einkaufsliste.Plugins
 {
     public class ProductPlugin : ProductPluginRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Products.json";
         public void saveProductList(List<Product> products)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Products.json";
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 string jsonProducts = JsonSerializer.Serialize(products);
@@ -24,14 +25,19 @@ namespace Einkaufsliste.Plugins
         }
         public void deleteProduct(string name = null)
         {
+            ProductOutputs output = new ProductOutputs();
             OutputValues outputValues = new OutputValues();
+            List<Product> products = getProductList();
+            foreach (var prod in products)
+            {
+                output.writeProduct(prod);
+            }
             if (name == null)
             {
                 ReadValues readValues = new ReadValues();
                 outputValues.enterNameMessage();
                 name = readValues.ReadString();
             }
-            List<Product> products = getProductList();
             if (name != "")
             {
                 Product product = products.Find(x => x.Name == name);
@@ -49,6 +55,8 @@ namespace Einkaufsliste.Plugins
 
         public List<Product> getProductList()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Products.json";
             List<Product> products = new List<Product>();
             using (StreamReader streamReader = new StreamReader(path))
             {

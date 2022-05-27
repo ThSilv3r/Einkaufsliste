@@ -13,9 +13,10 @@ namespace Einkaufsliste.Plugins
 {
     public class RecipePlugin : RecipePluginRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Recipes\";
         public void saveRecipe(Recipe recipe)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Recipes\";
             using (StreamWriter streamWriter = new StreamWriter(path + recipe.Name + ".json"))
             {
                 string jsonRecipe = JsonSerializer.Serialize(recipe);
@@ -24,6 +25,8 @@ namespace Einkaufsliste.Plugins
         }
         public Recipe getRecipe(string name)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Recipes\";
             Recipe recipe = new Recipe();
 
             using (StreamReader streamReader = new StreamReader(path + name + ".json"))
@@ -39,6 +42,8 @@ namespace Einkaufsliste.Plugins
         }
         public void deleteRecipe(string name = null)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Recipes\";
             OutputValues outputValues = new OutputValues();
             if (name == null)
             {

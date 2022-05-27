@@ -13,10 +13,11 @@ namespace Einkaufsliste.Plugins
 {
     public class ShoppingListPlugin : ShoppingListPluginRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
         public ShoppingList getShoppingList(string name)
         {
             ShoppingList shoppingList = new ShoppingList();
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
 
             using (StreamReader streamReader = new StreamReader(path + name + ".json"))
             {
@@ -32,6 +33,8 @@ namespace Einkaufsliste.Plugins
 
         public void saveShoppingList(ShoppingList shoppingList)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
             using (StreamWriter streamWriter = new StreamWriter(path + shoppingList.Name + ".json"))
             {
                 string jsonList = JsonSerializer.Serialize(shoppingList);
@@ -40,6 +43,8 @@ namespace Einkaufsliste.Plugins
         }
         public void deleteShoppingList(string name = null)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
             OutputValues outputValues = new OutputValues();
             if (name == null)
             {

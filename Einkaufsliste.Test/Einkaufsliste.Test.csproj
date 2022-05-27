@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Domain\" />
+    <Folder Include="Recipes\" />
+    <Folder Include="ShoppingLists\" />
   </ItemGroup>
 
 </Project>

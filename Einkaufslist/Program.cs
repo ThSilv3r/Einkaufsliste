@@ -20,22 +20,25 @@ namespace Einkaufslist
                 }
                 else
                 {
-                    enteredCommand = true;
-                    if (command.Contains("Food"))
-                    {
-                        commandView.foodCommands(command);
-                    }
-                    if (command.Contains("Product"))
-                    {
-                        commandView.productCommand(command);
-                    }
                     if (command.Contains("Recipe"))
                     {
+                        enteredCommand = true;
                         commandView.recipeCommand(command);
                     }
-                    if (command.Contains("ShoppingList"))
+                    else if (command.Contains("ShoppingList"))
                     {
+                        enteredCommand = true;
                         commandView.listCommands(command);
+                    }
+                    else if (command.Contains("Food"))
+                    {
+                        enteredCommand = true;
+                        commandView.foodCommands(command);
+                    }
+                    else if (command.Contains("Product"))
+                    {
+                        enteredCommand = true;
+                        commandView.productCommand(command);
                     }
                     else
                     {

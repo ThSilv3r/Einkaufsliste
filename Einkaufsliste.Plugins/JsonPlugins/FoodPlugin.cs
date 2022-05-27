@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,9 +14,14 @@ namespace Einkaufsliste.Plugins
 {
     public class FoodPlugin : FoodPluginRepository
     {
-        private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
+        //private string path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\Foods.json";
         public void saveFoodList(List<Food> foods)
         {
+
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Foods.json";
+
+            path = path.Trim();
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
                 string jsonFoods = JsonSerializer.Serialize(foods);
@@ -24,6 +30,8 @@ namespace Einkaufsliste.Plugins
         }
         public List<Food> getFoodList()
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\Foods.json";
             List<Food> foods = new List<Food>();
             using (StreamReader streamReader = new StreamReader(path))
             {
@@ -38,7 +46,13 @@ namespace Einkaufsliste.Plugins
 
         public void deleteFood(string name = null)
         {
+            FoodOutputs foodOutputs = new FoodOutputs();
             OutputValues outputValues = new OutputValues();
+            List<Food> foods = getFoodList();
+            foreach (var fd in foods)
+            {
+                foodOutputs.writeFood(fd);
+            }
             if (name == null)
             {
                 ReadValues readValues = new ReadValues();
@@ -46,7 +60,6 @@ namespace Einkaufsliste.Plugins
                 name = readValues.ReadString();
             }
 
-            List<Food> foods = getFoodList();
             if(name != "")
             {
                 Food food = foods.Find(x => x.Name == name);

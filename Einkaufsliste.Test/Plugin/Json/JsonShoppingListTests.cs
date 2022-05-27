@@ -15,31 +15,11 @@ namespace Einkaufsliste.Test
     [TestClass]
     public class JsonShoppingListTest
     {
-        private string path;
         IShoppingListManager listManager;
         ShoppingListPluginRepository shoppingListPlugin;
-        ProductPluginRepository productPlugin;
-        IFoodManager foodManager;
-        IProductManager productManager;
-        IShoppingListOutput shoppingListOutputRepository;
-        FoodPluginRepository foodPlugin;
-        IReadValues readValues;
-        IFoodOutput foodOutput;
-        IOutputValues outputValues;
-        IProductOutput productOutput;
         [TestInitialize]
         public void Startup()
         {
-            path = @"C:\Users\user\source\repos\Einkaufsliste\Einkaufsliste\ShoppingLists\";
-            readValues = new ReadValues();
-            foodOutput = new FoodOutputs();
-            productOutput = new ProductOutputs();
-            outputValues = new OutputValues();
-            foodPlugin = new FoodPlugin();
-            productPlugin = new ProductPlugin();
-            foodPlugin = new FoodPlugin();
-            foodManager = new FoodManager();
-            productManager = new ProductManager();
             shoppingListPlugin = new ShoppingListPlugin();
             listManager = new ShoppingListManager();
         }
@@ -47,6 +27,8 @@ namespace Einkaufsliste.Test
         public void SaveList()
         {
             //arrange
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
             ShoppingList shoppingList = new ShoppingList { 
                 Name = "TestListe" 
             };
@@ -79,6 +61,8 @@ namespace Einkaufsliste.Test
         public void DeleteShoppingList()
         {
             //arrange
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + @"\ShoppingLists\";
             string name = "TestListe";
 
             listManager.createShoppingList(name);
