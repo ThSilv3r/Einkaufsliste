@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Einkaufsliste.Plugins.ConsolePlugins.ProductOutputs">
-    <Position X="10.75" Y="3.25" Width="1.5" />
+    <Position X="10.75" Y="3.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAIAAAAAAAAgACAAAAAAAAAAA=</HashCode>
       <FileName>ConsolePlugins\ProductOutputs.cs</FileName>

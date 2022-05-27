@@ -21,7 +21,7 @@
   <Class Name="Einkaufsliste.ClassLibrary.Entity.Builder.FoodBuilder">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgAAAAAAgAoAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAABAKAAQAAIAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Builder\FoodBuilder.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -29,7 +29,7 @@
   <Class Name="Einkaufsliste.ClassLibrary.Entity.Builder.FoodEngineer">
     <Position X="9.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAACgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAACgAAAAA=</HashCode>
       <FileName>Builder\FoodEngineer.cs</FileName>
     </TypeIdentifier>
   </Class>

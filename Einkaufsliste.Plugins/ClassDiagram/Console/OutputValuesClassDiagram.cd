@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Einkaufsliste.Plugins.ConsolePlugins.OutputValues">
-    <Position X="9.5" Y="3.25" Width="1.5" />
+    <Position X="9.5" Y="3.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAAAAAAAAAAAAAABAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsolePlugins\OutputValues.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

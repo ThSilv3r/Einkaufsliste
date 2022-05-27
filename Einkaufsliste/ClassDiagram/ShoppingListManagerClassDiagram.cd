@@ -3,7 +3,7 @@
   <Class Name="Einkaufsliste.ShoppingListManager">
     <Position X="9.5" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAQAAAAAAAAAIEAAAAAAAAASAAAAAAA=</HashCode>
+      <HashCode>AEQAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAADAAAAAAA=</HashCode>
       <FileName>Manager\ShoppingListManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -16,7 +16,7 @@
   <Class Name="Einkaufsliste.ClassLibrary.Entity.Builder.ShoppingListBuilder">
     <Position X="12" Y="0.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAECAAAAAAAAgAgAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AEAAAAAIAAAEAAAAAAAAAAACAAAAAAAAAgAAAACAAAA=</HashCode>
       <FileName>Builder\ShoppingListBuilder.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
