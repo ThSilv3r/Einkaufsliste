@@ -10,11 +10,11 @@ namespace Einkaufsliste.Plugins.Views
 {
     public class CommandView : ICommandView
     {
-        FoodPlugin foodPlugin = new FoodPlugin();
-        ProductPlugin productPlugin = new ProductPlugin();
-        ShoppingListPlugin listPlugin = new ShoppingListPlugin();
-        RecipePlugin recipePlugin = new RecipePlugin();
-        ShoppingListOutputs shoppingListOutputs = new ShoppingListOutputs();
+        FoodPlugin foodPlugin;
+        ProductPlugin productPlugin;
+        ShoppingListPlugin listPlugin;
+        RecipePlugin recipePlugin;
+        ShoppingListOutputs shoppingListOutputs;
         FoodView foodView;
         ShoppingListView listView;
         RecipeView recipeView;
@@ -22,6 +22,7 @@ namespace Einkaufsliste.Plugins.Views
         public void foodCommands(string command)
         {
             foodView = new FoodView();
+            foodPlugin = new FoodPlugin();
             if (command == "createFood")
             {
                 foodView.createFood();
@@ -41,7 +42,8 @@ namespace Einkaufsliste.Plugins.Views
         }
         public void listCommands(string command)
         {
-            foodView = new FoodView();
+            shoppingListOutputs = new ShoppingListOutputs();
+            listPlugin = new ShoppingListPlugin();
             listView = new ShoppingListView();
             if (command == "createShoppingList")
             {
@@ -71,6 +73,7 @@ namespace Einkaufsliste.Plugins.Views
         }
         public void productCommand(string command)
         {
+            productPlugin = new ProductPlugin();
             productView = new ProductView();
             if (command == "createProduct")
             {
@@ -91,6 +94,7 @@ namespace Einkaufsliste.Plugins.Views
         }
         public void recipeCommand(string command)
         {
+            recipePlugin = new RecipePlugin();
             recipeView = new RecipeView();
             if (command == "createRecipe")
             {

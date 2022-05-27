@@ -1,10 +1,124 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Einkaufsliste.Plugins.Views.CommandView" Collapsed="true">
-    <Position X="9.5" Y="3" Width="1.5" />
+  <Class Name="Einkaufsliste.Plugins.Views.CommandView">
+    <Position X="10.25" Y="2.75" Width="1.75" />
+    <AssociationLine Name="foodPlugin" Type="Einkaufsliste.Plugins.FoodPlugin" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.542" Y="4.43" />
+        <Point X="10.542" Y="6.344" />
+        <Point X="9.5" Y="6.344" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="productView" Type="Einkaufsliste.Plugins.Views.ProductView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="3" />
+        <Point X="12.375" Y="3" />
+        <Point X="12.375" Y="1.758" />
+        <Point X="12.75" Y="1.758" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="listView" Type="Einkaufsliste.Plugins.Views.ShoppingListView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.781" Y="4.43" />
+        <Point X="11.781" Y="5.062" />
+        <Point X="14.25" Y="5.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="listPlugin" Type="Einkaufsliste.Plugins.ShoppingListPlugin">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.862" Y="0.133" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="foodView" Type="Einkaufsliste.Plugins.Views.FoodView" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.635" Y="4.43" />
+        <Point X="11.635" Y="5.797" />
+        <Point X="12.25" Y="5.797" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAQACARgCAAQAAACAAAgAAAABAgQAAASBIAAAMAAAAA=</HashCode>
+      <HashCode>AAQAAABgCAAQAAACAAAAAAAABAAQAAASAIAAAMAAAAA=</HashCode>
       <FileName>Views\CommandView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="foodPlugin" />
+      <Field Name="shoppingListOutputs" />
+      <Field Name="recipePlugin" />
+      <Field Name="recipeView" />
+      <Field Name="productView" />
+      <Field Name="listView" />
+      <Field Name="productPlugin" />
+      <Field Name="listPlugin" />
+      <Field Name="foodView" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.FoodPlugin">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAACAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JsonPlugins\FoodPlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ConsolePlugins.ShoppingListOutputs">
+    <Position X="10" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAEAAAAA=</HashCode>
+      <FileName>ConsolePlugins\ShoppingListOutputs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.RecipePlugin">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAACAAAAAAAAAAAAAAAAQBAAAAA=</HashCode>
+      <FileName>JsonPlugins\RecipePlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.RecipeView">
+    <Position X="14.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACARBCQAAAAgAAQAAAAgAAAgAAAAAAAAAAAAEBBA=</HashCode>
+      <FileName>Views\RecipeView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.ProductView">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAACgCIAAiAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ProductView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.ShoppingListView">
+    <Position X="14.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAQACAAACQACAAwCAAAgAAAAAAgAAAAABAABgEAABAA=</HashCode>
+      <FileName>Views\ShoppingListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ProductPlugin">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAgAAAAAAAAAACAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>JsonPlugins\ProductPlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.ShoppingListPlugin">
+    <Position X="9.75" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABCACAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>JsonPlugins\ShoppingListPlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.127" />
+  </Class>
+  <Class Name="Einkaufsliste.Plugins.Views.FoodView">
+    <Position X="12.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAACAAAAAgAAAQAAAgAAAgAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Views\FoodView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

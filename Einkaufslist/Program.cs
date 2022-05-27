@@ -5,9 +5,10 @@ namespace Einkaufslist
 {
     internal class Program
     {
+        static CommandView commandView;
         static void Main(string[] args)
         {
-            CommandView commandView = new CommandView();
+            commandView = new CommandView();
             bool enteredCommand = false;
             while (!enteredCommand)
             {

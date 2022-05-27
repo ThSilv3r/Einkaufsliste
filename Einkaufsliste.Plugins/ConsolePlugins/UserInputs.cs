@@ -37,7 +37,7 @@ namespace Einkaufsliste.Plugins.ConsolePlugins
             }
             while (foodString != null && foodString != "q")
             {
-                foodString = readValues.ReadString();
+                foodString = getName();
                 if (foodString != null && foodString != "q")
                 {
                     addedFood = foodList.FirstOrDefault(f => f.Name == foodString);
